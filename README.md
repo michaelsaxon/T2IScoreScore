@@ -3,9 +3,9 @@
 ### **Who Evaluates the Evaluations? Assessing the Faithfulness and Consistency of Text-to-Image Evaluation Metrics with *T2IScoreScore***
 
 
-We introduced **HalluVision** dataset! 📸✨
+We introduced **T2IScoreScore** dataset! 📸✨  🤗 [HF Repo](https://huggingface.co/datasets/saxon/T2IScoreScore) 
 
-HalluVision is a meticulously curated dataset featuring image sets that smoothly transition from high to low faithfulness with respect to the given prompt. This collection includes both synthetic and natural examples, providing a comprehensive range for meta-evaluating existing Text-to-Image (T2I) metrics. Our goal is to facilitate the development of more accurate and consistent T2I metrics in the future.
+T2IScoreScore is a meticulously curated dataset featuring image sets that smoothly transition from high to low faithfulness with respect to the given prompt. This collection includes both synthetic and natural examples, providing a comprehensive range for meta-evaluating existing Text-to-Image (T2I) metrics. Our goal is to facilitate the development of more accurate and consistent T2I metrics in the future.
 
 
 ⚡	There is a sample of an error graph for the initial prompt “**A
@@ -16,8 +16,6 @@ head node of the graph:
 
 
 <img src="figures/Sample.png" style="width:450px; height:300px;">
-
-*The HalluVision dataset is scheduled for publication soon!*
 
 
 ### Tested Scores on This Dataset
