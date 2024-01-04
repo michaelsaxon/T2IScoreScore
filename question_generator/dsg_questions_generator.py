@@ -12,7 +12,6 @@ FLAGS = flags.FLAGS
 
 flags.DEFINE_string("api_key", "", "OpenAI API key.")
 flags.DEFINE_string("input_file", "", "Path to the input file with prompts.")
-flags.DEFINE_string("output_json", "", "Path to save the output JSON file.")
 flags.DEFINE_string("output_csv", "", "Path to save the output CSV file.")
 
 class DSG_QuestionGenerator:
@@ -62,7 +61,6 @@ if __name__ == "__main__":
 
     api_key = FLAGS.api_key
     input_file_path = FLAGS.input_file
-    output_json_path = FLAGS.output_json
     output_csv_path = FLAGS.output_csv
 
     question_creator = DSG_QuestionGenerator(api_key)
@@ -72,4 +70,4 @@ if __name__ == "__main__":
     subprocess.run(["git", "clone", repository_url, target_directory])
     subprocess.run(["cd", target_directory])
 
-    question_creator.process_prompts(input_file_path, output_json_path)
+    question_creator.process_prompts(input_file_path, output_csv_path)
