@@ -80,7 +80,7 @@ a_fuyu_dsg.csv: id,image,question_id,vqa_answer
 @click.command()
 @click.option('--model')
 @click.option('--score')
-def main(model, score, question_file):
+def main(model, score):
     answer_file, question_file = fname(model, score)
     answer_df = pd.read_csv(answer_file)
     question_df = pd.read_csv(question_file)
