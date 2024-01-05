@@ -99,7 +99,7 @@ def main(model, score):
 
         id, question_id, vqa_answer = image_row[['id', 'question_id', 'vqa_answer']]
 
-        choices, correct_answer = question_df.loc[question_df['id'] == id].loc[question_df['question_id'] == question_id][0][['choices', 'answer']]
+        choices, correct_answer = question_df.loc[question_df['id'] == id].loc[question_df['question_id'] == question_id][['choices', 'answer']]
         choices = choices.split('|')
 
         correct, mc_answer = get_mc_answer(sbert_model, correct_answer, vqa_answer, choices, mode = score.upper())
