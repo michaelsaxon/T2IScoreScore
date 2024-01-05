@@ -106,7 +106,7 @@ def main(model, score, debug):
         id, question_id, vqa_answer = image_row[['id', 'question_id', 'vqa_answer']]
         # vqa_answer can be an empty string, which is read in as nan
         if math.isnan(vqa_answer):
-            vqa_answer = ""
+            vqa_answer = " "
 
         debug_print(f"\n{idx}")
 
