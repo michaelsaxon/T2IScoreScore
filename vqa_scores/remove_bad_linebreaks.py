@@ -4,7 +4,7 @@ import shutil
 
 # convert the multiple choice outputs into a single choice using sentencebert from a csv output in Michael's style
 
-def double_id(id, line):
+def double_id(line):
     linesplit = line.split(",")
     id = linesplit[0]
     count = 0
