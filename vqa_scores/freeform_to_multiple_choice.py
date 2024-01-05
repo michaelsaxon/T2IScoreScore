@@ -56,7 +56,7 @@ class SBERTModel:
 
 
 def fname(model, score):
-    return f"output_csvs_correct/a_{model}_{score}.csv"
+    return f"output_csvs_correct/a_{model}_{score}.csv", f"HalluVisionFull/HalluVision_{score.upper()}_Q.csv"
 
 def get_mc_answer(sbert_model, correct_answer, vqa_answer, choices, mode = "DSG"):
     if mode == "DSG" or len(choices) < 3:
@@ -80,9 +80,8 @@ a_fuyu_dsg.csv: id,image,question_id,vqa_answer
 @click.command()
 @click.option('--model')
 @click.option('--score')
-@click.option('--question_file')
 def main(model, score, question_file):
-    answer_file = fname(model, score)
+    answer_file, question_file = fname(model, score)
     answer_df = pd.read_csv(answer_file)
     question_df = pd.read_csv(question_file)
 
