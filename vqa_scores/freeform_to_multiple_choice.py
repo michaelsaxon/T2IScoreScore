@@ -56,7 +56,7 @@ class SBERTModel:
 
 
 def fname(model, score):
-    return f"output_csvs_correct/a_{model}_{score}.csv", f"HalluVisionFull/HalluVision_{score.upper()}_Q.csv"
+    return f"output_csvs_correct/a_{model}_{score}.csv", f"HalluVisionAllFinal/HalluVision_{score.upper()}_Q.csv"
 
 def get_mc_answer(sbert_model, correct_answer, vqa_answer, choices, mode = "DSG"):
     if mode == "DSG" or len(choices) < 3:
