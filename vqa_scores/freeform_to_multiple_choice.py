@@ -80,7 +80,12 @@ a_fuyu_dsg.csv: id,image,question_id,vqa_answer
 @click.command()
 @click.option('--model')
 @click.option('--score')
-def main(model, score):
+@click.option('--debug', is_flag=True)
+def main(model, score, debug):
+    def debug_print(*args, **kwargs):
+        if debug:
+            print(*args, **kwargs)
+
     answer_file, question_file = fname(model, score)
     answer_df = pd.read_csv(answer_file)
     question_df = pd.read_csv(question_file)
@@ -99,15 +104,20 @@ def main(model, score):
 
         id, question_id, vqa_answer = image_row[['id', 'question_id', 'vqa_answer']]
 
+        debug_print(id)
+        debug_print(question_id)
+        debug_print(vqa_answer)
+
+
         answer_row = question_df.loc[question_df['id'] == id].loc[question_df['question_id'] == question_id]
-        print(answer_row)
+        debug_print(answer_row)
         choices = choices.split('|')
 
-        print(id)
-        print(question_id)
-        print(vqa_answer)
-        print(choices)
-        print(correct_answer)
+        debug_print(id)
+        debug_print(question_id)
+        debug_print(vqa_answer)
+        debug_print(choices)
+        debug_print(correct_answer)
         
         correct, mc_answer = get_mc_answer(sbert_model, correct_answer, vqa_answer, choices, mode = score.upper())
         mc_answer_lines.append(f"{id},{question_id},{vqa_answer},{mc_answer},{correct}\n")
