@@ -29,10 +29,10 @@ def main(fix, endcap):
     while i < len(fix_lines):
         # if the endcap isn't at the end of the line, delete the /n and merge with next line until satisfied
         while not fix_lines[i].endswith(endcap):
-            fix_lines[i] = fix_lines[i].strip("\n") + fix_lines[i+1]
+            if double_id(fix_lines[i].strip("\n") + "," + fix_lines[i+1]):
+                print(fix_lines[i].strip("\n") + " " + fix_lines[i+1])
+            fix_lines[i] = fix_lines[i].strip("\n") + " " + fix_lines[i+1]
             del fix_lines[i+1]
-            if double_id(fix_lines[i]):
-                print(fix_lines[i])
         i += 1
     
     with open(fix, "w") as f:
