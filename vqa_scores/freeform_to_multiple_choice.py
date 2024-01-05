@@ -94,6 +94,7 @@ def main(model, score):
     # for every image (row in answer file) retrieve the options and answer for each question (just by reading in order)
     # then use get_mc_answer to score that image, and write it back out to a new copy of the answer file
     for image_row in tqdm(list(answer_df.iterrows())):
+        print(image_row)
         id, question_id, vqa_answer = image_row[['id', 'question_id', 'vqa_answer']]
 
         choices, correct_answer = question_df.loc[question_df['id'] == id and question_df['question_id'] == question_id][0][['choices', 'answer']]
