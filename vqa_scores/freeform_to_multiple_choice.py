@@ -108,8 +108,10 @@ def main(model, score, debug):
         debug_print(question_id)
         debug_print(vqa_answer)
 
-
+        # Maybe there's a reason simple stuff is so unintuitive in pandas :(
         answer_row = question_df.loc[question_df['id'] == id].loc[question_df['question_id'] == question_id].iloc[0]
+        choices, correct_answer = answer_row[['choices', 'answer']]
+
         debug_print(answer_row)
         choices = choices.split('|')
 
