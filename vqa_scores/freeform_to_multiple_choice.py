@@ -109,7 +109,7 @@ def main(model, score, debug):
         debug_print(vqa_answer)
 
 
-        answer_row = question_df.loc[question_df['id'] == id].loc[question_df['question_id'] == question_id][0]
+        answer_row = question_df.loc[question_df['id'] == id].loc[question_df['question_id'] == question_id].iloc[0]
         debug_print(answer_row)
         choices = choices.split('|')
 
