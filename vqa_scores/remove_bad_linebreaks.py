@@ -3,6 +3,18 @@ import click
 import shutil
 
 # convert the multiple choice outputs into a single choice using sentencebert from a csv output in Michael's style
+
+def double_id(id, line):
+    linesplit = line.split(",")
+    id = linesplit[0]
+    count = 0
+    for elem in linesplit:
+        if elem == id:
+            count += 1
+        if count > 1:
+            return True
+    return False
+
 @click.command()
 @click.option('--fix')
 @click.option('--endcap', default="</s>\n")
@@ -19,7 +31,8 @@ def main(fix, endcap):
         while not fix_lines[i].endswith(endcap):
             fix_lines[i] = fix_lines[i].strip("\n") + fix_lines[i+1]
             del fix_lines[i+1]
-            print(fix_lines[i])
+            if double_id(fix_lines[i]):
+                print(fix_lines[i])
         i += 1
     
     with open(fix, "w") as f:
