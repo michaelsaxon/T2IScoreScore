@@ -99,7 +99,8 @@ def main(model, score):
 
         id, question_id, vqa_answer = image_row[['id', 'question_id', 'vqa_answer']]
 
-        choices, correct_answer = question_df.loc[question_df['id'] == id].loc[question_df['question_id'] == question_id][['choices', 'answer']]
+        answer_row = question_df.loc[question_df['id'] == id].loc[question_df['question_id'] == question_id]
+        print(answer_row)
         choices = choices.split('|')
 
         print(id)
