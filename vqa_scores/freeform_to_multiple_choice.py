@@ -102,6 +102,12 @@ def main(model, score):
         choices, correct_answer = question_df.loc[question_df['id'] == id].loc[question_df['question_id'] == question_id][['choices', 'answer']]
         choices = choices.split('|')
 
+        print(id)
+        print(question_id)
+        print(vqa_answer)
+        print(choices)
+        print(correct_answer)
+        
         correct, mc_answer = get_mc_answer(sbert_model, correct_answer, vqa_answer, choices, mode = score.upper())
         mc_answer_lines.append(f"{id},{question_id},{vqa_answer},{mc_answer},{correct}\n")
 
