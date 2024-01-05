@@ -105,8 +105,11 @@ def main(model, score, debug):
 
         id, question_id, vqa_answer = image_row[['id', 'question_id', 'vqa_answer']]
         # vqa_answer can be an empty string, which is read in as nan
-        if math.isnan(vqa_answer):
-            vqa_answer = " "
+        if isinstance(vqa_answer, float):
+            if math.isnan(vqa_answer):
+                vqa_answer = " "
+            else:
+                vqa_answer = str(vqa_answer)
 
         debug_print(f"\n{idx}")
 
@@ -117,8 +120,7 @@ def main(model, score, debug):
         # Maybe there's a reason simple stuff is so unintuitive in pandas :(
         answer_row = question_df.loc[question_df['id'] == id].loc[question_df['question_id'] == question_id].iloc[0]
         choices, correct_answer = answer_row[['choices', 'answer']]
-
-        debug_print(answer_row)
+        #debug_print(answer_row)
         choices = choices.split('|')
 
         debug_print(id)
