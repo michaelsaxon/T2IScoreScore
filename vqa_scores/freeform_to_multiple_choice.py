@@ -98,11 +98,13 @@ def main(model, score, debug):
 
     # for every image (row in answer file) retrieve the options and answer for each question (just by reading in order)
     # then use get_mc_answer to score that image, and write it back out to a new copy of the answer file
-    for image_row in tqdm(list(answer_df.iterrows())):
+    for idx, image_row in enumerate(tqdm(list(answer_df.iterrows()))):
         # WHY THE FUCK IS PANDAS SO STUPID
         image_row = image_row[1]
 
         id, question_id, vqa_answer = image_row[['id', 'question_id', 'vqa_answer']]
+
+        debug_print(f"\n{idx}")
 
         debug_print(id)
         debug_print(question_id)
