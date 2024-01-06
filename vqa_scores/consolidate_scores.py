@@ -24,9 +24,9 @@ def question_set_iterator(answer_df):
     current_set = []
     image_id = 0
     id = 0
-    for image_row in tqdm(enumerate(list(answer_df.iterrows()))):
+    for image_row in tqdm(list(answer_df.iterrows())):
         #print(image_row)
-        image_row = image_row[1][1]
+        image_row = image_row[1]
         current_id, question_id, correct = image_row[['id', 'question_id', 'correct']]
         if question_id == 0 and len(current_set) > 0:
             score = sum(current_set) / len(current_set)
