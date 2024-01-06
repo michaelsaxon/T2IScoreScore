@@ -28,6 +28,7 @@ def question_set_iterator(answer_df):
         current_id, question_id, correct = image_row[['id', 'question_id', 'correct']]
         if question_id == 0 and len(current_set) > 0:
             score = sum(current_set) / len(current_set)
+            print(f"{id},{score}")
             yield id, gen_image_fname(id, image_id), score
             current_set = []
             image_id += 1
