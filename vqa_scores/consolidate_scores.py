@@ -34,7 +34,9 @@ def question_set_iterator(answer_df):
             yield id, gen_image_fname(id, image_id), score
             current_set = []
             image_id += 1
-            id = current_id
+            if current_id != id:
+                id = current_id
+                image_id = 0
         current_set.append(correct)
     
 
