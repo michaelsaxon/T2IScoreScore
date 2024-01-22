@@ -2,63 +2,13 @@ import os
 from transformers import CLIPProcessor, CLIPModel, BlipModel, AutoProcessor
 from transformers import AlignProcessor, AlignModel
 import argparse
+from correlation_scores.sim_scores import *
 
-from abc import ABC, abstractmethod
 from PIL import Image
 from pathlib import Path
 import csv
 import pandas as pd
 
-
-class ScoreMethod(ABC):
-    """
-    Abstract base class for scoring methods.
-
-    This abstract class defines the structure for custom scoring methods used to calculate similarity scores between an image and a prompt.
-    Any scoring method should inherit from this class and implement the 'calculate_score' method.
-
-    Attributes:
-    None
-
-    Methods:
-    calculate_score(image, prompt):
-    Calculate a similarity score between an image and a prompt using the custom scoring method.
-
-    Parameters:
-    image (str): The image file name for scoring. ex. "1-0.jpg".
-    prompt (str): The prompt data for scoring.
-
-    Returns:
-    float: The calculated similarity score.
-
-    Example:
-    >>> class CustomScorer(ScoreMethod):
-    >>>     def calculate_score(self, image, prompt):
-    >>>         # Implement your custom scoring logic here
-    >>>         pass
-    >>>
-    >>> custom_scorer = CustomScorer()
-    >>> image_data = "your_image_data"
-    >>> prompt_data = "your_prompt_data"
-    >>> score = custom_scorer.calculate_score(image_data, prompt_data)
-    """
-    @abstractmethod
-    def calculate_score(self, image, prompt):
-        """
-        Calculate a similarity score between an image and a prompt using the custom scoring method.
-
-        Parameters:
-        image (str): The image file name for scoring. ex. "1-0.jpg".
-        prompt (str): The prompt data for scoring.
-
-        Returns:
-        float: The calculated similarity score.
-        """
-        pass
-
-    @abstractmethod
-    def calculate_score_rank(self, image_list, prompt):
-        pass
 
 # scoring method (CLIPScore)
 class CLIPScorer(ScoreMethod):
@@ -176,11 +126,11 @@ def score(score_method, score_method_name, image_folder, csv_file, result_file_p
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Calculate scores for images in a CSV file.')
-    parser.add_argument('image_folder', help='Path to the folder containing images')
-    parser.add_argument('csv_file', help='Path to the CSV file')
-    parser.add_argument('output_dir', help='Path to the output directory')
-    parser.add_argument('score_method_name', help='name of the score method you want to test')
+    parser = argparse.ArgumentParser(description='Calculate scores for images in a meta-data file.')
+    parser.add_argument('-i', '--image-folder', help='Path to the folder containing images')
+    parser.add_argument('-m', '--metadata-file', help='Path to the meta-data file')
+    parser.add_argument('-o', '--output-dir', help='Path to the output directory')
+    parser.add_argument('-s', '--score-method-name', help='Name of the score method you want to test')
 
     args = parser.parse_args()
 

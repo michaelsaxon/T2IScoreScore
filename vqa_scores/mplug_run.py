@@ -1,12 +1,14 @@
-import torch
-from PIL import Image
+import argparse
+
 import click
-
-from mplug_owl2.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN
-from mplug_owl2.conversation import conv_templates, SeparatorStyle
+import torch
+from mplug_owl2.constants import DEFAULT_IMAGE_TOKEN, IMAGE_TOKEN_INDEX
+from mplug_owl2.conversation import SeparatorStyle, conv_templates
+from mplug_owl2.mm_utils import (KeywordsStoppingCriteria,
+                                 get_model_name_from_path, process_images,
+                                 tokenizer_image_token)
 from mplug_owl2.model.builder import load_pretrained_model
-from mplug_owl2.mm_utils import process_images, tokenizer_image_token, get_model_name_from_path, KeywordsStoppingCriteria
-
+from PIL import Image
 
 
 def get_mplug_answer(query, image_file, image_processor, model, tokenizer):
@@ -49,58 +51,81 @@ def get_mplug_answer(query, image_file, image_processor, model, tokenizer):
 def csv_line_map(line):
     return line.strip().split(",")
 
-@click.command()
-@click.option("-q", default="HalluVisionFull/HalluVision_TIFA_Q.csv")
-@click.option("-o", default="output_csvs/a_mplug_tifa.csv")
-@click.option("-b", default="HalluVisionFull/Final-HalluVision/")
-@click.option("-s", default="0")
-@click.option("-e", default=":")
-def get_answers(q, o, b, s, e):
-    if s != "0" or e != ":":
-        o = o + f".{s}-{e}.csv"
-    questions = list(map(csv_line_map,open(q,"r").readlines()))[1:]
+def main():
+    parser = argparse.ArgumentParser(description='Get answers using MPlug model for a set of questions and images.')
+    parser.add_argument("-q", '--questions', default="HalluVisionFull/HalluVision_TIFA_Q.csv", help="Path to the questions CSV file")
+    parser.add_argument("-o", '--output', default="output_csvs/a_mplug_tifa.csv", help="Path to the output CSV file")
+    parser.add_argument("-b", '--image_folder', default="HalluVisionFull/Final-HalluVision/", help="Base path for image files")
+    parser.add_argument("-s", '--start', default="0", help="Start index for image processing")
+    parser.add_argument("-e", '--end', default="HalluVisionFull/HalluVisionAll.csv", help="End index for image processing")
+    parser.add_argument("-m", '--metadata_file', default=":", help="Path to meta-data csv file")
+
+
+    args = parser.parse_args()
+
+    if args.start != "0" or args.end != ":":
+        args.output = args.output + f".{args.start}-{args.end}.csv"
+
+    questions = list(map(csv_line_map, open(args.questions, "r").readlines()))[1:]
+
     d = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
     print("Loading...")
     print("Debug 1!")
     model_path = 'MAGAer13/mplug-owl2-llama2-7b'
     query = "Answer the following question in short: Are there any hotdogs in the image?"
 
     model_name = get_model_name_from_path(model_path)
-    tokenizer, model, image_processor, context_len = load_pretrained_model(model_path, None, model_name, load_8bit=False, load_4bit=True, device="cuda")
-
+    tokenizer, model, image_processor, context_len = load_pretrained_model(
+                        model_path,
+                        None,
+                        model_name,
+                        load_8bit=False,
+                        load_4bit=True,
+                        device="cuda")
 
     print("Model loaded!")
-    all_images_list = list(map(csv_line_map,open("HalluVisionFull/HalluVisionAll.csv","r").readlines()))
+
+    all_images_list = list(map(csv_line_map, open(args.metadata_file, "r").readlines()))
     print(len(all_images_list))
-    s = max(int(s), 1)
-    if e == ":":
-        all_images_list = all_images_list[s:]
+
+    start_idx = max(int(args.start), 1)
+
+    if args.end == ":":
+        all_images_list = all_images_list[start_idx:]
     else:
-        all_images_list = all_images_list[s:int(e)]
+        all_images_list = all_images_list[start_idx:int(args.end)]
+
     print(len(all_images_list))
+
     # iterate over all images
     out_lines = []
     fail_imgs = []
+
     for all_img_line_no in range(len(all_images_list)):
         image_line = all_images_list[all_img_line_no]
         this_id = image_line[0]
         this_fname = image_line[2]
-        question_set = filter(lambda x: int(x[0]) == int(this_id),questions)
+        question_set = filter(lambda x: int(x[0]) == int(this_id), questions)
+
         for question_line in question_set:
             question = question_line[3]
             question_id = question_line[2]
+
             try:
-                answer = get_mplug_answer(question, b+this_fname, image_processor, model, tokenizer)
-                out_line = f"{str(this_id)},{this_fname},{str(question_id)},{str(answer).replace(',','').strip()}"
+                answer = get_mplug_answer(question, args.base_path + this_fname, image_processor, model, tokenizer)
+                out_line = f"{str(this_id)},{this_fname},{str(question_id)},{str(answer).replace(',', '').strip()}"
                 print(out_line)
                 out_lines.append(out_line + "\n")
             except FileNotFoundError:
                 print(f"File {this_fname} not found")
                 fail_imgs.append(f"{str(this_id)},{this_fname}\n")
-    with open(o,"w") as f:
+
+    with open(args.output, "w") as f:
         f.writelines(out_lines)
-    with open(o+".fail.csv","w") as f:
+
+    with open(args.output + ".fail.csv", "w") as f:
         f.writelines(fail_imgs)
 
-if __name__=="__main__":
-    get_answers()
+if __name__ == "__main__":
+    main()
