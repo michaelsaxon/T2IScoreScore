@@ -38,7 +38,7 @@ def question_set_iterator(answer_df):
                 id = current_id
                 image_id = 0
         current_set.append(correct)
-    
+    yield id, gen_image_fname(id, image_id), score
 
 @click.command()
 @click.option('--infile')

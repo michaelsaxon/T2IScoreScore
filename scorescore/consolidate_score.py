@@ -1,5 +1,8 @@
+import pandas as pd
+
 from read_csv_utils import *
 
+"""
 output_dict = load_kvp_multiple_files("HalluVision_scores.csv")
 
 print(output_dict.keys())
@@ -21,34 +24,53 @@ dataframe = pd.DataFrame(output_dict)
 print(dataframe)
 
 # dataframe.to_csv("test.csv")
+"""
 
-id_range = list(range(259))
+# cleans a string containing some node number like "2a" to just the int part "2"
+def clean_int_string(instr):
+    for char in instr:
+        if char not in "0123456789":
+            instr = instr.replace(char,"")
+    return instr
+
+dataframe = pd.read_csv("../scores-final.csv")
+
+ranks = pd.read_csv("../test.csv")
+
+dataframe['rank'] = pd.Series(list(ranks["rank"]), index=dataframe.index)
+
+id_range = list(range(max(dataframe["id"])))
+#id_range = [137, 139, 142, 144]
 print(max(id_range))
 
 from scoring import *
-import pandas as pd
 
-metrics = ['dsg_fuyu', 'dsg_llava', 'dsg_mplug', 'tifa_fuyu', 'tifa_llava', 'tifa_mplug', 'clipscore', 'blipscore', 'alignscore', 'dsg_mplug1', 'tifa_mplug1']
+metrics = list(set(dataframe.columns) - set(["id","image_id","rank"]))
 
 #tree_correlation_score(dataframe, "clipscore", [0,1,2,3,4,5,6,7,8,9,10], within_delta)
 #print(tree_correlation_score(dataframe, metrics, [0,1,2,3,4,5,6,7,8,9,10], spearman_corr))
 
+print(dataframe)
+
 
 print("running tree corr for all samples")
-tree_spearman_avg, tree_counts = tree_correlation_score(dataframe, metrics, id_range, spearman_corr, scaled_avg=True)
+tree_spearman_avg, tree_counts = tree_correlation_score(dataframe, metrics, [20], spearman_corr, scaled_avg=True)
 #node_variances, node_counts = within_node_score(dataframe, metrics, id_range, variance)
+
+
+print(tree_spearman_avg)
 
 #print(tree_spearman_avg)
 
 output_dataframe = pd.DataFrame(tree_spearman_avg)
 output_treecounts = pd.DataFrame(tree_counts)
-#nv_dataframe = pd.DataFrame(node_variances)
-#nv_counts = pd.DataFrame(node_counts)
+nv_dataframe = pd.DataFrame(node_variances)
+nv_counts = pd.DataFrame(node_counts)
 
 output_dataframe.to_csv("spearman_corrs_weighted.csv")
 output_treecounts.to_csv("spearman_counts_weighted.csv")
-#nv_dataframe.to_csv("node_variances.csv")
-#nv_counts.to_csv("node_variances_counts.csv")
+nv_dataframe.to_csv("node_variances.csv")
+nv_counts.to_csv("node_variances_counts.csv")
 
 
 
