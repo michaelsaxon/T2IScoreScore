@@ -13,19 +13,22 @@ happy young woman eating a tasty orange donut**” using natural
 images. There are two different nodes of error distance 1 from the
 head node of the graph:
 
-
-
 <img src="figures/Sample.png" style="width:450px; height:300px;">
 
 
-### Tested Scores on This Dataset
+### Evaluated Metrics on This Dataset
+
+## Similarity Score
 
 - **ClipScore**
 - **BlipScore**
 - **AlignScore**
 
-We created questions with [DSG](https://github.com/j-min/DSG), [TIFA](https://github.com/Yushi-Hu/tifa) and tested with the performance of these VQA models:
+## VQA Score
+Questions created with two method: [DSG](https://github.com/j-min/DSG), [TIFA](https://github.com/Yushi-Hu/tifa)
 
 - **LLaVa**
 - **Fuyu**
 - **mPLUG**
+
+## LLMScore
