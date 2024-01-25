@@ -1,6 +1,10 @@
+from tqdm import tqdm
+
 import numpy as np
 import pandas as pd
 import math
+
+from scipy.stats import spearmanr
 
 # produce an output dict indexed by id then node of the function eval'd over each node 
 def within_node_score(dataframe, metric_col_idces, id_range, score_function, node_id_idx = "rank"):
@@ -66,7 +70,13 @@ def repair_missing_rank(id_df):
 
 
 def robust_float_cast(instr):
+    instr = str(instr)
+    instr = instr.replace('"','')
+    return float(instr)
     try:
+        if instr is type(str):
+            if '"' in instr:
+                instr = instr.replace('"s','')
         return float(instr)
     except ValueError:
         if instr != '':
@@ -80,7 +90,9 @@ def tree_correlation_score(dataframe, metric_col_idces, id_range, score_function
     output_dict = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
     val_counts = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
     for id_idx in tqdm(id_range):
-        id_df = repair_missing_rank(dataframe.loc[dataframe["id"] == str(id_idx)])
+        #print(id_idx)
+        id_df = dataframe.loc[dataframe["id"] == id_idx]
+        #id_df = repair_missing_rank(dataframe.loc[dataframe["id"] == str(id_idx)])
         node_set = list(id_df["rank"].unique())
         #print(node_set)
         try:
@@ -94,6 +106,10 @@ def tree_correlation_score(dataframe, metric_col_idces, id_range, score_function
         # probably not ideal, but just build every possible alignment to start
         # aka, dfs on sets of 0, 1, 2, ... to max(node_numbers)
         walks = list(map(lambda x: [x], [i for i, x in enumerate(node_numbers) if x == 0]))
+        #print(id_df)
+        #print()
+        #print(walks)
+        #input()
         #for level in range(1,max(node_numbers) + 1):
         for level in node_numbers_sorted:
             #print(f"{id_idx}: {level}")
@@ -111,6 +127,7 @@ def tree_correlation_score(dataframe, metric_col_idces, id_range, score_function
             walk_scores = []
             walk_score_counts = []
             for i in range(len(walks_ids)):
+                #print(i)
                 x_vals = []
                 walk_ids = walks_ids[i]
                 walk_xs = walks_x[i]
@@ -132,6 +149,7 @@ def tree_correlation_score(dataframe, metric_col_idces, id_range, score_function
                 #print(walk_x_array)
                 #print(walk_y_array)
                 walk_scores.append(score_function(walk_x_array, walk_y_array))
+                print(walk_scores)
                 walk_score_counts.append(len(walk_x_array))
             output_vals = []
             output_counts = []
@@ -140,6 +158,7 @@ def tree_correlation_score(dataframe, metric_col_idces, id_range, score_function
                     output_vals.append(score)
                     output_counts.append(walk_score_counts[i])
             if len(output_vals) == 0:
+                print("outputvals len 0")
                 output_dict[metric_col_idx][id_idx] = float('nan')
                 val_counts[metric_col_idx][id_idx] = float('nan')
             else:
@@ -154,5 +173,9 @@ def tree_correlation_score(dataframe, metric_col_idces, id_range, score_function
 def spearman_corr(x_list, y_list):
     if len(x_list) <= 1:
         return float('nan')
-    out = spearmanr(np.array(x_list), np.array(y_list))
-    return out.correlation
+    out = spearmanr(np.array(x_list), np.array(y_list)).correlation
+    # if one of the input sequences is all the same value, spearmanr returns nan.
+    # A rank correlation value of 0 is meant to denote "no relationship", so we should return 0 in this case
+    if math.isnan(out):
+        out = 0
+    return out
