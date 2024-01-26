@@ -1,3 +1,6 @@
+import pandas as pd
+import numpy as np
+
 def robust_csv_line_split(line):
     line = line.strip()
     if '"' in line:
@@ -5,8 +8,8 @@ def robust_csv_line_split(line):
         line = line.split('",')
         newline = []
         for elem in line:
-            # if this is a quote line, we have already split it. 
-            # remove the other quote and put the whole thing on the list. 
+            # if this is a quote line, we have already split it.
+            # remove the other quote and put the whole thing on the list.
             # Else it's a block of comma separated values and should be split
             # this only works because none of my csvs lines end with strings
             if '"' in elem:
@@ -83,5 +86,25 @@ def get_row(output_dict, fname_slug, tty = True):
             print(f"{key}: {value}")
         out_string.append(value)
     return ",".join(out_string)
+import json
 
+def load_json(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+        return data
+    except FileNotFoundError:
+        print(f"Error: File {file_path} not found.")
+        return None
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON in {file_path}: {e}")
+        return None
+
+def store_json(file_path, data):
+    try:
+        with open(file_path, 'w', encoding='utf-8') as file:
+            json.dump(data, file, ensure_ascii=False, indent=2)
+        print(f"Data successfully stored in {file_path}.")
+    except Exception as e:
+        print(f"Error storing data in {file_path}: {e}")
 

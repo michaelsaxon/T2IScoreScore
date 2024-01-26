@@ -1,43 +1,44 @@
-# originally score.py on nlp
-
-"""Score VQA models on HalluVision dataset."""
-
+import argparse
 import json
 import torch
 import torch.nn.functional as F
-
-from absl import app, flags
 from tqdm import tqdm
 from transformers import AutoModel, AutoTokenizer
-from utils import load_json, store_json
+from utils.read_csv_utils import load_json, store_json
 
-FLAGS = flags.FLAGS
+def main():
+    parser = argparse.ArgumentParser(description='Score VQA models on HalluVision dataset.')
+    parser.add_argument('--score', type=str, default='', help='Example json file with VQA output.')
+    parser.add_argument('--mode', type=str, default='', help='DSG if specified otherwise assume TIFA.')
+    parser.add_argument('--output', type=str, default='dummy.json', help='JSON file to store output.')
 
-flags.DEFINE_string("score", "", "Example json file with VQA output.")
-flags.DEFINE_string("mode", "", "DSG if specificed otherwise assume TIFA.")
-flags.DEFINE_string("output", "dummy.json", "json file to store output.")
+    args = parser.parse_args()
 
-
-def main(unused_argv):
-    data = load_json(FLAGS.score)
+    data = load_json(args.score)
     out_dict = {}
+
     for image, item in tqdm(data.items()):
         out_qs = []
+
         for q in item:
             out_q = q
             out_q["score"] = 0
-            if FLAGS.mode == "DSG" or len(q["choices"]) < 3:
+
+            if args.mode == "DSG" or len(q["choices"]) < 3:
                 if "Yes" in q["vqa_answer"]:
                     out_q["score"] = 1
             else:
                 sbert_model = SBERTModel("sentence-transformers/all-mpnet-base-v2")
                 mc_answer = sbert_model.multiple_choice(q["vqa_answer"], q["choices"])
+
                 if q["answer"] == mc_answer:
                     out_q["score"] = 1
-            out_qs.append(out_q)
-        out_dict[image] = out_qs
-    store_json(FLAGS.output, out_dict)
 
+            out_qs.append(out_q)
+
+        out_dict[image] = out_qs
+
+    store_json(args.output, out_dict)
 
 class SBERTModel:
     def __init__(self, ckpt="sentence-transformers/all-mpnet-base-v2"):
@@ -81,6 +82,5 @@ class SBERTModel:
         ).item()
         return choices[top_choice_index]
 
-
 if __name__ == "__main__":
-    app.run(main)
+    main()
