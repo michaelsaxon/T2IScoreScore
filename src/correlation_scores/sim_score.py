@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class ScoreMethod(ABC):
+class SimScorer(ABC):
     """
     Abstract base class for similarity scoring methods.
 
@@ -44,8 +44,4 @@ class ScoreMethod(ABC):
         Returns:
         float: The calculated similarity score.
         """
-        pass
-
-    @abstractmethod
-    def calculate_score_rank(self, image_list, prompt):
         pass
