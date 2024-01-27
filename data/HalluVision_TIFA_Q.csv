@@ -10,14 +10,14 @@ id,prompt,question_id,question,choices,answer
 1,A group of planes near a large wall of windows.,2,what is behind the planes?,wall of windows|brick wall|wooden wall|concrete wall,wall of windows
 1,A group of planes near a large wall of windows.,3,are there a group of planes?,yes|no,yes
 1,A group of planes near a large wall of windows.,4,is the wall of windows large?,yes|no,yes
-2,A brown bear walking across a forest surrounded by trees..,0,is this a bear?,yes|no,yes
-2,A brown bear walking across a forest surrounded by trees..,1,what animal is walking across the forest?,bear|deer|squirrel|rabbit,bear
-2,A brown bear walking across a forest surrounded by trees..,2,is this a forest?,yes|no,yes
-2,A brown bear walking across a forest surrounded by trees..,3,what type of environment is this?,forest|desert|beach|city,forest
-2,A brown bear walking across a forest surrounded by trees..,4,are there trees?,yes|no,yes
-2,A brown bear walking across a forest surrounded by trees..,5,is the bear walking?,yes|no,yes
-2,A brown bear walking across a forest surrounded by trees..,6,is the bear brown?,yes|no,yes
-2,A brown bear walking across a forest surrounded by trees..,7,what color is the bear?,brown|black|white|gray,brown
+2,A brown bear walking across a forest surrounded by trees.,0,is this a bear?,yes|no,yes
+2,A brown bear walking across a forest surrounded by trees.,1,what animal is walking across the forest?,bear|deer|squirrel|rabbit,bear
+2,A brown bear walking across a forest surrounded by trees.,2,is this a forest?,yes|no,yes
+2,A brown bear walking across a forest surrounded by trees.,3,what type of environment is this?,forest|desert|beach|city,forest
+2,A brown bear walking across a forest surrounded by trees.,4,are there trees?,yes|no,yes
+2,A brown bear walking across a forest surrounded by trees.,5,is the bear walking?,yes|no,yes
+2,A brown bear walking across a forest surrounded by trees.,6,is the bear brown?,yes|no,yes
+2,A brown bear walking across a forest surrounded by trees.,7,what color is the bear?,brown|black|white|gray,brown
 3,A large motorcycle that is sitting outside of a building.,0,is there a motorcycle?,yes|no,yes
 3,A large motorcycle that is sitting outside of a building.,1,is there a building?,yes|no,yes
 3,A large motorcycle that is sitting outside of a building.,2,is the motorcycle large?,yes|no,yes
