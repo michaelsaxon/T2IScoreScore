@@ -6,12 +6,11 @@ from vqa_scores.vqa_score import VQAScorer
 
 
 class FuyuVQAScorer(VQAScorer):
-    def __init__(self, mo):
+    def __init__(self, model_path):
 
-        model_id ="adept/fuyu-8b"
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self.processor = FuyuProcessor.from_pretrained(model_id)
-        self.model = FuyuForCausalLM.from_pretrained(model_id, device_map=self.device)
+        self.processor = FuyuProcessor.from_pretrained(model_path)
+        self.model = FuyuForCausalLM.from_pretrained(model_path, device_map=self.device)
 
     def get_answer(self, question, image_path):
         image = Image.open(image_path, "r").resize((512, 512))
