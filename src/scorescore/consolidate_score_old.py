@@ -1,36 +1,20 @@
+import argparse
+import pandas as pd
 from tqdm import tqdm
 
-import click
-
-import pandas as pd
-
 def gen_image_fname(id, image_id):
-    if id < 10:
-        id = "00" + str(id)
-    elif id < 100:  
-        id = "0" + str(id)
-    else:
-        id = str(id)
-    if image_id < 10:
-        image_id = "0" + str(image_id)
-    else:
-        image_id = str(image_id)
-    return f"{id}_{image_id}.jpg"
+    id_str = str(id).zfill(3) if id < 100 else str(id)
+    image_id_str = str(image_id).zfill(2) if image_id < 10 else str(image_id)
+    return f"{id_str}_{image_id_str}.jpg"
 
-# output format: id,image_id (missing from inputs),score
-# input format id,question_id,...,correct
-# loop through the questions (start on qid 0, accumulate until loops back and start new question)
 def question_set_iterator(answer_df):
     current_set = []
     image_id = 0
     id = 0
-    for image_row in tqdm(list(answer_df.iterrows())):
-        #print(image_row)
-        image_row = image_row[1]
+    for _, image_row in tqdm(answer_df.iterrows()):
         current_id, question_id, correct = image_row[['id', 'question_id', 'correct']]
         if question_id == 0 and len(current_set) > 0:
             score = sum(current_set) / len(current_set)
-            #print(f"{id},{score}")
             yield id, gen_image_fname(id, image_id), score
             current_set = []
             image_id += 1
@@ -40,19 +24,20 @@ def question_set_iterator(answer_df):
         current_set.append(correct)
     yield id, gen_image_fname(id, image_id), score
 
-@click.command()
-@click.option('--infile')
-@click.option('--outfile')
-@click.option('--debug', is_flag=True)
 def main(infile, outfile, debug):
     inlines = pd.read_csv(infile)
     outlines = ["id,image_id,score\n"]
     for id, image_id, score in question_set_iterator(inlines):
         outlines.append(f"{id},{image_id},{score}\n")
-    
+
     with open(outfile, "w") as f:
         f.writelines(outlines)
 
-
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description='Generate output format with id, image_id, and score.')
+    parser.add_argument('--infile', required=True, help='Input CSV file')
+    parser.add_argument('--outfile', required=True, help='Output CSV file')
+    parser.add_argument('--debug', action='store_true', help='Enable debug mode')
+
+    args = parser.parse_args()
+    main(args.infile, args.outfile, args.debug)

@@ -1,18 +1,13 @@
-"""Score VQA models on HalluVision dataset."""
+import argparse
+import math
 
+import pandas as pd
 import torch
 import torch.nn.functional as F
-
-#from absl import app, flags
-import click
 from tqdm import tqdm
 from transformers import AutoModel, AutoTokenizer
 
-import pandas as pd
 
-import math
-
-# excertped from the TIFA source code  
 class SBERTModel:
     def __init__(self, ckpt="sentence-transformers/all-mpnet-base-v2"):
         self.tokenizer = AutoTokenizer.from_pretrained(ckpt)
@@ -55,11 +50,10 @@ class SBERTModel:
         ).item()
         return choices[top_choice_index]
 
-
 def fname(model, score):
     return f"output_csvs_correct/a_{model}_{score}.csv_headline.csv", f"HalluVisionAllFinal/Q_{score.upper()}_final.csv"
 
-def get_mc_answer(sbert_model, correct_answer, vqa_answer, choices, mode = "DSG"):
+def get_mc_answer(sbert_model, correct_answer, vqa_answer, choices, mode="DSG"):
     if mode == "DSG" or len(choices) < 3:
         if "yes" in vqa_answer.lower():
             return 1, "yes"
@@ -70,18 +64,6 @@ def get_mc_answer(sbert_model, correct_answer, vqa_answer, choices, mode = "DSG"
             return 1, mc_answer
     return 0, mc_answer
 
-
-'''
-fields for the output files:
-Q_DSG_final.csv: id,prompt,question_id,question,choices,answer
-a_fuyu_dsg.csv: id,image,question_id,vqa_answer
-'''
-
-# convert the multiple choice outputs into a single choice using sentencebert from a csv output in Michael's style
-@click.command()
-@click.option('--model')
-@click.option('--score')
-@click.option('--debug', is_flag=True)
 def main(model, score, debug):
     def debug_print(*args, **kwargs):
         if debug:
@@ -97,14 +79,10 @@ def main(model, score, debug):
 
     mc_answer_lines = ['id,question_id,vqa_answer,mc_answer,correct\n']
 
-    # for every image (row in answer file) retrieve the options and answer for each question (just by reading in order)
-    # then use get_mc_answer to score that image, and write it back out to a new copy of the answer file
     for idx, image_row in enumerate(tqdm(list(answer_df.iterrows()))):
-        # WHY THE FUCK IS PANDAS SO STUPID
         image_row = image_row[1]
 
         id, question_id, vqa_answer = image_row[['id', 'question_id', 'vqa_answer']]
-        # vqa_answer can be an empty string, which is read in as nan
         if isinstance(vqa_answer, float):
             if math.isnan(vqa_answer):
                 vqa_answer = " "
@@ -112,15 +90,12 @@ def main(model, score, debug):
                 vqa_answer = str(vqa_answer)
 
         debug_print(f"\n{idx}")
-
         debug_print(id)
         debug_print(question_id)
         debug_print(vqa_answer)
 
-        # Maybe there's a reason simple stuff is so unintuitive in pandas :(
         answer_row = question_df.loc[question_df['id'] == id].loc[question_df['question_id'] == question_id].iloc[0]
         choices, correct_answer = answer_row[['choices', 'answer']]
-        #debug_print(answer_row)
         choices = choices.split('|')
 
         debug_print(id)
@@ -128,13 +103,18 @@ def main(model, score, debug):
         debug_print(vqa_answer)
         debug_print(choices)
         debug_print(correct_answer)
-        
-        correct, mc_answer = get_mc_answer(sbert_model, correct_answer, vqa_answer, choices, mode = score.upper())
+
+        correct, mc_answer = get_mc_answer(sbert_model, correct_answer, vqa_answer, choices, mode=score.upper())
         mc_answer_lines.append(f"{id},{question_id},{vqa_answer},{mc_answer},{correct}\n")
 
     with open(mc_answer_file, 'w') as f:
         f.writelines(mc_answer_lines)
 
-
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description='Convert multiple-choice outputs into single choice using sentencebert from a CSV output.')
+    parser.add_argument('--model', required=True, help='Model name')
+    parser.add_argument('--score', required=True, help='Score')
+    parser.add_argument('--debug', action='store_true', help='Enable debug mode')
+
+    args = parser.parse_args()
+    main(args.model, args.score, args.debug)

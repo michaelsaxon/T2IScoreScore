@@ -1,7 +1,4 @@
-from typing import Dict
-
-import click
-
+import argparse
 import pandas as pd
 
 def fname_convert(fname):
@@ -12,10 +9,6 @@ def fname_convert(fname):
         fname_split = fname.split("_")
     return fname_split[0], fname_split[1]
 
-@click.command()
-@click.option('--infile')
-@click.option('--reffile')
-@click.option('--field', default="image_id")
 def main(infile, reffile, field):
     input_df = pd.read_csv(infile)
     ref_df = pd.read_csv(reffile)
@@ -29,4 +22,10 @@ def main(infile, reffile, field):
     print(set(input_ids) - set(ref_ids))
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description='Compare IDs between two CSV files.')
+    parser.add_argument('--infile', required=True, help='Path to the input CSV file')
+    parser.add_argument('--reffile', required=True, help='Path to the reference CSV file')
+    parser.add_argument('--field', default='image_id', help='Field to compare (default: "image_id")')
+
+    args = parser.parse_args()
+    main(args.infile, args.reffile, args.field)
