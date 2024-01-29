@@ -1,8 +1,13 @@
 import argparse
-from mplug import MPlugVQAScorer
-from llava import LLavaVQAScorer
+import csv
+
 from fuyu import FuyuVQAScorer
-from vqa_scores.instruct_blip import InstructBlipVQAScorer
+from llava import LLavaVQAScorer
+from mplug import MPlugVQAScorer
+from blip import BlipVQAScorer
+
+from instruct_blip import InstructBlipVQAScorer
+
 
 class VQAProcessor:
     def __init__(self, model_type, model_path):
@@ -12,8 +17,10 @@ class VQAProcessor:
             self.vqa_scorer = FuyuVQAScorer(model_path=model_path)
         elif model_type == "llava":
             self.vqa_scorer = LLavaVQAScorer(model_path=model_path)
-        elif model_type == "blip":
+        elif model_type == "instructblip":
             self.vqa_scorer = InstructBlipVQAScorer(model_path=model_path)
+        elif model_type == "blip":
+            self.vqa_scorer = BlipVQAScorer(model_path=model_path)
         else:
             raise ValueError("Invalid model type")
 
@@ -58,7 +65,7 @@ class VQAProcessor:
             f.writelines(fail_imgs)
 
 def csv_line_map(line):
-    return line.strip().split(",")
+    return next(csv.reader([line]))
 
 def main():
     parser = argparse.ArgumentParser(description='Get answers using a VQA model for a set of questions and images.')
@@ -81,6 +88,7 @@ def main():
     #vqa_processor = VQAProcessor(args.model, model_path='liuhaotian/llava-v1.5-13b')
     #vqa_processor = VQAProcessor(args.model, model_path='adept/fuyu-8b')
     #vqa_processor = VQAProcessor(args.model, model_path='"Salesforce/instructblip-flan-t5-xl"')
+    #vqa_processor = VQAProcessor(args.model, model_path='ybelkada/blip-vqa-base')
 
     if args.start != "0" or args.end != ":":
         args.output = args.output + f".{args.start}-{args.end}.csv"

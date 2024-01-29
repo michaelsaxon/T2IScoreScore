@@ -51,7 +51,7 @@ class SBERTModel:
         return choices[top_choice_index]
 
 def fname(model, score):
-    return f"output_csvs_correct/a_{model}_{score}.csv_headline.csv", f"HalluVisionAllFinal/Q_{score.upper()}_final.csv"
+    return f"output/a_{model}_{score}.csv", f"data/HalluVision_{score.upper()}_Q.csv"
 
 def get_mc_answer(sbert_model, correct_answer, vqa_answer, choices, mode="DSG"):
     if mode == "DSG" or len(choices) < 3:
@@ -112,8 +112,8 @@ def main(model, score, debug):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Convert multiple-choice outputs into single choice using sentencebert from a CSV output.')
-    parser.add_argument('--model', required=True, help='Model name')
-    parser.add_argument('--score', required=True, help='Score')
+    parser.add_argument('--model', default='blip1', required=True, help='Model name')
+    parser.add_argument('--score', default= 'tifa', required=True, help='Score')
     parser.add_argument('--debug', action='store_true', help='Enable debug mode')
 
     args = parser.parse_args()

@@ -83,7 +83,9 @@ def tree_correlation_score(dataframe, metric_col_idces, id_range, score_function
     output_dict = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
     val_counts = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
     for id_idx in tqdm(id_range):
+        print(id_idx)
         id_df = dataframe.loc[dataframe["id"] == id_idx]
+        print(id_df)
         #id_df = repair_missing_rank(dataframe.loc[dataframe["id"] == str(id_idx)])
         node_set = list(id_df["rank"].unique())
         try:
@@ -97,6 +99,7 @@ def tree_correlation_score(dataframe, metric_col_idces, id_range, score_function
         # probably not ideal, but just build every possible alignment to start
         # aka, dfs on sets of 0, 1, 2, ... to max(node_numbers)
         walks = list(map(lambda x: [x], [i for i, x in enumerate(node_numbers) if x == 0]))
+        print(walks)
         #for level in range(1,max(node_numbers) + 1):
         for level in node_numbers_sorted:
             new_walks = []
@@ -121,7 +124,7 @@ def tree_correlation_score(dataframe, metric_col_idces, id_range, score_function
                 walk_y_array = []
                 for j in range(len(walk_ids)):
                     this_step_ys = list(map(
-                        lambda x: robust_float_cast(x), 
+                        lambda x: robust_float_cast(x),
                         id_df.loc[id_df["rank"] == walk_ids[j]][metric_col_idx]
                     ))
                     # probably need logic for NaNs
