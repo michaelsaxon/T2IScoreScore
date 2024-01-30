@@ -1,9 +1,8 @@
 import argparse
 
-import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-
+import matplotlib.pyplot as plt
 
 def corr_plot(df, title, output_path):
     # generate the correlation plot
@@ -102,6 +101,7 @@ def main():
     metrics_to_show = ['alignscore', 'blipscore', 'clipscore']
     df = pd.read_csv(args.csv_path)
     line_plot(df, id_to_plot, metrics_to_show, args.output_path)
+    scatter_plot(df, "BLIPScore vs LLava-alt TIFA", "blipscore_norm", "llava-alt_tifa")
 
 if __name__ == "__main__":
     main()
