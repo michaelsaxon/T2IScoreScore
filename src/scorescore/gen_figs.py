@@ -29,6 +29,7 @@ def scatter_plot(df, title, x_column, y_column):
     plt.title(title)
     plt.show()
 
+
 def main():
     parser = argparse.ArgumentParser(description='Generate correlation plots.')
     parser.add_argument('--csv_path', type=str, default='../../output/spearman_corrs_weighted.csv', help='csv input with correlation scores.')
