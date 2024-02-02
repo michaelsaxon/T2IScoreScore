@@ -30,7 +30,7 @@ def main():
     #print(pd.DataFrame(output_dict))
 
     print("running tree corr for all samples")
-    #tree_spearman_avg, tree_counts = tree_correlation_score(pd.DataFrame(output_dict), metrics, [20], spearman_corr, scaled_avg=True)
+    tree_spearman_avg, tree_counts = tree_correlation_score(pd.DataFrame(output_dict), metrics, [20], spearman_corr, scaled_avg=True)
 
     # output_dataframe = pd.DataFrame(tree_spearman_avg)
     # output_treecounts = pd.DataFrame(tree_counts)

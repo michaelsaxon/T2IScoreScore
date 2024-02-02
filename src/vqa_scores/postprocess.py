@@ -64,13 +64,10 @@ def get_mc_answer(sbert_model, correct_answer, vqa_answer, choices, mode="DSG"):
             return 1, mc_answer
     return 0, mc_answer
 
-def main(model, score, debug):
-    def debug_print(*args, **kwargs):
-        if debug:
-            print(*args, **kwargs)
+def main(model, score):
 
     answer_file, question_file = fname(model, score)
-    answer_df = pd.read_csv(answer_file)
+    answer_df = pd.read_csv(answer_file, header=None, names=['id', 'image_path', 'question_id', 'vqa_answer'], delimiter=',')
     question_df = pd.read_csv(question_file)
 
     mc_answer_file = answer_file.replace(".csv", "_mc.csv")
@@ -80,29 +77,17 @@ def main(model, score, debug):
     mc_answer_lines = ['id,question_id,vqa_answer,mc_answer,correct\n']
 
     for idx, image_row in enumerate(tqdm(list(answer_df.iterrows()))):
-        image_row = image_row[1]
+        id, question_id, vqa_answer = image_row[1][['id', 'question_id', 'vqa_answer']]
 
-        id, question_id, vqa_answer = image_row[['id', 'question_id', 'vqa_answer']]
         if isinstance(vqa_answer, float):
             if math.isnan(vqa_answer):
                 vqa_answer = " "
             else:
                 vqa_answer = str(vqa_answer)
 
-        debug_print(f"\n{idx}")
-        debug_print(id)
-        debug_print(question_id)
-        debug_print(vqa_answer)
-
         answer_row = question_df.loc[question_df['id'] == id].loc[question_df['question_id'] == question_id].iloc[0]
         choices, correct_answer = answer_row[['choices', 'answer']]
         choices = choices.split('|')
-
-        debug_print(id)
-        debug_print(question_id)
-        debug_print(vqa_answer)
-        debug_print(choices)
-        debug_print(correct_answer)
 
         correct, mc_answer = get_mc_answer(sbert_model, correct_answer, vqa_answer, choices, mode=score.upper())
         mc_answer_lines.append(f"{id},{question_id},{vqa_answer},{mc_answer},{correct}\n")
@@ -112,9 +97,9 @@ def main(model, score, debug):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Convert multiple-choice outputs into single choice using sentencebert from a CSV output.')
-    parser.add_argument('--model', default='blip1', required=True, help='Model name')
-    parser.add_argument('--score', default= 'tifa', required=True, help='Score')
-    parser.add_argument('--debug', action='store_true', help='Enable debug mode')
+    parser.add_argument('--model', default='instructBlip', required=True, help='Model name (llava, fuyu, mplug, instruct_blip, blip1)')
+    parser.add_argument('--score', default= 'dsg', required=True, help='Score (tifa, dsg)')
 
     args = parser.parse_args()
-    main(args.model, args.score, args.debug)
+
+    main(args.model, args.score)
