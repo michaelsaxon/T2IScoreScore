@@ -1,20 +1,13 @@
-import openai
-from openai_utils import openai_setup, openai_completion
+import argparse
 import csv
-import json
-from absl import flags
-import sys
 
+import openai
+from openai_utils import openai_completion
 
-FLAGS = flags.FLAGS
-
-flags.DEFINE_string("api_key", "", "OpenAI API key.")
-flags.DEFINE_string("input_file", "", "Path to the input file with prompts.")
-flags.DEFINE_string("output_csv", "", "Path to save the output CSV file.")
 
 class TIFA_QuestionGenerator:
     def __init__(self):
-        with open('/content/TIFA_prompt.txt', 'r') as file:
+        with open('src/question_generator/TIFA_prompt.txt', 'r') as file:
             self.prompt = file.read()
             self.categories = ['object',
                                 'human',
@@ -119,12 +112,18 @@ class TIFA_QuestionGenerator:
                     'answer': csv_data['answer'][i],
                 })
 
-if __name__ == "__main__":
-    FLAGS(sys.argv)  # Parse command line flags.
+def main():
+    parser = argparse.ArgumentParser(description="Process prompts with TIFA QuestionGenerator.")
 
-    api_key = FLAGS.api_key
-    input_file_path = FLAGS.input_file
-    output_csv_path = FLAGS.output_csv
+    parser.add_argument("--api_key", type=str, help="OpenAI API key.")
+    parser.add_argument("--input_file", type=str, help="Path to the input file with prompts.")
+    parser.add_argument("--output_csv", type=str, help="Path to save the output CSV file.")
+
+    args = parser.parse_args()
+
+    api_key = args.api_key
+    input_file_path = args.input_file
+    output_csv_path = args.output_csv
 
     question_generator = TIFA_QuestionGenerator()
 
@@ -135,3 +134,5 @@ if __name__ == "__main__":
 
     question_generator.save_to_csv(prompts, output_csv_path)
 
+if __name__ == "__main__":
+    main()
