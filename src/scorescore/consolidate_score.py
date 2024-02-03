@@ -1,4 +1,4 @@
-from utils.read_csv_utils import load_kvp_multiple_files, load_kvp_single_file, load_col_source_csv
+from utils.utils import load_kvp_multiple_files, load_kvp_single_file, load_col_source_csv
 from scoring import tree_correlation_score, spearman_corr
 import pandas as pd
 
