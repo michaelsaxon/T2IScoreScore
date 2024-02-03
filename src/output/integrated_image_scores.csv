@@ -1,4 +1,4 @@
-id,image_id,alignscore_score,blipscore_score,clipscore_score,fuyu_dsg_score,fuyu_tifa_score,instruct_blip_dsg_score,instruct_blip_tifa_score,llava-alt_dsg_score,llava-alt_tifa_score,llava_dsg_score,llava_tifa_score,mplug_dsg_score,mplug_tifa_score,rank
+id,image_id,alignscore,blipscore,clipscore,fuyu_dsg,fuyu_tifa,instruct_blip_dsg,instruct_blip_tifa,llava-alt_dsg,llava-alt_tifa,llava_dsg,llava_tifa,mplug_dsg,mplug_tifa,rank
 0,000.00.jpg,0.84,-0.42,0.72,1.0,0.5,1.0,0.8333333333333334,1.0,0.8333333333333334,1.0,0.8333333333333334,1.0,0.8333333333333334,0
 0,000.01.jpg,0.53,-0.33,0.55,1.0,0.8333333333333334,0.8,0.6666666666666666,0.8,0.5,0.6,0.6666666666666666,0.8,0.6666666666666666,1
 0,000.02.jpg,0.58,-0.34,0.55,0.6,0.6666666666666666,0.8,0.5,0.8,0.5,0.6,0.6666666666666666,0.8,0.6666666666666666,1
