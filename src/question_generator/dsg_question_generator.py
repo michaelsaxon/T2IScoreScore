@@ -1,14 +1,11 @@
 import argparse
-import subprocess
+import openai
 
 import pandas as pd
-from openai_utils import openai_completion
-from query_utils import generate_dsg
-
+from DSG.openai_utils import openai_completion
+from DSG.query_utils import generate_dsg
 
 class DSG_QuestionGenerator:
-    def __init__(self, api_key):
-        self.api_key = api_key
 
     def process_prompts(self, input_file_path, csv_output_path):
         prompts = self.read_prompts_from_file(input_file_path)
@@ -51,22 +48,18 @@ class DSG_QuestionGenerator:
 def main():
     parser = argparse.ArgumentParser(description="Process prompts with OpenAI API.")
 
-    parser.add_argument("--api_key", type=str, help="OpenAI API key.")
-    parser.add_argument("--input_file", type=str, help="Path to the input file with prompts.")
-    parser.add_argument("--output_csv", type=str, help="Path to save the output CSV file.")
+    parser.add_argument("-a", "--api_key", type=str, help="OpenAI API key.")
+    parser.add_argument("-i", "--input_file", type=str, help="Path to the input file with prompts.")
+    parser.add_argument("-o", "--output_csv", type=str, help="Path to save the output CSV file.")
+
 
     args = parser.parse_args()
 
-    api_key = args.api_key
+    openai.api_key = args.api_key
     input_file_path = args.input_file
     output_csv_path = args.output_csv
 
-    question_creator = DSG_QuestionGenerator(api_key)
-    repository_url = "https://github.com/j-min/DSG.git"
-    target_directory = "SGD"
-
-    subprocess.run(["git", "clone", repository_url, target_directory])
-    subprocess.run(["cd", target_directory])
+    question_creator = DSG_QuestionGenerator()
 
     question_creator.process_prompts(input_file_path, output_csv_path)
 

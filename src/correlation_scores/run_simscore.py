@@ -2,20 +2,20 @@ import argparse
 import csv
 import os
 from pathlib import Path
+from tqdm import tqdm
 
 import pandas as pd
 from PIL import Image
+from sklearn.preprocessing import MinMaxScaler
 from transformers import (AlignModel, AlignProcessor, AutoProcessor, BlipModel,
                           CLIPModel, CLIPProcessor)
 
-from correlation_scores.sim_score import SimScorer
+from sim_score import SimScorer
 
-
-# Define a base class for scoring methods
-class ScoreMethod(SimScorer):
-    def __init__(self, model_path, processor_path):
-        self.model = self.load_model(model_path).to("cuda")
-        self.processor = self.load_processor(processor_path)
+class CLIPScorer(SimScorer):
+    def __init__(self):
+        self.processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch16")
+        self.model = CLIPModel.from_pretrained("openai/clip-vit-base-patch16")
 
     def calculate_score(self, image, prompt):
         image = Image.open(image)
@@ -24,35 +24,31 @@ class ScoreMethod(SimScorer):
         logits_per_image = output.logits_per_image
         return logits_per_image.item()
 
-    def load_model(self, model_path):
-        raise NotImplementedError("Subclasses must implement this method.")
+class BlipScorer(SimScorer):
+    def __init__(self):
+        self.model = BlipModel.from_pretrained("Salesforce/blip-image-captioning-base")
+        self.processor = AutoProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
 
-    def load_processor(self, processor_path):
-        raise NotImplementedError("Subclasses must implement this method.")
+    def calculate_score(self, image, prompt):
+        image = Image.open(image)
+        input = self.processor(text=prompt, images=image, return_tensors="pt", padding=True).to(self.model.device)
+        output = self.model(**input)
+        logits_per_image = output.logits_per_image
+        return logits_per_image.item()
 
-# Subclass for CLIPScore
-class CLIPScorer(ScoreMethod):
-    def load_model(self, model_path):
-        return CLIPModel.from_pretrained(model_path)
 
-    def load_processor(self, processor_path):
-        return CLIPProcessor.from_pretrained(processor_path)
+class ALIGNScore(SimScorer):
+    def __init__(self):
+        self.processor = AlignProcessor.from_pretrained("kakaobrain/align-base")
+        self.model = AlignModel.from_pretrained("kakaobrain/align-base")
 
-# Subclass for BLIPScore
-class BlipScorer(ScoreMethod):
-    def load_model(self, model_path):
-        return BlipModel.from_pretrained(model_path)
+    def calculate_score(self, image, prompt):
+        image = Image.open(image)
+        input = self.processor(text=prompt, images=image, return_tensors="pt", padding=True, padding='max_length').to(self.model.device)
+        output = self.model(**input)
+        logits_per_image = output.logits_per_image
+        return logits_per_image.item()
 
-    def load_processor(self, processor_path):
-        return AutoProcessor.from_pretrained(processor_path)
-
-# Subclass for ALIGNScore
-class ALIGNScorer(ScoreMethod):
-    def load_model(self, model_path):
-        return AlignModel.from_pretrained(model_path)
-
-    def load_processor(self, processor_path):
-        return AlignProcessor.from_pretrained(processor_path)
 
 def score(config):
     image_folder = Path(config['image_folder'])
@@ -62,76 +58,74 @@ def score(config):
     df = pd.read_csv(config['csv_file'])
     skipped = []
 
-    for index, row in df.iterrows():
-        image_file_path = os.path.join(image_folder, row['Image'])
-        prompt = row['Prompt']
+
+    for _, row in tqdm(df.iterrows(), total=len(df)):
+
+        image_file_path = os.path.join(image_folder, row['file_name'])
+        prompt = row['target_prompt']
 
         if os.path.exists(image_file_path):
-            print(f"Scoring {row['Image']}")
             score = config['score_method'].calculate_score(image_file_path, prompt)
-            scores.append(score)
-            file_path_obj = Path(image_file_path)
-            filename_without_extension = file_path_obj.stem
 
-            record = {"id": filename_without_extension, "prompt": prompt.replace(",", ""), config['score_method_name']: score}
-            record[config['score_method_name']] = "{:.2f}".format(record[config['score_method_name']])
+            formatted_image_id = row['file_name'].split('/')[-1]
+
+            record = {
+                "id": row['id'],
+                "image_id": formatted_image_id,
+                "score": score
+            }
             csv_records.append(record)
         else:
             print(f"Image not found: {row['Image']}")
             skipped.append(f"{index},{row}/n")
 
+    df_normalized = normalize(pd.DataFrame(csv_records))
+
     with open(config['result_file_path'], mode="w", newline="") as file:
-        fieldnames = ["id", "prompt", config['score_method_name']]
+        fieldnames = ["id", "image_id", "score"]
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
 
-        for record in csv_records:
-            writer.writerow(record)
+        for index, row in df_normalized.iterrows():
+            writer.writerow(row.to_dict())
 
     if len(skipped) > 0:
         print(f"{len(skipped)} total images skipped! Writing list...")
         with open(config['result_file_path'] + ".skipped.csv", "w") as f:
             f.writelines(skipped)
 
+def normalize(df):
+    df_scores = df['score']
+    scaler = MinMaxScaler()
+    df_normalized_scores = pd.DataFrame(scaler.fit_transform(df_scores.values.reshape(-1, 1)), columns=['score'])
+    df['score'] = df_normalized_scores['score']
+    return df
+
+
 def main():
+
     parser = argparse.ArgumentParser(description='Calculate scores for images in a meta-data file.')
-    parser.add_argument('-i', '--image-folder', default='HalluVisionFull/Final-HalluVision/', help='Path to the folder containing images')
-    parser.add_argument('-m', '--metadata-file', default='data/HalluVision.csv', help='Path to the meta-data file')
-    parser.add_argument('-o', '--output-dir', default='output/clipscore.csv', help='Path to the output directory')
-    parser.add_argument('-s', '--score-method-name', default='CLIPScore', help='Name of the score method you want to test')
+    parser.add_argument("-m", '--model', required=True, default="clip", help="Choose sim score model (clip, blip, align)")
+    parser.add_argument("-o", '--output', required=True, default="output/clipscore.csv", help="Path to the output CSV file")
+    parser.add_argument("-i", '--image_folder', required=True, default="data/T2IScoreScore/", help="Base path for image files")
+    parser.add_argument("-md", '--metadata_file', required=True, default="data/metadata.csv", help="Path to meta-data csv file")
 
     args = parser.parse_args()
 
-    # Configure the scoring method based on the provided argument
-    if args.score_method_name == 'CLIPScore':
-        config = {
-            'image_folder': args.image_folder,
-            'csv_file': args.metadata_file,
-            'result_file_path': args.output_dir,
-            'score_method_name': args.score_method_name,
-            'score_method': CLIPScorer()
-        }
-    elif args.score_method_name == 'BLIPScore':
-        config = {
-            'image_folder': args.image_folder,
-            'csv_file': args.metadata_file,
-            'result_file_path': args.output_dir,
-            'score_method_name': args.score_method_name,
-            'score_method': BlipScorer()
-        }
-    elif args.score_method_name == 'ALIGNScorer':
-        config = {
-            'image_folder': args.image_folder,
-            'csv_file': args.metadata_file,
-            'result_file_path': args.output_dir,
-            'score_method_name': args.score_method_name,
-            'score_method': ALIGNScorer()
-        }
-    else:
-        print('Score method is not defined.')
-        return
+    if args.model == "clip":
+            scorer = CLIPScorer()
+    elif args.model == "blip":
+            scorer = BlipScorer()
+    elif args.model == "align":
+            scorer = ALIGNScore()
 
-    # Call the score function with the configuration, this function produce score csv file
+    config = {
+        'image_folder': args.image_folder,
+        'csv_file': args.metadata_file,
+        'result_file_path': args.output,
+        'score_method': scorer
+    }
+
     score(config)
 
 if __name__ == "__main__":

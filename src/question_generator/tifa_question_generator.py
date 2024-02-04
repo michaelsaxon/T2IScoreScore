@@ -2,8 +2,17 @@ import argparse
 import csv
 
 import openai
-from openai_utils import openai_completion
 
+def openai_completion(prompt, engine="gpt-3.5-turbo", max_tokens=700, temperature=0):
+    resp =  openai.ChatCompletion.create(
+        model=engine,
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=max_tokens,
+        temperature=temperature,
+        stop=["\n\n", "<|endoftext|>"]
+        )
+
+    return resp['choices'][0]['message']['content']
 
 class TIFA_QuestionGenerator:
     def __init__(self):
@@ -115,13 +124,13 @@ class TIFA_QuestionGenerator:
 def main():
     parser = argparse.ArgumentParser(description="Process prompts with TIFA QuestionGenerator.")
 
-    parser.add_argument("--api_key", type=str, help="OpenAI API key.")
-    parser.add_argument("--input_file", type=str, help="Path to the input file with prompts.")
-    parser.add_argument("--output_csv", type=str, help="Path to save the output CSV file.")
+    parser.add_argument("-a", "--api_key", type=str, help="OpenAI API key.")
+    parser.add_argument("-i", "--input_file", type=str, help="Path to the input file with prompts.")
+    parser.add_argument("-o", "--output_csv", type=str, help="Path to save the output CSV file.")
 
     args = parser.parse_args()
 
-    api_key = args.api_key
+    openai.api_key = args.api_key
     input_file_path = args.input_file
     output_csv_path = args.output_csv
 

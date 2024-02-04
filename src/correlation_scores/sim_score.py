@@ -20,17 +20,6 @@ class SimScorer(ABC):
 
     Returns:
     float: The calculated similarity score.
-
-    Example:
-    >>> class CustomScorer(ScoreMethod):
-    >>>     def calculate_score(self, image, prompt):
-    >>>         # Implement your custom scoring logic here
-    >>>         pass
-    >>>
-    >>> custom_scorer = CustomScorer()
-    >>> image_data = "your_image_data"
-    >>> prompt_data = "your_prompt_data"
-    >>> score = custom_scorer.calculate_score(image_data, prompt_data)
     """
     @abstractmethod
     def calculate_score(self, image, prompt):

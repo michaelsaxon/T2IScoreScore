@@ -11,7 +11,7 @@ from transformers import AutoModel, AutoTokenizer
 """
 To run this script, use the following command in the terminal:
 
-python postprocess.py --raw_answer_file blip1_dsg.csv --score_file blip1_dsg_score.csv --question_gen_method dsg --question_file HalluVision_DSG_Q.csv
+python postprocess.py --raw_answer_file blip1_dsg.csv --score_file blip1_dsg_score.csv --question_gen_method dsg --question_file T2S_DSG_Q.csv
 
 Command-line arguments:
   --raw_answer_file         Path to the raw answer file (CSV format).
@@ -167,10 +167,10 @@ def main(score_file, question_gen_method, question_file, raw_answer_file):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate output format with id, image_id, and score.')
-    parser.add_argument('--score_file', required=True, help='Output CSV file for scores')
-    parser.add_argument('--question_file', required=True, help='Question CSV file')
-    parser.add_argument('--question_gen_method', default='dsg', required=True, help='Question generation method (tifa, dsg)')
-    parser.add_argument('--raw_answer_file', required=True, help='Input CSV file for raw answers')
+    parser.add_argument('-s', '--score_file', required=True, help='Output CSV file for scores')
+    parser.add_argument('-q', '--question_file', required=True, help='Question CSV file')
+    parser.add_argument('-m', '--question_gen_method', default='dsg', required=True, help='Question generation method (tifa, dsg)')
+    parser.add_argument('-a', '--raw_answer_file', required=True, help='Input CSV file for raw answers')
 
     args = parser.parse_args()
     main(args.score_file, args.question_gen_method, args.question_file, args.raw_answer_file)
