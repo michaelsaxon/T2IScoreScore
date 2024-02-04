@@ -41,9 +41,9 @@ head node of the graph:
 
 Replace the placeholders with appropriate values:
 
-- `-a`, `--api_key`: Your OpenAI API key.
-- `-i`, `--input_file`: Path to the input file containing prompts.
-- `-o`, `--output_csv`: Path to save the output CSV file.
+ `-a`, `--api_key`: Your OpenAI API key.  
+ `-i`, `--input_file`: Path to the input file containing prompts.  
+ `-o`, `--output_csv`: Path to save the output CSV file.
 
 Make sure to provide the correct paths and API key. Feel free to adjust the command for your specific needs.
 
@@ -59,16 +59,16 @@ Usage
 
 Command Line Arguments
 
-- `-m`, `--model`: Choose sim score model (clip, blip, align).
-- `-o`, `--output`: Path to the output CSV file.
-- `-i`, `--image_folder`: Base path for image files.
-- `-md`, `--metadata_file`: Path to the meta-data CSV file.
+  `-m`, `--model`: Choose sim score model (clip, blip, align).  
+  `-o`, `--output`: Path to the output CSV file.  
+  `-i`, `--image_folder`: Base path for image files.  
+  `-md`, `--metadata_file`: Path to the meta-data CSV file.  
 
-    Example:
+Example:
 
-    ```bash
-    python simscore.py --model 'clip' -image_folder 'data/T2IScoreScore/' -md 'data/metadata.csv' -o 'output/clipscore.csv'
-    ```
+ ```bash
+python simscore.py --model 'clip' -image_folder 'data/T2IScoreScore/' -md 'data/metadata.csv' -o 'output/clipscore.csv'
+```
 
 ## Custom SimScorer Implementation
 
@@ -124,34 +124,35 @@ Usage
 
 Command Line Arguments
 
-- `-m`, `--model`: Choose the VQA model (mplug, fuyu, llava, instructBlip, blip).
-- `-q`, `--questions_file`: Path to the questions CSV file (tifa, dsg).
-- `-o`, `--output`: Path to the output CSV file.
-- `-i`, `--image_folder`: Base path for image files.
-- `-s`, `--start`: Start index for image processing.
-- `-e`, `--end`: End index for image processing.
-- `-md`, `--metadata_file`: Path to meta-data CSV file.
+‍‍`-m`, `--model`: Choose the VQA model (mplug, fuyu, llava, instructBlip, blip).  
+`-q`, `--questions_file`: Path to the questions CSV file (tifa, dsg).  
+`-o`, `--output`: Path to the output CSV file.  
+`-i`, `--image_folder`: Base path for image files.  
+`-s`, `--start`: Start index for image processing.  
+`-e`, `--end`: End index for image processing.  
+`-md`, `--metadata_file`: Path to meta-data CSV file.  
 
-     Example:
 
-    ```bash
-    python run_vqascor.py --model 'mplug' --questions_file 'data/T2S_TIFA_Q.csv' --output 'output/a_mplug_tifa.csv' --image_folder 'data/T2IScoreScore/' --start '0' --end ':' --metadata_file 'data/metadata.csv'
-    ```
+Example:
+
+```bash
+python run_vqascor.py --model 'mplug' --questions_file 'data/T2S_TIFA_Q.csv' --output 'output/a_mplug_tifa.csv' --image_folder 'data/T2IScoreScore/' --start '0' --end ':' --metadata_file 'data/metadata.csv'
+```
 
 2- PostProcess of raw answers
 
 Command Line Arguments
 
-- `-s`, `--score_file`: Output CSV file for scores (required).
-- `-q`, `--question_file`: Question CSV file (required).
-- `-m`, `--question_gen_method`: Question generation method (tifa, dsg) [default: dsg] (required).
-- `-r`, `--raw_answer_file`: Input CSV file for raw answers (required).
+ `-s`, `--score_file`: Output CSV file for scores (required).  
+ `-q`, `--question_file`: Question CSV file (required).  
+ `-m`, `--question_gen_method`: Question generation method (tifa, dsg) [default: dsg] (required).  
+ `-r`, `--raw_answer_file`: Input CSV file for raw answers (required).  
 
-    Example:
+Example:
 
-    ```bash
-    python postprocess.py --score_file 'output/scores.csv' --question_file 'data/T2S_TIFA_Q.csv' --question_gen_method 'dsg' --raw_answer_file 'data/raw_answers.csv'
-    ```
+```bash
+python postprocess.py --score_file 'output/scores.csv' --question_file 'data/T2S_TIFA_Q.csv' --question_gen_method 'dsg' --raw_answer_file 'data/raw_answers.csv'
+```
 
 ### Custom VQAScorer Implementation
 
@@ -203,13 +204,11 @@ print(f'Generated answer: {answer}')
 
  Command Line Arguments
 
-- `--image_folder`: Base path for image files.
-- `--metadata_file`: Path to meta-data CSV file.
+`--image_folder`: Base path for image files.  
+`--metadata_file`: Path to meta-data CSV file.  
 
-    Example:
+Example:
 
-    ```bash
-    python llm_score.py --image_folder 'data/T2IScoreScore/' --metadata_file 'data/metadata.csv'
-    ```
-
-
+```bash
+python llm_score.py --image_folder 'data/T2IScoreScore/' --metadata_file 'data/metadata.csv'
+```
