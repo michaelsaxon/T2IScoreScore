@@ -1,4 +1,17 @@
+
+
 # T2IScoreScore
+
+![Static Badge](https://img.shields.io/badge/GenerativeAI-%20%23996600)
+![Static Badge](https://img.shields.io/badge/T2IScoreScore-%20%23006699)
+![Static Badge](https://img.shields.io/badge/Text2Image-%20%20%23808080?logoColor=black%20)
+![Static Badge](https://img.shields.io/badge/TS2-%20%235c8a8a)
+![Static Badge](https://img.shields.io/badge/Metametrics-%20%237a7a52?logoColor=black%20)
+
+
+
+
+
 
 ### **Who Evaluates the Evaluations? Assessing the Faithfulness and Consistency of Text-to-Image Evaluation Metrics with *T2IScoreScore***
 
@@ -8,10 +21,13 @@ T2IScoreScore is a meticulously curated dataset featuring image sets that smooth
 
 ⚡ There is a sample of an error graph for the initial prompt “**A
 happy young woman eating a tasty orange donut**” using natural
-images. There are two different nodes of error distance 1 from the
+images.
+ There are **two** different nodes of error distance 1 from the
 head node of the graph:
 
-<img src='figures/Sample.png' style='width:450px; height:300px;'>
+<div style="text-align:center;">
+    <img src='figures/Sample.png' alt="T2IScoreScore Dataset" style="display: inline-block; width: 450px; height: 300px;"/>
+</div>
 
 ## Question Generation
 
