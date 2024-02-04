@@ -18,17 +18,20 @@ head node of the graph:
 
 ### Evaluated Metrics on This Dataset
 
-## Similarity Score
+### Similarity Score
 
 - **ClipScore**
 - **BlipScore**
 - **AlignScore**
 
-## VQA Score
+### VQA Score
 Questions created with two method: [DSG](https://github.com/j-min/DSG), [TIFA](https://github.com/Yushi-Hu/tifa)
 
 - **LLaVa**
 - **Fuyu**
 - **mPLUG**
+- **instructBlip**
+- **Blip1**
 
-## LLMScore
+### LLM based Score
+- **LLMScore**

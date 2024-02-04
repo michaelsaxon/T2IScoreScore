@@ -36,6 +36,6 @@ class InstructBlipVQAScorer():
                 length_penalty=1.0,
                 temperature=1,
         )
-        answer = self.processor.batch_decode(generation_output, skip_special_tokens=True)[0].strip()
+        answer = self.processor.batch_decode(generation_output, skip_special_tokens=True)[0].replace(',', '').strip()
         return answer
 

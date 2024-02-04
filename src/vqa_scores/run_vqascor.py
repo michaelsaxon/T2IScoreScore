@@ -1,8 +1,12 @@
 import argparse
-from mplug import MPlugVQAScorer
-from llava import LLavaVQAScorer
+import csv
+
+from blip import BlipVQAScorer
 from fuyu import FuyuVQAScorer
-from vqa_scores.instruct_blip import InstructBlipVQAScorer
+from instruct_blip import InstructBlipVQAScorer
+from llava import LLavaVQAScorer
+from mplug import MPlugVQAScorer
+
 
 class VQAProcessor:
     def __init__(self, model_type, model_path):
@@ -12,8 +16,10 @@ class VQAProcessor:
             self.vqa_scorer = FuyuVQAScorer(model_path=model_path)
         elif model_type == "llava":
             self.vqa_scorer = LLavaVQAScorer(model_path=model_path)
-        elif model_type == "blip":
+        elif model_type == "instructblip":
             self.vqa_scorer = InstructBlipVQAScorer(model_path=model_path)
+        elif model_type == "blip":
+            self.vqa_scorer = BlipVQAScorer(model_path=model_path)
         else:
             raise ValueError("Invalid model type")
 
@@ -58,11 +64,21 @@ class VQAProcessor:
             f.writelines(fail_imgs)
 
 def csv_line_map(line):
-    return line.strip().split(",")
+    return next(csv.reader([line]))
 
 def main():
+
+    # Define a dictionary mapping model names to model paths
+    model_paths = {
+    "mplug": 'MAGAer13/mplug-owl2-llama2-7b',
+    "fuyu": 'adept/fuyu-8b',
+    "llava": 'liuhaotian/llava-v1.5-13b',
+    "instructBlip" : 'Salesforce/instructblip-flan-t5-xl',
+    "blip" : 'ybelkada/blip-vqa-base'
+    }
+
     parser = argparse.ArgumentParser(description='Get answers using a VQA model for a set of questions and images.')
-    parser.add_argument("-m", '--model', default="mplug", help="Choose the VQA model (mplug, fuyu, llava)")
+    parser.add_argument("-m", '--model', default="mplug", help="Choose the VQA model (mplug, fuyu, llava, instructBlip, blip)")
     parser.add_argument("-q", '--questions_file', default="HalluVision_TIFA_Q.csv", help="Path to the questions CSV file (tifa, dsg)")
     parser.add_argument("-o", '--output', default="output/a_mplug_tifa.csv", help="Path to the output CSV file")
     parser.add_argument("-b", '--image_folder', default="data/T2IScoreScore/", help="Base path for image files")
@@ -77,15 +93,19 @@ def main():
     with open(questions_file_path, 'r') as file:
         questions = [line.strip().split(',') for line in file]
 
-    vqa_processor = VQAProcessor(args.model, model_path='MAGAer13/mplug-owl2-llama2-7b')
-    #vqa_processor = VQAProcessor(args.model, model_path='liuhaotian/llava-v1.5-13b')
-    #vqa_processor = VQAProcessor(args.model, model_path='adept/fuyu-8b')
-    #vqa_processor = VQAProcessor(args.model, model_path='"Salesforce/instructblip-flan-t5-xl"')
+    model_path = model_paths.get(args.model)
+    vqa_processor = VQAProcessor(args.model, model_path=model_path)
 
     if args.start != "0" or args.end != ":":
         args.output = args.output + f".{args.start}-{args.end}.csv"
 
-    vqa_processor.process_images_and_questions(args.metadata_file, args.image_folder, questions, args.start, args.end, args.output)
+    vqa_processor.process_images_and_questions(
+        args.metadata_file,
+        args.image_folder,
+        questions,
+        args.start,
+        args.end,
+        args.output)
 
 if __name__ == "__main__":
     main()
