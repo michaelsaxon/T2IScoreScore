@@ -109,12 +109,22 @@ def get_parser():
         default=["MODEL.WEIGHTS", "models/grit_b_densecap_objectdet.pth"],
         nargs=argparse.REMAINDER,
     )
+    parser.add_argument(
+        "--metadata",
+        help="Path to meta-data CSV file",
+        default='data/metadata.csv',
+    )
+    parser.add_argument(
+        "--image_folder",
+        help="Base path for image files.",
+        default='data/T2IScoreScore/',
+    )
     return parser
 
 
 def process_row(args, demo, llm_descriptor, llm_evaluator, row, logger):
     text_prompt = row['target_prompt']
-    img_src = os.path.join("/data/T2IScoreScore/", row['file_name'])
+    img_src = os.path.join(args.image_folder, row['file_name'])
     try:
         img = read_image(img_src, format="BGR")
     except:
@@ -149,8 +159,9 @@ def process_csv_row(args, demo, llm_descriptor, llm_evaluator, row, logger):
     row['Error_Counting'] = error_counting
     return row
 
-def load_data_and_process_images(args, demo, llm_descriptor, llm_evaluator, csv_file_path):
-    data = pd.read_csv(csv_file_path)
+def load_data_and_process_images(args, demo, llm_descriptor, llm_evaluator):
+
+    data = pd.read_csv(args.metadata)
     output_file = f'/output/LLMScore_{args.startidx}_{args.endidx}_{args.versionidx}.csv'
     with open(output_file, 'w', newline='') as file:
         writer = None
@@ -180,6 +191,4 @@ if __name__ == "__main__":
     llm_descriptor = VisualDescriptor(openai_key, args.llm_id)
     llm_evaluator = EvaluationInstructor(openai_key, args.llm_id)
 
-    csv_file_path = '/data/metadata.csv'
-
-    load_data_and_process_images(args, demo, llm_descriptor, llm_evaluator, csv_file_path)
+    load_data_and_process_images(args, demo, llm_descriptor, llm_evaluator)

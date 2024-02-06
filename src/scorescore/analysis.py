@@ -1,6 +1,5 @@
 import pandas as pd
 from tqdm import tqdm
-import math
 from scoring import analysis_tree_score, spearman_corr
 
 if __name__ == "__main__":
