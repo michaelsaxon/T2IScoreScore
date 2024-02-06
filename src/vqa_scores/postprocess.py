@@ -11,7 +11,7 @@ from transformers import AutoModel, AutoTokenizer
 """
 To run this script, use the following command in the terminal:
 
-python postprocess.py --raw_answer_file blip1_dsg.csv --score_file blip1_dsg_score.csv --question_gen_method dsg --question_file T2S_DSG_Q.csv
+python postprocess.py --raw_answer_file blip1_dsg.csv --score_file blip1_dsg_score.csv --question_gen_method dsg --question_file TS2_DSG_Q.csv
 
 Command-line arguments:
   --raw_answer_file         Path to the raw answer file (CSV format).

@@ -40,8 +40,8 @@ head node of the graph:
     cd DSG
     python T2IScoreScore/src/question_generator/dsg_question_generator.py
            --api_key 'openai_api_key'
-           --input_file 'src/question_generator/T2S_prompts.txt'
-           --output_csv 'src/question_generator/T2S_DSG_Q.csv'
+           --input_file 'src/question_generator/TS2_prompts.txt'
+           --output_csv 'src/question_generator/TS2_DSG_Q.csv'
     ```
 
 2. Run the Tifa Recipe for Question Generation
@@ -51,8 +51,8 @@ head node of the graph:
     ```bash
     python T2IScoreScore/src/question_generator/tifa_question_generator.py
            --api_key 'openai_api_key'
-           --input_file 'src/question_generator/T2S_prompts.txt'
-           --output_csv 'src/question_generator/T2S_TIFA_Q.csv'
+           --input_file 'src/question_generator/TS2_prompts.txt'
+           --output_csv 'src/question_generator/TS2_TIFA_Q.csv'
     ```
 
 Replace the placeholders with appropriate values:
@@ -152,7 +152,7 @@ Command Line Arguments
 Example:
 
 ```bash
-python run_vqascor.py --model 'mplug' --questions_file 'data/T2S_TIFA_Q.csv' --output 'output/a_mplug_tifa.csv' --image_folder 'data/T2IScoreScore/' --start '0' --end ':' --metadata_file 'data/metadata.csv'
+python run_vqascor.py --model 'mplug' --questions_file 'data/TS2_TIFA_Q.csv' --output 'output/a_mplug_tifa.csv' --image_folder 'data/T2IScoreScore/' --start '0' --end ':' --metadata_file 'data/metadata.csv'
 ```
 
 2- PostProcess of raw answers
@@ -167,7 +167,7 @@ Command Line Arguments
 Example:
 
 ```bash
-python postprocess.py --score_file 'output/scores.csv' --question_file 'data/T2S_TIFA_Q.csv' --question_gen_method 'dsg' --raw_answer_file 'data/raw_answers.csv'
+python postprocess.py --score_file 'output/scores.csv' --question_file 'data/TS2_TIFA_Q.csv' --question_gen_method 'dsg' --raw_answer_file 'data/raw_answers.csv'
 ```
 
 ### Custom VQAScorer Implementation

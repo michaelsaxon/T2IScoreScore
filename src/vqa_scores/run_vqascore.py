@@ -79,7 +79,7 @@ def main():
 
     parser = argparse.ArgumentParser(description='Get answers using a VQA model for a set of questions and images.')
     parser.add_argument("-m", '--model', default="mplug", help="Choose the VQA model (mplug, fuyu, llava, instructBlip, blip)")
-    parser.add_argument("-q", '--questions_file', default="T2S_TIFA_Q.csv", help="Path to the questions CSV file (tifa, dsg)")
+    parser.add_argument("-q", '--questions_file', default="TS2_TIFA_Q.csv", help="Path to the questions CSV file (tifa, dsg)")
     parser.add_argument("-o", '--output', default="output/a_mplug_tifa.csv", help="Path to the output CSV file")
     parser.add_argument("-i", '--image_folder', default="data/T2IScoreScore/", help="Base path for image files")
     parser.add_argument("-s", '--start', default="0", help="Start index for image processing")
