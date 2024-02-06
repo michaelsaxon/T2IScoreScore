@@ -1,6 +1,6 @@
 import pandas as pd
 
-from utils.read_csv_utils import *
+from src.utils.read_csv_utils import *
 
 """
 output_dict = load_kvp_multiple_files("HalluVision_scores.csv")
@@ -33,7 +33,7 @@ def clean_int_string(instr):
             instr = instr.replace(char,"")
     return instr
 
-dataframe = pd.read_csv("../../output/scores-final.csv")
+dataframe = pd.read_csv("../../output/scores-final-vie.csv")
 
 ranks = pd.read_csv("../../data/metadata.csv")
 
@@ -54,6 +54,9 @@ print(dataframe)
 
 
 print("running tree corr for all samples")
+
+# 
+
 tree_spearman_avg, tree_counts = tree_correlation_score(dataframe, metrics, id_range, spearman_corr, scaled_avg=True)
 #node_variances, node_counts = within_node_score(dataframe, metrics, id_range, variance)
 
@@ -64,13 +67,13 @@ print(tree_spearman_avg)
 
 output_dataframe = pd.DataFrame(tree_spearman_avg)
 output_treecounts = pd.DataFrame(tree_counts)
-nv_dataframe = pd.DataFrame(node_variances)
-nv_counts = pd.DataFrame(node_counts)
+#nv_dataframe = pd.DataFrame(node_variances)
+#nv_counts = pd.DataFrame(node_counts)
 
 output_dataframe.to_csv("spearman_corrs_weighted.csv")
 output_treecounts.to_csv("spearman_counts_weighted.csv")
-nv_dataframe.to_csv("node_variances.csv")
-nv_counts.to_csv("node_variances_counts.csv")
+#nv_dataframe.to_csv("node_variances.csv")
+#nv_counts.to_csv("node_variances_counts.csv")
 
 
 

@@ -18,10 +18,11 @@ def bar_plot(df, title):
     df = df.mean(axis=0)
     # generate the bar plot
     #sns.barplot(x=df.index, y=df.values)
-    df.plot.bar()
-    plt.tight_layout()
-    plt.title(title)
-    plt.show()
+    #df.plot.bar()
+    #plt.tight_layout()
+    #plt.title(title)
+    #plt.show()
+    print(df)
 
 def scatter_plot(df, title, x_column, y_column):
     sns.scatterplot(x=df[x_column], y=df[y_column])
@@ -68,25 +69,25 @@ def main():
     # #set_type = ["synthetic_error"] * (110 + 1) + ["natural_image"] * (135 - 111 + 1) + ["natural_error"] * (163 - 136 + 1)
     # #df = df.assign(set_type=set_type)
 
-    # # hack, adding in the inversion factor for scores where higher = better vs lower = better
-    # invert_columns = ["mplug_dsg", "mplug_tifa", "fuyu_dsg", "blipscore_norm", "llava_dsg", "fuyu_tifa", "alignscore_norm", "llava-alt_tifa", "clipscore_norm", "llava_tifa", "llava-alt_dsg"]
-    # for column in invert_columns:
-    #     df[column] = -df[column]
+    # hack, adding in the inversion factor for scores where higher = better vs lower = better
+    invert_columns = ["mplug_dsg", "mplug_tifa", "fuyu_dsg", "blipscore_norm", "llava_dsg", "fuyu_tifa", "alignscore_norm", "llava-alt_tifa", "clipscore_norm", "llava_tifa", "llava-alt_dsg", "viescore"]
+    for column in invert_columns:
+        df[column] = -df[column]
 
     # df = df.reindex(sorted(df.columns), axis=1)
 
     # generate the correlation plots
     #corr_plot(df, "")
 
-    '''
+    
     for type in ranges.keys():
         df_tmp = df.iloc[ranges[type][0]:ranges[type][1]+1]
-        corr_plot(df_tmp, f"{type} Correlation Scores", args.output_path)
+        #corr_plot(df_tmp, f"{type} Correlation Scores", args.output_path)
         bar_plot(df_tmp, f"{type} Average Correlation Scores")
 
-    corr_plot(df, "Correlation Scores", args.output_path)
+    #corr_plot(df, "Correlation Scores", args.output_path)
     bar_plot(df, "Average Correlation Scores")
-    '''
+    
 
     # scatter_plot(df, "BLIPScore vs LLava-alt TIFA", "blipscore_norm", "llava-alt_tifa")
 
