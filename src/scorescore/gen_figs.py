@@ -55,8 +55,9 @@ def line_plot(df, id_to_plot, metrics_to_show, output_path):
 
 def main():
     parser = argparse.ArgumentParser(description='Generate correlation plots.')
-    parser.add_argument('--csv_path', type=str, default='src/output/integrated_image_scores.csv', help='csv input with correlation scores.')
-    parser.add_argument('--output_path', type=str, default='figures/', help='DSG if specified otherwise assume TIFA.')
+    parser.add_argument('--csv_path', type=str, default='../../output/spearman_corrs_weighted.csv', help='csv input with correlation scores.')
+    parser.add_argument('--output_path', type=str, default='../../output/fig/', help='DSG if specified otherwise assume TIFA.')
+    parser.add_argument('--invert', type=bool, action=argparse.BooleanOptionalAction, help='Invert the scores if higher is better (e.g. BLIPScore).')
     args = parser.parse_args()
 
 
@@ -66,14 +67,16 @@ def main():
     # print(df)
     # # HACK current version as of Jan-29 is missing final row; manually add in the type of set each id is
     # # synthetic: 0-110; natural img: 111-135, natural err: 136-163/4
-    # ranges = {"synth_err": [0,110], "nat_img": [111,135], "nat_err": [136,163]}
+    ranges = {"synth_err": [0,110], "nat_img": [111,135], "nat_err": [136,163]}
     # #set_type = ["synthetic_error"] * (110 + 1) + ["natural_image"] * (135 - 111 + 1) + ["natural_error"] * (163 - 136 + 1)
     # #df = df.assign(set_type=set_type)
 
     # hack, adding in the inversion factor for scores where higher = better vs lower = better
     invert_columns = ["mplug_dsg", "mplug_tifa", "fuyu_dsg", "blipscore_norm", "llava_dsg", "fuyu_tifa", "alignscore_norm", "llava-alt_tifa", "clipscore_norm", "llava_tifa", "llava-alt_dsg", "viescore", "blip1_tifa","blip1_dsg","instructblip_tifa","instructblip_dsg"]
-    for column in invert_columns:
-        df[column] = -df[column]
+
+    if args.invert:
+        for column in invert_columns:
+            df[column] = -df[column]
 
     # df = df.reindex(sorted(df.columns), axis=1)
 

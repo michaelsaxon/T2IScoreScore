@@ -57,21 +57,24 @@ print("running tree corr for all samples")
 
 # 
 
-tree_spearman_avg, tree_counts = tree_correlation_score(dataframe, metrics, id_range, spearman_corr, scaled_avg=True)
+#tree_spearman_avg, tree_counts = tree_correlation_score(dataframe, metrics, id_range, spearman_corr, scaled_avg=True)
 #node_variances, node_counts = within_node_score(dataframe, metrics, id_range, variance)
 
-
-print(tree_spearman_avg)
+avg_ks_stat, ks_counts = tree_correlation_score(dataframe, metrics, id_range, between_nodepair_ks_score, scaled_avg=True)
 
 #print(tree_spearman_avg)
 
-output_dataframe = pd.DataFrame(tree_spearman_avg)
-output_treecounts = pd.DataFrame(tree_counts)
+#print(tree_spearman_avg)
+
+#output_dataframe = pd.DataFrame(tree_spearman_avg)
+#output_treecounts = pd.DataFrame(tree_counts)
 #nv_dataframe = pd.DataFrame(node_variances)
 #nv_counts = pd.DataFrame(node_counts)
 
-output_dataframe.to_csv("spearman_corrs_weighted.csv")
-output_treecounts.to_csv("spearman_counts_weighted.csv")
+output_dataframe = pd.DataFrame(avg_ks_stat)
+
+output_dataframe.to_csv("kstest_average_weighted.csv")
+#output_treecounts.to_csv("spearman_counts_weighted.csv")
 #nv_dataframe.to_csv("node_variances.csv")
 #nv_counts.to_csv("node_variances_counts.csv")
 
