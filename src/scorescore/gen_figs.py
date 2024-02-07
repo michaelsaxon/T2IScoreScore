@@ -22,6 +22,7 @@ def bar_plot(df, title):
     #plt.tight_layout()
     #plt.title(title)
     #plt.show()
+    print(title)
     print(df)
 
 def scatter_plot(df, title, x_column, y_column):
@@ -70,7 +71,7 @@ def main():
     # #df = df.assign(set_type=set_type)
 
     # hack, adding in the inversion factor for scores where higher = better vs lower = better
-    invert_columns = ["mplug_dsg", "mplug_tifa", "fuyu_dsg", "blipscore_norm", "llava_dsg", "fuyu_tifa", "alignscore_norm", "llava-alt_tifa", "clipscore_norm", "llava_tifa", "llava-alt_dsg", "viescore"]
+    invert_columns = ["mplug_dsg", "mplug_tifa", "fuyu_dsg", "blipscore_norm", "llava_dsg", "fuyu_tifa", "alignscore_norm", "llava-alt_tifa", "clipscore_norm", "llava_tifa", "llava-alt_dsg", "viescore", "blip1_tifa","blip1_dsg","instructblip_tifa","instructblip_dsg"]
     for column in invert_columns:
         df[column] = -df[column]
 

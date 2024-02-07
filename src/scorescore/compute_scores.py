@@ -33,7 +33,7 @@ def clean_int_string(instr):
             instr = instr.replace(char,"")
     return instr
 
-dataframe = pd.read_csv("../../output/scores-final-vie.csv")
+dataframe = pd.read_csv("../../output/scores-final-all.csv")
 
 ranks = pd.read_csv("../../data/metadata.csv")
 
