@@ -9,6 +9,8 @@ setup(name='T2IScoreScore',
     packages=find_packages(where='src'),
     python_requires='>=3.8',
     install_requires=[
+        'transformers',
+        'numpy'
         'pandas',
         'tqdm',
         'scipy',
