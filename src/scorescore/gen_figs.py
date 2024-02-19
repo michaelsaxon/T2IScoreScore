@@ -62,8 +62,8 @@ def main():
 
 
     # # load in the csv including the correlation scores and types (we will add these types to the final ver)
-    # df = pd.read_csv(args.csv_path)
-    # df.set_index("id", inplace=True)
+    df = pd.read_csv(args.csv_path)
+    df.set_index("id", inplace=True)
     # print(df)
     # # HACK current version as of Jan-29 is missing final row; manually add in the type of set each id is
     # # synthetic: 0-110; natural img: 111-135, natural err: 136-163/4
@@ -78,7 +78,7 @@ def main():
         for column in invert_columns:
             df[column] = -df[column]
 
-    # df = df.reindex(sorted(df.columns), axis=1)
+    df = df.reindex(sorted(df.columns), axis=1)
 
     # generate the correlation plots
     #corr_plot(df, "")

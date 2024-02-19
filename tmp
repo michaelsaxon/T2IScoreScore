@@ -1,0 +1,17 @@
+to:
+output/ts2_scores_mca_final/*.csv
+
+-s ../../output/ts2_scores_mca_final/$model_dsg.csv
+
+from: 
+output/output_csvs_correct
+fuyu, llava-alt, llava, mplug (_dsg.csv_headline.csv)
+output/mahsa_csvs
+blip1, instruct_blip (_dsg.csv)
+
+-a ../../output/output_csvs_correct/a_$model_dsg.csv_headline.csv
+
+-a ../../output/mahsa_csvs/$model_dsg.csv_headline.csv
+
+-m dsg
+-s ../../data/T2S_DSG_Q_dependency.csv
