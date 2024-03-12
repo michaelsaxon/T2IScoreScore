@@ -1,11 +1,13 @@
 from tqdm import tqdm
+import itertools
 
+import pandas as pd
 import numpy as np
 import math
 
-from scipy.stats import spearmanr
+from scipy.stats import spearmanr, ks_2samp
 
-# produce an output dict indexed by id then node of the function eval'd over each node 
+# produce an output dict indexed by id then node of the function eval'd over each node
 def within_node_score(dataframe, metric_col_idces, id_range, score_function, node_id_idx = "rank"):
     output_dict = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
     counts_dict = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
@@ -66,28 +68,21 @@ def robust_float_cast(instr):
     instr = str(instr)
     instr = instr.replace('"','')
     return float(instr)
-    try:
-        if instr is type(str):
-            if '"' in instr:
-                instr = instr.replace('"s','')
-        return float(instr)
-    except ValueError:
-        if instr != '':
-            print(f"RFCError: {instr}")
-        return float('nan')
 
 ### Check if we need to reorder using second variable
 # get each possible walk and run the correlations (for now might be off)
 # return something just indexed by range
-def tree_correlation_score(dataframe, metric_col_idces, id_range, score_function, node_id_idx = "rank", scaled_avg = False):
+def analysis_tree_score(file_path, metric_col_idces, id_range, score_function, node_id_col="rank", scaled_avg=False, debug = False):
+    dataframe = pd.read_csv(file_path)
+    printif = print if debug else lambda *x: None
     output_dict = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
     val_counts = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
+
     for id_idx in tqdm(id_range):
         id_df = dataframe.loc[dataframe["id"] == id_idx]
-        #id_df = repair_missing_rank(dataframe.loc[dataframe["id"] == str(id_idx)])
-        node_set = list(id_df["rank"].unique())
+        node_set = list(id_df[node_id_col].unique())
         try:
-            node_numbers = list(map(extract_int_string, node_set))
+            node_numbers = node_set
             node_numbers_sorted = list(set(node_numbers))
             node_numbers_sorted.sort()
         except ValueError:
@@ -121,7 +116,7 @@ def tree_correlation_score(dataframe, metric_col_idces, id_range, score_function
                 walk_y_array = []
                 for j in range(len(walk_ids)):
                     this_step_ys = list(map(
-                        lambda x: robust_float_cast(x), 
+                        lambda x: robust_float_cast(x),
                         id_df.loc[id_df["rank"] == walk_ids[j]][metric_col_idx]
                     ))
                     # probably need logic for NaNs
@@ -132,7 +127,7 @@ def tree_correlation_score(dataframe, metric_col_idces, id_range, score_function
                 walk_x_array = [x for i, x in enumerate(walk_x_array) if not math.isnan(walk_y_array[i])]
                 walk_y_array = [y for y in walk_y_array if not math.isnan(y)]
                 walk_scores.append(score_function(walk_x_array, walk_y_array))
-                print(walk_scores)
+                printif(walk_scores)
                 walk_score_counts.append(len(walk_x_array))
             output_vals = []
             output_counts = []
@@ -141,7 +136,6 @@ def tree_correlation_score(dataframe, metric_col_idces, id_range, score_function
                     output_vals.append(score)
                     output_counts.append(walk_score_counts[i])
             if len(output_vals) == 0:
-                print("outputvals len 0")
                 output_dict[metric_col_idx][id_idx] = float('nan')
                 val_counts[metric_col_idx][id_idx] = float('nan')
             else:
@@ -152,6 +146,26 @@ def tree_correlation_score(dataframe, metric_col_idces, id_range, score_function
                 output_dict[metric_col_idx][id_idx] = output_dict_val
                 val_counts[metric_col_idx][id_idx] = len(output_vals)
     return output_dict, val_counts
+
+
+
+# we will implement this for two sample KS statistic
+# https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#Two-sample_Kolmogorov%E2%80%93Smirnov_test
+def between_nodepair_ks_score(x_list, y_list):
+    # x defines the node for each sample in the y list.
+    # separate y into one list for each node, take avg of the test statistic between each pair
+    y_lists = [np.array([
+        y_list[i] for i in range(len(x_list)) if x_list[i] == node
+        ]) for node in list(set(x_list))]
+    pair_scores = []
+    for pair in itertools.combinations(y_lists, 2):
+        pair_scores.append(ks_2samp(pair[0], pair[1]).statistic)
+    if len(pair_scores) == 0:
+        return 0
+    if math.isnan(sum(pair_scores)):
+        return 0
+    return sum(pair_scores) / len(pair_scores)
+# also consider https://en.wikipedia.org/wiki/Cucconi_test, https://en.wikipedia.org/wiki/Lepage_test, examples of https://en.wikipedia.org/wiki/Behrens%E2%80%93Fisher_problem
 
 def spearman_corr(x_list, y_list):
     if len(x_list) <= 1:

@@ -1,0 +1,902 @@
+id,prompt,question_id,question,choices,answer
+0,A Christmas tree with lights and teddy bear,0,Is there a Christmas tree?,yes|no,yes
+0,A Christmas tree with lights and teddy bear,1,Are there lights?,yes|no,yes
+0,A Christmas tree with lights and teddy bear,2,Is there a teddy bear?,yes|no,yes
+0,A Christmas tree with lights and teddy bear,3,Does the Christmas tree have lights?,yes|no,yes
+0,A Christmas tree with lights and teddy bear,4,Are the lights on the Christmas tree?,yes|no,yes
+0,A Christmas tree with lights and teddy bear,5,Is the teddy bear near the Christmas tree?,yes|no,yes
+1,A group of planes near a large wall of windows.,0,Is there a group of planes?,yes|no,yes
+1,A group of planes near a large wall of windows.,1,Is there a wall of windows?,yes|no,yes
+1,A group of planes near a large wall of windows.,2,Are there multiple planes?,yes|no,yes
+1,A group of planes near a large wall of windows.,3,Are the planes near the wall of windows?,yes|no,yes
+2,A brown bear walking across a forest surrounded by trees..,0,Is there a brown bear?,yes|no,yes
+2,A brown bear walking across a forest surrounded by trees..,1,Is there a forest?,yes|no,yes
+2,A brown bear walking across a forest surrounded by trees..,2,Are there trees?,yes|no,yes
+2,A brown bear walking across a forest surrounded by trees..,3,Is the bear walking?,yes|no,yes
+2,A brown bear walking across a forest surrounded by trees..,4,Is the bear walking across the forest?,yes|no,yes
+2,A brown bear walking across a forest surrounded by trees..,5,Are the trees surrounding the bear?,yes|no,yes
+3,A large motorcycle that is sitting outside of a building.,0,Is there a motorcycle?,yes|no,yes
+3,A large motorcycle that is sitting outside of a building.,1,Is the motorcycle large?,yes|no,yes
+3,A large motorcycle that is sitting outside of a building.,2,Is the motorcycle sitting?,yes|no,yes
+3,A large motorcycle that is sitting outside of a building.,3,Is the motorcycle outside of the building?,yes|no,yes
+4,A male skateboarder is trying to pull off a trick on the ramp.,0,Is there a male skateboarder?,yes|no,yes
+4,A male skateboarder is trying to pull off a trick on the ramp.,1,Is there a ramp?,yes|no,yes
+4,A male skateboarder is trying to pull off a trick on the ramp.,2,Is the skateboarder male?,yes|no,yes
+4,A male skateboarder is trying to pull off a trick on the ramp.,3,Is the skateboarder trying to pull off a trick?,yes|no,yes
+4,A male skateboarder is trying to pull off a trick on the ramp.,4,Is the skateboarder on the ramp?,yes|no,yes
+5,A woman is showing a scooter to another woman.,0,Is there a woman?,yes|no,yes
+5,A woman is showing a scooter to another woman.,1,Is there a scooter?,yes|no,yes
+5,A woman is showing a scooter to another woman.,2,Is the woman showing something?,yes|no,yes
+5,A woman is showing a scooter to another woman.,3,Is the woman showing the scooter to another woman?,yes|no,yes
+6,A man in a green suiit leaning over a laptop,0,Is there a man?,yes|no,yes
+6,A man in a green suiit leaning over a laptop,1,Is the man wearing a suit?,yes|no,yes
+6,A man in a green suiit leaning over a laptop,2,Is the suit green?,yes|no,yes
+6,A man in a green suiit leaning over a laptop,3,Is there a laptop?,yes|no,yes
+6,A man in a green suiit leaning over a laptop,4,Is the man leaning over the laptop?,yes|no,yes
+7,A woman holding a racquet on top of a tennis court.,0,Is there a woman?,yes|no,yes
+7,A woman holding a racquet on top of a tennis court.,1,Is there a racquet?,yes|no,yes
+7,A woman holding a racquet on top of a tennis court.,2,Is there a tennis court?,yes|no,yes
+7,A woman holding a racquet on top of a tennis court.,3,Is the woman on top of the tennis court?,yes|no,yes
+7,A woman holding a racquet on top of a tennis court.,4,Is the woman holding the racquet?,yes|no,yes
+8,"One laptop, a mouse, cords, wires, and a monitor.",0,Is there a laptop?,yes|no,yes
+8,"One laptop, a mouse, cords, wires, and a monitor.",1,Is there a mouse?,yes|no,yes
+8,"One laptop, a mouse, cords, wires, and a monitor.",2,Are there cords?,yes|no,yes
+8,"One laptop, a mouse, cords, wires, and a monitor.",3,Are there wires?,yes|no,yes
+8,"One laptop, a mouse, cords, wires, and a monitor.",4,Is there a monitor?,yes|no,yes
+9,A young man in a suit and tie with a beer in his hand.,0,Is there a man?,yes|no,yes
+9,A young man in a suit and tie with a beer in his hand.,1,Does the man have a suit?,yes|no,yes
+9,A young man in a suit and tie with a beer in his hand.,2,Does the man have a tie?,yes|no,yes
+9,A young man in a suit and tie with a beer in his hand.,3,Is there a beer?,yes|no,yes
+9,A young man in a suit and tie with a beer in his hand.,4,Is the man young?,yes|no,yes
+9,A young man in a suit and tie with a beer in his hand.,5,Is the man wearing a suit and tie?,yes|no,yes
+9,A young man in a suit and tie with a beer in his hand.,6,Does the man have the beer in his hand?,yes|no,yes
+10,A man is eating a loaded hot dog with people around him.,0,Is there a man?,yes|no,yes
+10,A man is eating a loaded hot dog with people around him.,1,Is there a hot dog?,yes|no,yes
+10,A man is eating a loaded hot dog with people around him.,2,Are there people?,yes|no,yes
+10,A man is eating a loaded hot dog with people around him.,3,Is the man eating?,yes|no,yes
+10,A man is eating a loaded hot dog with people around him.,4,Is the man eating the hot dog?,yes|no,yes
+10,A man is eating a loaded hot dog with people around him.,5,Are the people around the man?,yes|no,yes
+11,A man in a wet suit is surfing.,0,Is there a man?,yes|no,yes
+11,A man in a wet suit is surfing.,1,Is the man wearing a wet suit?,yes|no,yes
+11,A man in a wet suit is surfing.,2,Is the man surfing?,yes|no,yes
+12,A red motorcycle parked by paint chipped doors.,0,Is there a red motorcycle?,yes|no,yes
+12,A red motorcycle parked by paint chipped doors.,1,Are there doors?,yes|no,yes
+12,A red motorcycle parked by paint chipped doors.,2,Is the motorcycle parked?,yes|no,yes
+12,A red motorcycle parked by paint chipped doors.,3,Are the doors paint chipped?,yes|no,yes
+12,A red motorcycle parked by paint chipped doors.,4,Is the motorcycle next to the doors?,yes|no,yes
+13,A man in a black shirt plays on an ocean wave.,0,Is there a man?,yes|no,yes
+13,A man in a black shirt plays on an ocean wave.,1,Is the man wearing a black shirt?,yes|no,yes
+13,A man in a black shirt plays on an ocean wave.,2,Is the man playing?,yes|no,yes
+13,A man in a black shirt plays on an ocean wave.,3,Is there an ocean wave?,yes|no,yes
+13,A man in a black shirt plays on an ocean wave.,4,Is the man on the ocean wave?,yes|no,yes
+14,The people are flying the kites,0,Are there people?,yes|no,yes
+14,The people are flying the kites,1,Are the people flying?,yes|no,yes
+14,The people are flying the kites,2,Are there kites?,yes|no,yes
+15,a large clock hangs from a building,0,Is there a clock?,yes|no,yes
+15,a large clock hangs from a building,1,Is there a building?,yes|no,yes
+15,a large clock hangs from a building,2,Is the clock large?,yes|no,yes
+15,a large clock hangs from a building,3,Does the clock hang from the building?,yes|no,yes
+16,A sheep with short hair stands under a fence.,0,Is there a sheep?,yes|no,yes
+16,A sheep with short hair stands under a fence.,1,Is there a fence?,yes|no,yes
+16,A sheep with short hair stands under a fence.,2,Does the sheep have short hair?,yes|no,yes
+16,A sheep with short hair stands under a fence.,3,Is the sheep standing under the fence?,yes|no,yes
+17,A male rider on a midsized horse in a field with a woman standing.,0,Is there a male rider?,yes|no,yes
+17,A male rider on a midsized horse in a field with a woman standing.,1,Is there a midsized horse?,yes|no,yes
+17,A male rider on a midsized horse in a field with a woman standing.,2,Is there a field?,yes|no,yes
+17,A male rider on a midsized horse in a field with a woman standing.,3,Is there a woman?,yes|no,yes
+17,A male rider on a midsized horse in a field with a woman standing.,4,Is the rider male?,yes|no,yes
+17,A male rider on a midsized horse in a field with a woman standing.,5,Is the horse midsized?,yes|no,yes
+17,A male rider on a midsized horse in a field with a woman standing.,6,Is the rider on the horse?,yes|no,yes
+17,A male rider on a midsized horse in a field with a woman standing.,7,Is the rider in the field?,yes|no,yes
+17,A male rider on a midsized horse in a field with a woman standing.,8,Is the woman standing in the field?,yes|no,yes
+18,Black and white photograph of a bed with a laptop on it.,0,Is this a photograph?,yes|no,yes
+18,Black and white photograph of a bed with a laptop on it.,1,Is there a bed?,yes|no,yes
+18,Black and white photograph of a bed with a laptop on it.,2,Is there a laptop?,yes|no,yes
+18,Black and white photograph of a bed with a laptop on it.,3,Is the photograph black and white?,yes|no,yes
+18,Black and white photograph of a bed with a laptop on it.,4,Is the laptop on the bed?,yes|no,yes
+19,A boy standing in the door of a bus.,0,Is there a boy?,yes|no,yes
+19,A boy standing in the door of a bus.,1,Is there a door?,yes|no,yes
+19,A boy standing in the door of a bus.,2,Is there a bus?,yes|no,yes
+19,A boy standing in the door of a bus.,3,Is the boy standing in the door?,yes|no,yes
+19,A boy standing in the door of a bus.,4,Is the door of the bus?,yes|no,yes
+20,a grand piano with a white bench,0,Is there a grand piano?,yes|no,yes
+20,a grand piano with a white bench,1,Is there a bench?,yes|no,yes
+20,a grand piano with a white bench,2,Is the bench white?,yes|no,yes
+21,a flock of geese in front of The Alamo,0,Is there a flock of geese?,yes|no,yes
+21,a flock of geese in front of The Alamo,1,Is there The Alamo?,yes|no,yes
+21,a flock of geese in front of The Alamo,2,Are the geese in front of The Alamo?,yes|no,yes
+22,a stained glass window depicting a calm tyrannosaurus rex,0,Is there a stained glass window?,yes|no,yes
+22,a stained glass window depicting a calm tyrannosaurus rex,1,Is the tyrannosaurus rex calm?,yes|no,yes
+22,a stained glass window depicting a calm tyrannosaurus rex,2,Is the stained glass window depicting something?,yes|no,yes
+23,words on a blue t-shirt,0,Are there words?,yes|no,yes
+23,words on a blue t-shirt,1,Is there a t-shirt?,yes|no,yes
+23,words on a blue t-shirt,2,Is the t-shirt blue?,yes|no,yes
+23,words on a blue t-shirt,3,Are the words on the t-shirt?,yes|no,yes
+24,a snake curled around a wooden post,0,Is there a snake?,yes|no,yes
+24,a snake curled around a wooden post,1,Is there a wooden post?,yes|no,yes
+24,a snake curled around a wooden post,2,Is the snake curled around the wooden post?,yes|no,yes
+25,"A vehicle composed of two wheels held in a frame one behind the other, propelled by pedals and steered with handlebars attached to the front wheel.",0,Is there a vehicle?,yes|no,yes
+25,"A vehicle composed of two wheels held in a frame one behind the other, propelled by pedals and steered with handlebars attached to the front wheel.",1,Are there wheels?,yes|no,yes
+25,"A vehicle composed of two wheels held in a frame one behind the other, propelled by pedals and steered with handlebars attached to the front wheel.",2,Is there a frame?,yes|no,yes
+25,"A vehicle composed of two wheels held in a frame one behind the other, propelled by pedals and steered with handlebars attached to the front wheel.",3,Are there pedals?,yes|no,yes
+25,"A vehicle composed of two wheels held in a frame one behind the other, propelled by pedals and steered with handlebars attached to the front wheel.",4,Are there handlebars?,yes|no,yes
+25,"A vehicle composed of two wheels held in a frame one behind the other, propelled by pedals and steered with handlebars attached to the front wheel.",5,Are the wheels held in the frame?,yes|no,yes
+25,"A vehicle composed of two wheels held in a frame one behind the other, propelled by pedals and steered with handlebars attached to the front wheel.",6,Is the frame held in the wheels?,yes|no,yes
+25,"A vehicle composed of two wheels held in a frame one behind the other, propelled by pedals and steered with handlebars attached to the front wheel.",7,Are the pedals attached to the frame?,yes|no,yes
+25,"A vehicle composed of two wheels held in a frame one behind the other, propelled by pedals and steered with handlebars attached to the front wheel.",8,Are the handlebars attached to the front wheel?,yes|no,yes
+25,"A vehicle composed of two wheels held in a frame one behind the other, propelled by pedals and steered with handlebars attached to the front wheel.",9,Does the vehicle propel with pedals?,yes|no,yes
+25,"A vehicle composed of two wheels held in a frame one behind the other, propelled by pedals and steered with handlebars attached to the front wheel.",10,Does the vehicle steer with handlebars?,yes|no,yes
+26,a sketch of a horse,0,Is there a sketch?,yes|no,yes
+26,a sketch of a horse,1,Is there a horse?,yes|no,yes
+27,a pumpkin on a man's head,0,Is there a pumpkin?,yes|no,yes
+27,a pumpkin on a man's head,1,Is there a man?,yes|no,yes
+27,a pumpkin on a man's head,2,Does the man have a head?,yes|no,yes
+27,a pumpkin on a man's head,3,Is the pumpkin on the man's head?,yes|no,yes
+28,a photo of bike and skateboard; skateboard is right to bike,0,Is this a photo?,yes|no,yes
+28,a photo of bike and skateboard; skateboard is right to bike,1,Is there a bike?,yes|no,yes
+28,a photo of bike and skateboard; skateboard is right to bike,2,Is there a skateboard?,yes|no,yes
+28,a photo of bike and skateboard; skateboard is right to bike,3,Is the skateboard right to the bike?,yes|no,yes
+29,a photo of dog and stop sign; stop sign is left to dog,0,Is this a photo?,yes|no,yes
+29,a photo of dog and stop sign; stop sign is left to dog,1,Is there a dog?,yes|no,yes
+29,a photo of dog and stop sign; stop sign is left to dog,2,Is there a stop sign?,yes|no,yes
+29,a photo of dog and stop sign; stop sign is left to dog,3,Is the stop sign to the left of the dog?,yes|no,yes
+30,"A dignified beaver wearing glasses, a vest, and colorful neck tie. He stands in a library.",0,Is there a beaver?,yes|no,yes
+30,"A dignified beaver wearing glasses, a vest, and colorful neck tie. He stands in a library.",1,Is there a pair of glasses?,yes|no,yes
+30,"A dignified beaver wearing glasses, a vest, and colorful neck tie. He stands in a library.",2,Is there a vest?,yes|no,yes
+30,"A dignified beaver wearing glasses, a vest, and colorful neck tie. He stands in a library.",3,Is there a neck tie?,yes|no,yes
+30,"A dignified beaver wearing glasses, a vest, and colorful neck tie. He stands in a library.",4,Is there a library?,yes|no,yes
+30,"A dignified beaver wearing glasses, a vest, and colorful neck tie. He stands in a library.",5,Is the beaver dignified?,yes|no,yes
+30,"A dignified beaver wearing glasses, a vest, and colorful neck tie. He stands in a library.",6,Are the glasses eyewear?,yes|no,yes
+30,"A dignified beaver wearing glasses, a vest, and colorful neck tie. He stands in a library.",7,Is the vest clothing?,yes|no,yes
+30,"A dignified beaver wearing glasses, a vest, and colorful neck tie. He stands in a library.",8,Is the neck tie colorful?,yes|no,yes
+30,"A dignified beaver wearing glasses, a vest, and colorful neck tie. He stands in a library.",9,Is the beaver in the library?,yes|no,yes
+31,a map of Italy,0,Is there a map?,yes|no,yes
+31,a map of Italy,1,Is it a map of Italy?,yes|no,yes
+32,a pair of glasses in front of a computer monitor,0,Are there glasses?,yes|no,yes
+32,a pair of glasses in front of a computer monitor,1,Is there a computer monitor?,yes|no,yes
+32,a pair of glasses in front of a computer monitor,2,Are the glasses in front of the computer monitor?,yes|no,yes
+33,an ostrich standing in front of a couch,0,Is there an ostrich?,yes|no,yes
+33,an ostrich standing in front of a couch,1,Is there a couch?,yes|no,yes
+33,an ostrich standing in front of a couch,2,Is the ostrich in front of the couch?,yes|no,yes
+33,an ostrich standing in front of a couch,3,Is the ostrich standing?,yes|no,yes
+34,a photo of bed and human; human is right to bed,0,Is this a photo?,yes|no,yes
+34,a photo of bed and human; human is right to bed,1,Is there a bed?,yes|no,yes
+34,a photo of bed and human; human is right to bed,2,Is there a human?,yes|no,yes
+34,a photo of bed and human; human is right to bed,3,Is the human right to the bed?,yes|no,yes
+35,"A car playing with a soccer player, digital art.",0,Is there a car?,yes|no,yes
+35,"A car playing with a soccer player, digital art.",1,Is there a soccer player?,yes|no,yes
+35,"A car playing with a soccer player, digital art.",2,Is this digital art?,yes|no,yes
+35,"A car playing with a soccer player, digital art.",3,Is the car playing with the soccer player?,yes|no,yes
+36,a mountain with a cloud hanging over it,0,Is there a mountain?,yes|no,yes
+36,a mountain with a cloud hanging over it,1,Is there a cloud?,yes|no,yes
+36,a mountain with a cloud hanging over it,2,Is the cloud hanging over the mountain?,yes|no,yes
+37,an espresso machine that makes coffee.,0,Is there an espresso machine?,yes|no,yes
+37,an espresso machine that makes coffee.,1,Is there coffee?,yes|no,yes
+37,an espresso machine that makes coffee.,2,Is the espresso machine making coffee?,yes|no,yes
+38,The sun behind a skyscraper. painting in the style of Hokusai.,0,Is there a sun?,yes|no,yes
+38,The sun behind a skyscraper. painting in the style of Hokusai.,1,Is there a skyscraper?,yes|no,yes
+38,The sun behind a skyscraper. painting in the style of Hokusai.,2,Is this a painting?,yes|no,yes
+38,The sun behind a skyscraper. painting in the style of Hokusai.,3,Is the painting in the style of Hokusai?,yes|no,yes
+38,The sun behind a skyscraper. painting in the style of Hokusai.,4,Is the sun behind the skyscraper?,yes|no,yes
+39,red apples on a tree with green leaves,0,Are there apples?,yes|no,yes
+39,red apples on a tree with green leaves,1,Are there red apples?,yes|no,yes
+39,red apples on a tree with green leaves,2,Is there a tree?,yes|no,yes
+39,red apples on a tree with green leaves,3,Are the apples red?,yes|no,yes
+39,red apples on a tree with green leaves,4,Are the leaves green?,yes|no,yes
+39,red apples on a tree with green leaves,5,Are the apples on the tree?,yes|no,yes
+39,red apples on a tree with green leaves,6,Are the leaves on the tree?,yes|no,yes
+40,An assortment of fruits and vegetable all set together,0,Are there fruits?,yes|no,yes
+40,An assortment of fruits and vegetable all set together,1,Are there vegetables?,yes|no,yes
+40,An assortment of fruits and vegetable all set together,2,Is there an assortment of fruits?,yes|no,yes
+40,An assortment of fruits and vegetable all set together,3,Is there an assortment of vegetables?,yes|no,yes
+40,An assortment of fruits and vegetable all set together,4,Are the fruits and vegetables set together?,yes|no,yes
+41,People walking down a city sidewalk showing one with headphones.,0,Are there people?,yes|no,yes
+41,People walking down a city sidewalk showing one with headphones.,1,Is there a city sidewalk?,yes|no,yes
+41,People walking down a city sidewalk showing one with headphones.,2,Are the people walking?,yes|no,yes
+41,People walking down a city sidewalk showing one with headphones.,3,Is one of the people wearing headphones?,yes|no,yes
+41,People walking down a city sidewalk showing one with headphones.,4,Is the person with headphones on the city sidewalk?,yes|no,yes
+42,A little boy kicks a soccer ball surrounded by other youth soccer players.,0,Is there a little boy?,yes|no,yes
+42,A little boy kicks a soccer ball surrounded by other youth soccer players.,1,Is there a soccer ball?,yes|no,yes
+42,A little boy kicks a soccer ball surrounded by other youth soccer players.,2,Are there other youth soccer players?,yes|no,yes
+42,A little boy kicks a soccer ball surrounded by other youth soccer players.,3,Does the boy have a leg?,yes|no,yes
+42,A little boy kicks a soccer ball surrounded by other youth soccer players.,4,Is the boy little?,yes|no,yes
+42,A little boy kicks a soccer ball surrounded by other youth soccer players.,5,Is the ball a soccer ball?,yes|no,yes
+42,A little boy kicks a soccer ball surrounded by other youth soccer players.,6,Are the soccer players youth?,yes|no,yes
+42,A little boy kicks a soccer ball surrounded by other youth soccer players.,7,Is the boy kicking the ball?,yes|no,yes
+42,A little boy kicks a soccer ball surrounded by other youth soccer players.,8,Is the boy surrounded by the other soccer players?,yes|no,yes
+43,man with a tennis racket,0,Is there a man?,yes|no,yes
+43,man with a tennis racket,1,Is there a tennis racket?,yes|no,yes
+43,man with a tennis racket,2,Is the man holding a tennis racket?,yes|no,yes
+44,A baseball player running to a base during a game at night.,0,Is there a baseball player?,yes|no,yes
+44,A baseball player running to a base during a game at night.,1,Is there a base?,yes|no,yes
+44,A baseball player running to a base during a game at night.,2,Is there a game?,yes|no,yes
+44,A baseball player running to a base during a game at night.,3,Is the game at night?,yes|no,yes
+44,A baseball player running to a base during a game at night.,4,Is the baseball player running to a base?,yes|no,yes
+44,A baseball player running to a base during a game at night.,5,Is the baseball player running during the game?,yes|no,yes
+45,a group of beginner snow skiers having class,0,Is there a group?,yes|no,yes
+45,a group of beginner snow skiers having class,1,Is the group made up of beginner snow skiers?,yes|no,yes
+45,a group of beginner snow skiers having class,2,Are the snow skiers beginners?,yes|no,yes
+45,a group of beginner snow skiers having class,3,Are the snow skiers snow skiing?,yes|no,yes
+45,a group of beginner snow skiers having class,4,Is the group having a class?,yes|no,yes
+46,A group of surfers are carrying their surf boards into the ocean.,0,Is there a group of surfers?,yes|no,yes
+46,A group of surfers are carrying their surf boards into the ocean.,1,Are there surf boards?,yes|no,yes
+46,A group of surfers are carrying their surf boards into the ocean.,2,Is there an ocean?,yes|no,yes
+46,A group of surfers are carrying their surf boards into the ocean.,3,Are the surfers carrying their surf boards?,yes|no,yes
+46,A group of surfers are carrying their surf boards into the ocean.,4,Are the surfers carrying their surf boards into the ocean?,yes|no,yes
+47,Zebras eat hay in black and white.,0,Are there zebras?,yes|no,yes
+47,Zebras eat hay in black and white.,1,Are the zebras eating?,yes|no,yes
+47,Zebras eat hay in black and white.,2,Is there hay?,yes|no,yes
+47,Zebras eat hay in black and white.,3,Is the hay black and white?,yes|no,yes
+48,a woman in a black jacket and two pizzas,0,Is there a woman?,yes|no,yes
+48,a woman in a black jacket and two pizzas,1,Is there a black jacket?,yes|no,yes
+48,a woman in a black jacket and two pizzas,2,Is the woman wearing a black jacket?,yes|no,yes
+48,a woman in a black jacket and two pizzas,3,Are there pizzas?,yes|no,yes
+48,a woman in a black jacket and two pizzas,4,Are there two pizzas?,yes|no,yes
+49,a dog is laying with a remote controller,0,Is there a dog?,yes|no,yes
+49,a dog is laying with a remote controller,1,Is there a remote controller?,yes|no,yes
+49,a dog is laying with a remote controller,2,Is the dog laying?,yes|no,yes
+49,a dog is laying with a remote controller,3,Is the dog with the remote controller?,yes|no,yes
+50,"A red plate topped with broccoli, meat and veggies.",0,Is there a plate?,yes|no,yes
+50,"A red plate topped with broccoli, meat and veggies.",1,Is the plate red?,yes|no,yes
+50,"A red plate topped with broccoli, meat and veggies.",2,Is there broccoli?,yes|no,yes
+50,"A red plate topped with broccoli, meat and veggies.",3,Is there meat?,yes|no,yes
+50,"A red plate topped with broccoli, meat and veggies.",4,Are there veggies?,yes|no,yes
+50,"A red plate topped with broccoli, meat and veggies.",5,Is the broccoli on the plate?,yes|no,yes
+50,"A red plate topped with broccoli, meat and veggies.",6,Is the meat on the plate?,yes|no,yes
+50,"A red plate topped with broccoli, meat and veggies.",7,Are the veggies on the plate?,yes|no,yes
+51,The woman is on the court playing a game of tennis.,0,Is there a woman?,yes|no,yes
+51,The woman is on the court playing a game of tennis.,1,Is there a court?,yes|no,yes
+51,The woman is on the court playing a game of tennis.,2,Is the woman playing?,yes|no,yes
+51,The woman is on the court playing a game of tennis.,3,Is the game tennis?,yes|no,yes
+51,The woman is on the court playing a game of tennis.,4,Is the woman on the court?,yes|no,yes
+52,A row of motorcycles parked on the side of a road.,0,Are there motorcycles?,yes|no,yes
+52,A row of motorcycles parked on the side of a road.,1,Are there any motorcycles?,yes|no,yes
+52,A row of motorcycles parked on the side of a road.,2,Is there a road?,yes|no,yes
+52,A row of motorcycles parked on the side of a road.,3,Are the motorcycles parked on the side of the road?,yes|no,yes
+53,Young kitten along windowpane watching the rain tap on the glass.,0,Is there a young kitten?,yes|no,yes
+53,Young kitten along windowpane watching the rain tap on the glass.,1,Is there a windowpane?,yes|no,yes
+53,Young kitten along windowpane watching the rain tap on the glass.,2,Is the kitten watching something?,yes|no,yes
+53,Young kitten along windowpane watching the rain tap on the glass.,3,Is the kitten watching the rain?,yes|no,yes
+53,Young kitten along windowpane watching the rain tap on the glass.,4,Is there rain?,yes|no,yes
+53,Young kitten along windowpane watching the rain tap on the glass.,5,Is the rain tapping?,yes|no,yes
+53,Young kitten along windowpane watching the rain tap on the glass.,6,Is there glass?,yes|no,yes
+53,Young kitten along windowpane watching the rain tap on the glass.,7,Is the kitten along the windowpane?,yes|no,yes
+53,Young kitten along windowpane watching the rain tap on the glass.,8,Is the rain on the glass?,yes|no,yes
+54,A woman sitting on a couch in front of a laptop.,0,Is there a woman?,yes|no,yes
+54,A woman sitting on a couch in front of a laptop.,1,Is there a couch?,yes|no,yes
+54,A woman sitting on a couch in front of a laptop.,2,Is there a laptop?,yes|no,yes
+54,A woman sitting on a couch in front of a laptop.,3,Is the woman sitting?,yes|no,yes
+54,A woman sitting on a couch in front of a laptop.,4,Is the woman on the couch?,yes|no,yes
+54,A woman sitting on a couch in front of a laptop.,5,Is the laptop in front of the woman?,yes|no,yes
+55,Small white toilet with a seashell on the wall,0,Is there a toilet?,yes|no,yes
+55,Small white toilet with a seashell on the wall,1,Is the toilet small?,yes|no,yes
+55,Small white toilet with a seashell on the wall,2,Is the toilet white?,yes|no,yes
+55,Small white toilet with a seashell on the wall,3,Is there a seashell?,yes|no,yes
+55,Small white toilet with a seashell on the wall,4,Is the seashell on the wall?,yes|no,yes
+56,A teddy bear store is decorated with signs and teddy bears.,0,Is there a teddy bear store?,yes|no,yes
+56,A teddy bear store is decorated with signs and teddy bears.,1,Are there signs?,yes|no,yes
+56,A teddy bear store is decorated with signs and teddy bears.,2,Are there teddy bears?,yes|no,yes
+56,A teddy bear store is decorated with signs and teddy bears.,3,Are the signs decorating the teddy bear store?,yes|no,yes
+56,A teddy bear store is decorated with signs and teddy bears.,4,Are the teddy bears decorating the teddy bear store?,yes|no,yes
+57,A guy sitting down and a hand with a cell phone in it.,0,Is there a guy?,yes|no,yes
+57,A guy sitting down and a hand with a cell phone in it.,1,Is there a hand?,yes|no,yes
+57,A guy sitting down and a hand with a cell phone in it.,2,Is there a cell phone?,yes|no,yes
+57,A guy sitting down and a hand with a cell phone in it.,3,Is the guy sitting?,yes|no,yes
+57,A guy sitting down and a hand with a cell phone in it.,4,Is the hand holding a cell phone?,yes|no,yes
+58,a skateboarder in a blue jacket is doing a trick,0,Is there a skateboarder?,yes|no,yes
+58,a skateboarder in a blue jacket is doing a trick,1,Is the skateboarder wearing a blue jacket?,yes|no,yes
+58,a skateboarder in a blue jacket is doing a trick,2,Is the skateboarder doing a trick?,yes|no,yes
+59,A group of children sitting in the grass with two of them holding a Frisbee .,0,Are there a group of children?,yes|no,yes
+59,A group of children sitting in the grass with two of them holding a Frisbee .,1,Is there grass?,yes|no,yes
+59,A group of children sitting in the grass with two of them holding a Frisbee .,2,Is there a Frisbee?,yes|no,yes
+59,A group of children sitting in the grass with two of them holding a Frisbee .,3,Are the children sitting?,yes|no,yes
+59,A group of children sitting in the grass with two of them holding a Frisbee .,4,Are the children in the grass?,yes|no,yes
+59,A group of children sitting in the grass with two of them holding a Frisbee .,5,Are there two of the children?,yes|no,yes
+59,A group of children sitting in the grass with two of them holding a Frisbee .,6,Are two of the children holding a Frisbee?,yes|no,yes
+60,A grey motorcycle on dirt road next to a building.,0,Is there a motorcycle?,yes|no,yes
+60,A grey motorcycle on dirt road next to a building.,1,Is there a dirt road?,yes|no,yes
+60,A grey motorcycle on dirt road next to a building.,2,Is there a building?,yes|no,yes
+60,A grey motorcycle on dirt road next to a building.,3,Is the motorcycle grey?,yes|no,yes
+60,A grey motorcycle on dirt road next to a building.,4,Is the motorcycle on the dirt road?,yes|no,yes
+60,A grey motorcycle on dirt road next to a building.,5,Is the motorcycle next to the building?,yes|no,yes
+61,A red bike with handles by a black fence on a sidewalk.,0,Is there a bike?,yes|no,yes
+61,A red bike with handles by a black fence on a sidewalk.,1,Are there handles?,yes|no,yes
+61,A red bike with handles by a black fence on a sidewalk.,2,Is there a fence?,yes|no,yes
+61,A red bike with handles by a black fence on a sidewalk.,3,Is there a sidewalk?,yes|no,yes
+61,A red bike with handles by a black fence on a sidewalk.,4,Is the bike red?,yes|no,yes
+61,A red bike with handles by a black fence on a sidewalk.,5,Is the fence black?,yes|no,yes
+61,A red bike with handles by a black fence on a sidewalk.,6,Are the handles with the bike?,yes|no,yes
+61,A red bike with handles by a black fence on a sidewalk.,7,Is the bike by the fence?,yes|no,yes
+61,A red bike with handles by a black fence on a sidewalk.,8,Is the bike on the sidewalk?,yes|no,yes
+62,A table topped with bags of luggage and purses.,0,Is there a table?,yes|no,yes
+62,A table topped with bags of luggage and purses.,1,Are there bags of luggage?,yes|no,yes
+62,A table topped with bags of luggage and purses.,2,Are there purses?,yes|no,yes
+62,A table topped with bags of luggage and purses.,3,Are the bags of luggage on the table?,yes|no,yes
+62,A table topped with bags of luggage and purses.,4,Are the purses on the table?,yes|no,yes
+63,A traffic light and a signpost at a crossroads intersection near a waterway.,0,Is there a traffic light?,yes|no,yes
+63,A traffic light and a signpost at a crossroads intersection near a waterway.,1,Is there a signpost?,yes|no,yes
+63,A traffic light and a signpost at a crossroads intersection near a waterway.,2,Is there a crossroads intersection?,yes|no,yes
+63,A traffic light and a signpost at a crossroads intersection near a waterway.,3,Is there a waterway?,yes|no,yes
+63,A traffic light and a signpost at a crossroads intersection near a waterway.,4,Is the traffic light at the crossroads intersection?,yes|no,yes
+63,A traffic light and a signpost at a crossroads intersection near a waterway.,5,Is the signpost at the crossroads intersection?,yes|no,yes
+63,A traffic light and a signpost at a crossroads intersection near a waterway.,6,Is the traffic light near the waterway?,yes|no,yes
+63,A traffic light and a signpost at a crossroads intersection near a waterway.,7,Is the signpost near the waterway?,yes|no,yes
+63,A traffic light and a signpost at a crossroads intersection near a waterway.,8,Is the crossroads intersection near the waterway?,yes|no,yes
+64,A large giraffe looks at a smaller giraffe looking by a fence.,0,Is there a giraffe?,yes|no,yes
+64,A large giraffe looks at a smaller giraffe looking by a fence.,1,Is the giraffe large?,yes|no,yes
+64,A large giraffe looks at a smaller giraffe looking by a fence.,2,Is there a smaller giraffe?,yes|no,yes
+64,A large giraffe looks at a smaller giraffe looking by a fence.,3,Is the giraffe by a fence?,yes|no,yes
+64,A large giraffe looks at a smaller giraffe looking by a fence.,4,Is the giraffe looking at something?,yes|no,yes
+65,A group of stuffed animals sitting next to each other in bed.,0,Is there a group of stuffed animals?,yes|no,yes
+65,A group of stuffed animals sitting next to each other in bed.,1,Are the stuffed animals sitting?,yes|no,yes
+65,A group of stuffed animals sitting next to each other in bed.,2,Are the stuffed animals next to the bed?,yes|no,yes
+65,A group of stuffed animals sitting next to each other in bed.,3,Is there a bed?,yes|no,yes
+66,The caramel-colored kitten is  lying on the small blanket on top of the unmade bed.,0,Is there a kitten?,yes|no,yes
+66,The caramel-colored kitten is  lying on the small blanket on top of the unmade bed.,1,Is the kitten caramel-colored?,yes|no,yes
+66,The caramel-colored kitten is  lying on the small blanket on top of the unmade bed.,2,Is the kitten lying?,yes|no,yes
+66,The caramel-colored kitten is  lying on the small blanket on top of the unmade bed.,3,Is there a blanket?,yes|no,yes
+66,The caramel-colored kitten is  lying on the small blanket on top of the unmade bed.,4,Is the blanket small?,yes|no,yes
+66,The caramel-colored kitten is  lying on the small blanket on top of the unmade bed.,5,Is there a bed?,yes|no,yes
+66,The caramel-colored kitten is  lying on the small blanket on top of the unmade bed.,6,Is the bed unmade?,yes|no,yes
+66,The caramel-colored kitten is  lying on the small blanket on top of the unmade bed.,7,Is the kitten on the blanket?,yes|no,yes
+66,The caramel-colored kitten is  lying on the small blanket on top of the unmade bed.,8,Is the blanket on top of the bed?,yes|no,yes
+67,A woman eating food outside from a plate on her lap.,0,Is there a woman?,yes|no,yes
+67,A woman eating food outside from a plate on her lap.,1,Is there food?,yes|no,yes
+67,A woman eating food outside from a plate on her lap.,2,Is there a plate?,yes|no,yes
+67,A woman eating food outside from a plate on her lap.,3,Is the woman eating?,yes|no,yes
+67,A woman eating food outside from a plate on her lap.,4,Is the plate on the woman's lap?,yes|no,yes
+67,A woman eating food outside from a plate on her lap.,5,Is the food on the plate?,yes|no,yes
+68,a train on a track near many trees,0,Is there a train?,yes|no,yes
+68,a train on a track near many trees,1,Is there a track?,yes|no,yes
+68,a train on a track near many trees,2,Are there trees?,yes|no,yes
+68,a train on a track near many trees,3,Is the train on the track?,yes|no,yes
+68,a train on a track near many trees,4,Is the train near the trees?,yes|no,yes
+69,A young woman is playing a video game on a couch.,0,Is there a young woman?,yes|no,yes
+69,A young woman is playing a video game on a couch.,1,Is there a video game?,yes|no,yes
+69,A young woman is playing a video game on a couch.,2,Is there a couch?,yes|no,yes
+69,A young woman is playing a video game on a couch.,3,Is the woman young?,yes|no,yes
+69,A young woman is playing a video game on a couch.,4,Is the woman playing a video game?,yes|no,yes
+69,A young woman is playing a video game on a couch.,5,Is the woman on the couch?,yes|no,yes
+70,Multiple skiers travelling across a vast expanse of snow covered land towards a mountain.,0,Are there skiers?,yes|no,yes
+70,Multiple skiers travelling across a vast expanse of snow covered land towards a mountain.,1,Are there multiple skiers?,yes|no,yes
+70,Multiple skiers travelling across a vast expanse of snow covered land towards a mountain.,2,Is there land?,yes|no,yes
+70,Multiple skiers travelling across a vast expanse of snow covered land towards a mountain.,3,Is the land snow covered?,yes|no,yes
+70,Multiple skiers travelling across a vast expanse of snow covered land towards a mountain.,4,Is there a mountain?,yes|no,yes
+70,Multiple skiers travelling across a vast expanse of snow covered land towards a mountain.,5,Are the skiers travelling across the land?,yes|no,yes
+70,Multiple skiers travelling across a vast expanse of snow covered land towards a mountain.,6,Are the skiers travelling towards the mountain?,yes|no,yes
+71,The beach is crowded with red and white beach umbrellas.,0,Is there a beach?,yes|no,yes
+71,The beach is crowded with red and white beach umbrellas.,1,Are there beach umbrellas?,yes|no,yes
+71,The beach is crowded with red and white beach umbrellas.,2,Are the beach umbrellas red?,yes|no,yes
+71,The beach is crowded with red and white beach umbrellas.,3,Are the beach umbrellas white?,yes|no,yes
+71,The beach is crowded with red and white beach umbrellas.,4,Is the beach crowded?,yes|no,yes
+71,The beach is crowded with red and white beach umbrellas.,5,Are the beach umbrellas on the beach?,yes|no,yes
+72,A lady wearing red playing tennis on a green court.,0,Is there a lady?,yes|no,yes
+72,A lady wearing red playing tennis on a green court.,1,Is the lady wearing red?,yes|no,yes
+72,A lady wearing red playing tennis on a green court.,2,Is the lady playing tennis?,yes|no,yes
+72,A lady wearing red playing tennis on a green court.,3,Is there a court?,yes|no,yes
+72,A lady wearing red playing tennis on a green court.,4,Is the court green?,yes|no,yes
+73,A sign laying on a lush green field near a body of water.,0,Is there a sign?,yes|no,yes
+73,A sign laying on a lush green field near a body of water.,1,Is there a field?,yes|no,yes
+73,A sign laying on a lush green field near a body of water.,2,Is there a body of water?,yes|no,yes
+73,A sign laying on a lush green field near a body of water.,3,Is the field lush and green?,yes|no,yes
+73,A sign laying on a lush green field near a body of water.,4,Is the sign on the field?,yes|no,yes
+73,A sign laying on a lush green field near a body of water.,5,Is the sign near the body of water?,yes|no,yes
+74,A cat on top of a desk on a laptop.,0,Is there a cat?,yes|no,yes
+74,A cat on top of a desk on a laptop.,1,Is there a desk?,yes|no,yes
+74,A cat on top of a desk on a laptop.,2,Is there a laptop?,yes|no,yes
+74,A cat on top of a desk on a laptop.,3,Is the cat on the desk?,yes|no,yes
+74,A cat on top of a desk on a laptop.,4,Is the desk on the laptop?,yes|no,yes
+75,Some very big furry brown bears in a big grass field.,0,Are there bears?,yes|no,yes
+75,Some very big furry brown bears in a big grass field.,1,Are the bears very big?,yes|no,yes
+75,Some very big furry brown bears in a big grass field.,2,Are the bears furry?,yes|no,yes
+75,Some very big furry brown bears in a big grass field.,3,Are the bears brown?,yes|no,yes
+75,Some very big furry brown bears in a big grass field.,4,Is there a grass field?,yes|no,yes
+75,Some very big furry brown bears in a big grass field.,5,Is the grass field big?,yes|no,yes
+75,Some very big furry brown bears in a big grass field.,6,Are the bears in the grass field?,yes|no,yes
+76,A wooden boat on the shore of a beach.,0,Is there a boat?,yes|no,yes
+76,A wooden boat on the shore of a beach.,1,Is there a shore?,yes|no,yes
+76,A wooden boat on the shore of a beach.,2,Is there a beach?,yes|no,yes
+76,A wooden boat on the shore of a beach.,3,Is the boat made of wood?,yes|no,yes
+76,A wooden boat on the shore of a beach.,4,Is the boat on the shore?,yes|no,yes
+76,A wooden boat on the shore of a beach.,5,Is the shore part of the beach?,yes|no,yes
+77,A woman is bent over next to a small refrigerator.,0,Is there a woman?,yes|no,yes
+77,A woman is bent over next to a small refrigerator.,1,Is there a refrigerator?,yes|no,yes
+77,A woman is bent over next to a small refrigerator.,2,Is the refrigerator small?,yes|no,yes
+77,A woman is bent over next to a small refrigerator.,3,Is the woman bending over?,yes|no,yes
+77,A woman is bent over next to a small refrigerator.,4,Is the woman next to the refrigerator?,yes|no,yes
+78,Woman with blue dress sitting in modern chair next to vase in a room.,0,Is there a woman?,yes|no,yes
+78,Woman with blue dress sitting in modern chair next to vase in a room.,1,Is the woman wearing a blue dress?,yes|no,yes
+78,Woman with blue dress sitting in modern chair next to vase in a room.,2,Is there a chair?,yes|no,yes
+78,Woman with blue dress sitting in modern chair next to vase in a room.,3,Is there a vase?,yes|no,yes
+78,Woman with blue dress sitting in modern chair next to vase in a room.,4,Is there a room?,yes|no,yes
+78,Woman with blue dress sitting in modern chair next to vase in a room.,5,Is the dress blue?,yes|no,yes
+78,Woman with blue dress sitting in modern chair next to vase in a room.,6,Is the chair modern?,yes|no,yes
+78,Woman with blue dress sitting in modern chair next to vase in a room.,7,Is the woman sitting in the chair?,yes|no,yes
+78,Woman with blue dress sitting in modern chair next to vase in a room.,8,Is the vase next to the chair?,yes|no,yes
+78,Woman with blue dress sitting in modern chair next to vase in a room.,9,Is the vase in the room?,yes|no,yes
+79,Two people standing next to an elephant along a river.,0,Are there people?,yes|no,yes
+79,Two people standing next to an elephant along a river.,1,Are there two people?,yes|no,yes
+79,Two people standing next to an elephant along a river.,2,Is there an elephant?,yes|no,yes
+79,Two people standing next to an elephant along a river.,3,Is there a river?,yes|no,yes
+79,Two people standing next to an elephant along a river.,4,Are the people standing?,yes|no,yes
+79,Two people standing next to an elephant along a river.,5,Are the people next to the elephant?,yes|no,yes
+79,Two people standing next to an elephant along a river.,6,Are the people next to the river?,yes|no,yes
+79,Two people standing next to an elephant along a river.,7,Is the elephant next to the river?,yes|no,yes
+80,A group of giraffes are gathered together in their enclosure,0,Are there giraffes?,yes|no,yes
+80,A group of giraffes are gathered together in their enclosure,1,Are there multiple giraffes?,yes|no,yes
+80,A group of giraffes are gathered together in their enclosure,2,Are the giraffes gathered together?,yes|no,yes
+80,A group of giraffes are gathered together in their enclosure,3,Is there an enclosure?,yes|no,yes
+81,A house where you can see the bedroom and relaxing room.,0,Is there a house?,yes|no,yes
+81,A house where you can see the bedroom and relaxing room.,1,Is there a bedroom?,yes|no,yes
+81,A house where you can see the bedroom and relaxing room.,2,Is there a relaxing room?,yes|no,yes
+81,A house where you can see the bedroom and relaxing room.,3,Is the bedroom in the house?,yes|no,yes
+81,A house where you can see the bedroom and relaxing room.,4,Is the relaxing room in the house?,yes|no,yes
+82,A boy wearing a green shirt posing with some fruit.,0,Is there a boy?,yes|no,yes
+82,A boy wearing a green shirt posing with some fruit.,1,Is the boy wearing a green shirt?,yes|no,yes
+82,A boy wearing a green shirt posing with some fruit.,2,Is the shirt green?,yes|no,yes
+82,A boy wearing a green shirt posing with some fruit.,3,Is there fruit?,yes|no,yes
+82,A boy wearing a green shirt posing with some fruit.,4,Is the boy posing with the fruit?,yes|no,yes
+83,a panda bear with aviator glasses on its head,0,Is there a panda bear?,yes|no,yes
+83,a panda bear with aviator glasses on its head,1,Is there glasses?,yes|no,yes
+83,a panda bear with aviator glasses on its head,2,Are the glasses aviator glasses?,yes|no,yes
+83,a panda bear with aviator glasses on its head,3,Are the glasses on the panda bear's head?,yes|no,yes
+84,"A woman dressed in black, smiling with a toothbrush in her hand.",0,Is there a woman?,yes|no,yes
+84,"A woman dressed in black, smiling with a toothbrush in her hand.",1,Is the woman dressed in black?,yes|no,yes
+84,"A woman dressed in black, smiling with a toothbrush in her hand.",2,Is the woman smiling?,yes|no,yes
+84,"A woman dressed in black, smiling with a toothbrush in her hand.",3,Does the woman have a hand?,yes|no,yes
+84,"A woman dressed in black, smiling with a toothbrush in her hand.",4,Is there a toothbrush?,yes|no,yes
+84,"A woman dressed in black, smiling with a toothbrush in her hand.",5,Is the toothbrush in the woman's hand?,yes|no,yes
+85,GUY WITH UMBRELLA HAT SITTING A TABLE WITH ANOTHER PERSON WITH A HAT UNDER A RED UMBERLLA,0,Is there a guy?,yes|no,yes
+85,GUY WITH UMBRELLA HAT SITTING A TABLE WITH ANOTHER PERSON WITH A HAT UNDER A RED UMBERLLA,1,Is there a table?,yes|no,yes
+85,GUY WITH UMBRELLA HAT SITTING A TABLE WITH ANOTHER PERSON WITH A HAT UNDER A RED UMBERLLA,2,Is there a person?,yes|no,yes
+85,GUY WITH UMBRELLA HAT SITTING A TABLE WITH ANOTHER PERSON WITH A HAT UNDER A RED UMBERLLA,3,Is there an umbrella?,yes|no,yes
+85,GUY WITH UMBRELLA HAT SITTING A TABLE WITH ANOTHER PERSON WITH A HAT UNDER A RED UMBERLLA,4,Is the guy wearing an umbrella hat?,yes|no,yes
+85,GUY WITH UMBRELLA HAT SITTING A TABLE WITH ANOTHER PERSON WITH A HAT UNDER A RED UMBERLLA,5,Is the guy sitting?,yes|no,yes
+85,GUY WITH UMBRELLA HAT SITTING A TABLE WITH ANOTHER PERSON WITH A HAT UNDER A RED UMBERLLA,6,Is the person wearing a hat?,yes|no,yes
+85,GUY WITH UMBRELLA HAT SITTING A TABLE WITH ANOTHER PERSON WITH A HAT UNDER A RED UMBERLLA,7,Is the umbrella red?,yes|no,yes
+85,GUY WITH UMBRELLA HAT SITTING A TABLE WITH ANOTHER PERSON WITH A HAT UNDER A RED UMBERLLA,8,Is the guy sitting at the table?,yes|no,yes
+85,GUY WITH UMBRELLA HAT SITTING A TABLE WITH ANOTHER PERSON WITH A HAT UNDER A RED UMBERLLA,9,Is the person under the umbrella?,yes|no,yes
+86,Two men in neon yellow safety jackets sharing a meal next to a food car.,0,Are there men?,yes|no,yes
+86,Two men in neon yellow safety jackets sharing a meal next to a food car.,1,Are there two men?,yes|no,yes
+86,Two men in neon yellow safety jackets sharing a meal next to a food car.,2,Are the men's jackets neon yellow?,yes|no,yes
+86,Two men in neon yellow safety jackets sharing a meal next to a food car.,3,Are the men's jackets safety jackets?,yes|no,yes
+86,Two men in neon yellow safety jackets sharing a meal next to a food car.,4,Are the men sharing a meal?,yes|no,yes
+86,Two men in neon yellow safety jackets sharing a meal next to a food car.,5,Is there a food car?,yes|no,yes
+86,Two men in neon yellow safety jackets sharing a meal next to a food car.,6,Is the food car next to the men?,yes|no,yes
+87,an aerial photo of a sandy island in the ocean,0,Is this an aerial photo?,yes|no,yes
+87,an aerial photo of a sandy island in the ocean,1,Is there an island?,yes|no,yes
+87,an aerial photo of a sandy island in the ocean,2,Is there an ocean?,yes|no,yes
+87,an aerial photo of a sandy island in the ocean,3,Is the island sandy?,yes|no,yes
+87,an aerial photo of a sandy island in the ocean,4,Is the island in the ocean?,yes|no,yes
+88,A commercial airplane with propellers flying through the air.,0,Is there a commercial airplane?,yes|no,yes
+88,A commercial airplane with propellers flying through the air.,1,Does the airplane have propellers?,yes|no,yes
+88,A commercial airplane with propellers flying through the air.,2,Is the airplane flying through the air?,yes|no,yes
+89,An elevated subway train in a major city on a sunny day.,0,Is there a subway train?,yes|no,yes
+89,An elevated subway train in a major city on a sunny day.,1,Is there a city?,yes|no,yes
+89,An elevated subway train in a major city on a sunny day.,2,Is the city a major city?,yes|no,yes
+89,An elevated subway train in a major city on a sunny day.,3,Is it a sunny day?,yes|no,yes
+89,An elevated subway train in a major city on a sunny day.,4,Is the subway train in the city?,yes|no,yes
+89,An elevated subway train in a major city on a sunny day.,5,Is the subway train elevated in the city?,yes|no,yes
+90,"A pear, lemon, and a banana in a wooden bowl.",0,Is there a pear?,yes|no,yes
+90,"A pear, lemon, and a banana in a wooden bowl.",1,Is there a lemon?,yes|no,yes
+90,"A pear, lemon, and a banana in a wooden bowl.",2,Is there a banana?,yes|no,yes
+90,"A pear, lemon, and a banana in a wooden bowl.",3,Is there a bowl?,yes|no,yes
+90,"A pear, lemon, and a banana in a wooden bowl.",4,Is the bowl made of wood?,yes|no,yes
+90,"A pear, lemon, and a banana in a wooden bowl.",5,Is the pear in the bowl?,yes|no,yes
+90,"A pear, lemon, and a banana in a wooden bowl.",6,Is the lemon in the bowl?,yes|no,yes
+90,"A pear, lemon, and a banana in a wooden bowl.",7,Is the banana in the bowl?,yes|no,yes
+91,A chair in the corner on a boat.,0,Is there a chair?,yes|no,yes
+91,A chair in the corner on a boat.,1,Is there a corner?,yes|no,yes
+91,A chair in the corner on a boat.,2,Is there a boat?,yes|no,yes
+91,A chair in the corner on a boat.,3,Is the chair in the corner?,yes|no,yes
+91,A chair in the corner on a boat.,4,Is the corner on the boat?,yes|no,yes
+92,A man sitting on a motorcycle smoking.,0,Is there a man?,yes|no,yes
+92,A man sitting on a motorcycle smoking.,1,Is there a motorcycle?,yes|no,yes
+92,A man sitting on a motorcycle smoking.,2,Is the man sitting?,yes|no,yes
+92,A man sitting on a motorcycle smoking.,3,Is the man smoking?,yes|no,yes
+92,A man sitting on a motorcycle smoking.,4,Is the man on the motorcycle?,yes|no,yes
+93,A car and a truck sitting in red light.,0,Is there a car?,yes|no,yes
+93,A car and a truck sitting in red light.,1,Is there a truck?,yes|no,yes
+93,A car and a truck sitting in red light.,2,Is the car sitting?,yes|no,yes
+93,A car and a truck sitting in red light.,3,Is the truck sitting?,yes|no,yes
+93,A car and a truck sitting in red light.,4,Is the light red?,yes|no,yes
+93,A car and a truck sitting in red light.,5,Is the car in the light?,yes|no,yes
+93,A car and a truck sitting in red light.,6,Is the truck in the light?,yes|no,yes
+94,A man at a food truck viewing the menu.,0,Is there a man?,yes|no,yes
+94,A man at a food truck viewing the menu.,1,Is there a food truck?,yes|no,yes
+94,A man at a food truck viewing the menu.,2,Is there a menu?,yes|no,yes
+94,A man at a food truck viewing the menu.,3,Is the man viewing something?,yes|no,yes
+94,A man at a food truck viewing the menu.,4,Is the man at the food truck?,yes|no,yes
+94,A man at a food truck viewing the menu.,5,Is the man viewing the menu?,yes|no,yes
+95,A man and a woman posing in front of a motorcycle.,0,Is there a man?,yes|no,yes
+95,A man and a woman posing in front of a motorcycle.,1,Is there a woman?,yes|no,yes
+95,A man and a woman posing in front of a motorcycle.,2,Is there a motorcycle?,yes|no,yes
+95,A man and a woman posing in front of a motorcycle.,3,Is the man in front of the motorcycle?,yes|no,yes
+95,A man and a woman posing in front of a motorcycle.,4,Is the woman in front of the motorcycle?,yes|no,yes
+95,A man and a woman posing in front of a motorcycle.,5,Is the man posing?,yes|no,yes
+95,A man and a woman posing in front of a motorcycle.,6,Is the woman posing?,yes|no,yes
+96,A man in a black suit surfing a large wave,0,Is there a man?,yes|no,yes
+96,A man in a black suit surfing a large wave,1,Is the man wearing a black suit?,yes|no,yes
+96,A man in a black suit surfing a large wave,2,Is the man surfing?,yes|no,yes
+96,A man in a black suit surfing a large wave,3,Is there a wave?,yes|no,yes
+96,A man in a black suit surfing a large wave,4,Is the wave large?,yes|no,yes
+97,A man standing by an oven.,0,Is there a man?,yes|no,yes
+97,A man standing by an oven.,1,Is there an oven?,yes|no,yes
+97,A man standing by an oven.,2,Is the man standing by the oven?,yes|no,yes
+97,A man standing by an oven.,3,Is the man standing?,yes|no,yes
+98,"A white slope covers the background, while the foreground features a grassy slope with several rams grazing and one measly and underdeveloped evergreen in the foreground.",0,Are there slopes?,yes|no,yes
+98,"A white slope covers the background, while the foreground features a grassy slope with several rams grazing and one measly and underdeveloped evergreen in the foreground.",1,Are there two slopes?,yes|no,yes
+98,"A white slope covers the background, while the foreground features a grassy slope with several rams grazing and one measly and underdeveloped evergreen in the foreground.",2,Are there rams?,yes|no,yes
+98,"A white slope covers the background, while the foreground features a grassy slope with several rams grazing and one measly and underdeveloped evergreen in the foreground.",3,Is there an evergreen?,yes|no,yes
+98,"A white slope covers the background, while the foreground features a grassy slope with several rams grazing and one measly and underdeveloped evergreen in the foreground.",4,Is one slope white?,yes|no,yes
+98,"A white slope covers the background, while the foreground features a grassy slope with several rams grazing and one measly and underdeveloped evergreen in the foreground.",5,Is one slope grassy?,yes|no,yes
+98,"A white slope covers the background, while the foreground features a grassy slope with several rams grazing and one measly and underdeveloped evergreen in the foreground.",6,Is the evergreen measly and underdeveloped?,yes|no,yes
+98,"A white slope covers the background, while the foreground features a grassy slope with several rams grazing and one measly and underdeveloped evergreen in the foreground.",7,Is the white slope in the background?,yes|no,yes
+98,"A white slope covers the background, while the foreground features a grassy slope with several rams grazing and one measly and underdeveloped evergreen in the foreground.",8,Is the grassy slope in the foreground?,yes|no,yes
+98,"A white slope covers the background, while the foreground features a grassy slope with several rams grazing and one measly and underdeveloped evergreen in the foreground.",9,Are the rams on the grassy slope?,yes|no,yes
+98,"A white slope covers the background, while the foreground features a grassy slope with several rams grazing and one measly and underdeveloped evergreen in the foreground.",10,Are the rams grazing?,yes|no,yes
+99,People are wearing helmets standing next to bikes in the woods.,0,Are there people?,yes|no,yes
+99,People are wearing helmets standing next to bikes in the woods.,1,Are there helmets?,yes|no,yes
+99,People are wearing helmets standing next to bikes in the woods.,2,Are there bikes?,yes|no,yes
+99,People are wearing helmets standing next to bikes in the woods.,3,Are there woods?,yes|no,yes
+99,People are wearing helmets standing next to bikes in the woods.,4,Are the people wearing helmets?,yes|no,yes
+99,People are wearing helmets standing next to bikes in the woods.,5,Are the helmets next to the people?,yes|no,yes
+99,People are wearing helmets standing next to bikes in the woods.,6,Are the bikes next to the people?,yes|no,yes
+99,People are wearing helmets standing next to bikes in the woods.,7,Are the bikes in the woods?,yes|no,yes
+100,A teddy bear under some furniture that appears to be turned on it's side.,0,Is there a teddy bear?,yes|no,yes
+100,A teddy bear under some furniture that appears to be turned on it's side.,1,Is there furniture?,yes|no,yes
+100,A teddy bear under some furniture that appears to be turned on it's side.,2,Is the furniture turned on its side?,yes|no,yes
+100,A teddy bear under some furniture that appears to be turned on it's side.,3,Is the teddy bear under the furniture?,yes|no,yes
+101,two men riding horses through a grassy field,0,Are there men?,yes|no,yes
+101,two men riding horses through a grassy field,1,Are there horses?,yes|no,yes
+101,two men riding horses through a grassy field,2,Is there a field?,yes|no,yes
+101,two men riding horses through a grassy field,3,Are there two men?,yes|no,yes
+101,two men riding horses through a grassy field,4,Are there two horses?,yes|no,yes
+101,two men riding horses through a grassy field,5,Is the field grassy?,yes|no,yes
+101,two men riding horses through a grassy field,6,Are the men riding the horses?,yes|no,yes
+101,two men riding horses through a grassy field,7,Are the men riding through the field?,yes|no,yes
+101,two men riding horses through a grassy field,8,Are the horses riding through the field?,yes|no,yes
+102,a photo of bear and dining table; dining table is below bear,0,Is this a photo?,yes|no,yes
+102,a photo of bear and dining table; dining table is below bear,1,Is there a bear?,yes|no,yes
+102,a photo of bear and dining table; dining table is below bear,2,Is there a dining table?,yes|no,yes
+102,a photo of bear and dining table; dining table is below bear,3,Is the dining table below the bear?,yes|no,yes
+103,A young woman with green eyes and green lips.,0,Is there a woman?,yes|no,yes
+103,A young woman with green eyes and green lips.,1,Is the woman young?,yes|no,yes
+103,A young woman with green eyes and green lips.,2,Are the woman's eyes green?,yes|no,yes
+103,A young woman with green eyes and green lips.,3,Are the woman's lips green?,yes|no,yes
+104,a cat jumping in the air to get onto a table,0,Is there a cat?,yes|no,yes
+104,a cat jumping in the air to get onto a table,1,Is there air?,yes|no,yes
+104,a cat jumping in the air to get onto a table,2,Is there a table?,yes|no,yes
+104,a cat jumping in the air to get onto a table,3,Is the cat jumping in the air?,yes|no,yes
+104,a cat jumping in the air to get onto a table,4,Is the cat trying to get onto the table?,yes|no,yes
+105,a wood treehouse in an oak tree,0,Is there a treehouse?,yes|no,yes
+105,a wood treehouse in an oak tree,1,Is the treehouse made of wood?,yes|no,yes
+105,a wood treehouse in an oak tree,2,Is there an oak tree?,yes|no,yes
+105,a wood treehouse in an oak tree,3,Is the treehouse in the oak tree?,yes|no,yes
+106,a photo of blue fire hydrant,0,Is this a photo?,yes|no,yes
+106,a photo of blue fire hydrant,1,Is there a fire hydrant?,yes|no,yes
+106,a photo of blue fire hydrant,2,Is the fire hydrant blue?,yes|no,yes
+107,a photo of chair and dining table; dining table is left to chair,0,Is this a photo?,yes|no,yes
+107,a photo of chair and dining table; dining table is left to chair,1,Is there a chair?,yes|no,yes
+107,a photo of chair and dining table; dining table is left to chair,2,Is there a dining table?,yes|no,yes
+107,a photo of chair and dining table; dining table is left to chair,3,Is the dining table left to the chair?,yes|no,yes
+108,"a photo of bed, chair, lamp, light, and stop sign; stop sign is above bed",0,Is this a photo?,yes|no,yes
+108,"a photo of bed, chair, lamp, light, and stop sign; stop sign is above bed",1,Is there a bed?,yes|no,yes
+108,"a photo of bed, chair, lamp, light, and stop sign; stop sign is above bed",2,Is there a chair?,yes|no,yes
+108,"a photo of bed, chair, lamp, light, and stop sign; stop sign is above bed",3,Is there a lamp?,yes|no,yes
+108,"a photo of bed, chair, lamp, light, and stop sign; stop sign is above bed",4,Is there a light?,yes|no,yes
+108,"a photo of bed, chair, lamp, light, and stop sign; stop sign is above bed",5,Is there a stop sign?,yes|no,yes
+108,"a photo of bed, chair, lamp, light, and stop sign; stop sign is above bed",6,Is the stop sign above the bed?,yes|no,yes
+108,"a photo of bed, chair, lamp, light, and stop sign; stop sign is above bed",7,Is the lamp near the bed?,yes|no,yes
+108,"a photo of bed, chair, lamp, light, and stop sign; stop sign is above bed",8,Is the light near the bed?,yes|no,yes
+108,"a photo of bed, chair, lamp, light, and stop sign; stop sign is above bed",9,Is the stop sign near the chair?,yes|no,yes
+108,"a photo of bed, chair, lamp, light, and stop sign; stop sign is above bed",10,Is the lamp near the chair?,yes|no,yes
+108,"a photo of bed, chair, lamp, light, and stop sign; stop sign is above bed",11,Is the light near the chair?,yes|no,yes
+109,A Mesoamerican pyramid surrounded by jungle. detailed charcoal sketch.,0,Is there a pyramid?,yes|no,yes
+109,A Mesoamerican pyramid surrounded by jungle. detailed charcoal sketch.,1,Is there a jungle?,yes|no,yes
+109,A Mesoamerican pyramid surrounded by jungle. detailed charcoal sketch.,2,Is this a detailed charcoal sketch?,yes|no,yes
+109,A Mesoamerican pyramid surrounded by jungle. detailed charcoal sketch.,3,Is the pyramid a Mesoamerican pyramid?,yes|no,yes
+109,A Mesoamerican pyramid surrounded by jungle. detailed charcoal sketch.,4,Is the pyramid surrounded by the jungle?,yes|no,yes
+110,A punk rock squirrel with a microphone while standing on a lily pad,0,Is there a squirrel?,yes|no,yes
+110,A punk rock squirrel with a microphone while standing on a lily pad,1,Does the squirrel have a microphone?,yes|no,yes
+110,A punk rock squirrel with a microphone while standing on a lily pad,2,Is there a lily pad?,yes|no,yes
+110,A punk rock squirrel with a microphone while standing on a lily pad,3,Is the squirrel a punk rock squirrel?,yes|no,yes
+110,A punk rock squirrel with a microphone while standing on a lily pad,4,Is the squirrel standing on the lily pad?,yes|no,yes
+111,A tree crashed into a red car on the side of a street.,0,Is there a tree?,yes|no,yes
+111,A tree crashed into a red car on the side of a street.,1,Is there a car?,yes|no,yes
+111,A tree crashed into a red car on the side of a street.,2,Is the car red?,yes|no,yes
+111,A tree crashed into a red car on the side of a street.,3,Did the tree crash into the car?,yes|no,yes
+111,A tree crashed into a red car on the side of a street.,4,Is the car on the side of the street?,yes|no,yes
+112,A gray cat sleeping on a cozy white bed.,0,Is there a cat?,yes|no,yes
+112,A gray cat sleeping on a cozy white bed.,1,Is there a bed?,yes|no,yes
+112,A gray cat sleeping on a cozy white bed.,2,Is the cat gray?,yes|no,yes
+112,A gray cat sleeping on a cozy white bed.,3,Is the bed white?,yes|no,yes
+112,A gray cat sleeping on a cozy white bed.,4,Is the cat sleeping?,yes|no,yes
+112,A gray cat sleeping on a cozy white bed.,5,Is the bed cozy?,yes|no,yes
+112,A gray cat sleeping on a cozy white bed.,6,Is the cat on the bed?,yes|no,yes
+113,"A cute little girl, sitting in a red chair by the Christmas tree, with a wrapped",0,Is there a girl?,yes|no,yes
+113,"A cute little girl, sitting in a red chair by the Christmas tree, with a wrapped",1,Is there a chair?,yes|no,yes
+113,"A cute little girl, sitting in a red chair by the Christmas tree, with a wrapped",2,Is there a Christmas tree?,yes|no,yes
+113,"A cute little girl, sitting in a red chair by the Christmas tree, with a wrapped",3,Is the girl cute?,yes|no,yes
+113,"A cute little girl, sitting in a red chair by the Christmas tree, with a wrapped",4,Is the chair red?,yes|no,yes
+113,"A cute little girl, sitting in a red chair by the Christmas tree, with a wrapped",5,Is the girl sitting in the chair?,yes|no,yes
+113,"A cute little girl, sitting in a red chair by the Christmas tree, with a wrapped",6,Is the girl by the Christmas tree?,yes|no,yes
+113,"A cute little girl, sitting in a red chair by the Christmas tree, with a wrapped",7,Is there a wrapped gift?,yes|no,yes
+114,A happy young woman eating a tasty orange donut.,0,Is there a woman?,yes|no,yes
+114,A happy young woman eating a tasty orange donut.,1,Is the woman young?,yes|no,yes
+114,A happy young woman eating a tasty orange donut.,2,Is the woman happy?,yes|no,yes
+114,A happy young woman eating a tasty orange donut.,3,Is the woman eating?,yes|no,yes
+114,A happy young woman eating a tasty orange donut.,4,Is there a donut?,yes|no,yes
+114,A happy young woman eating a tasty orange donut.,5,Is the donut tasty?,yes|no,yes
+114,A happy young woman eating a tasty orange donut.,6,Is the donut orange in color?,yes|no,yes
+115,A birthday dog with a red party hat in front of three colored balloons.,0,Is there a dog?,yes|no,yes
+115,A birthday dog with a red party hat in front of three colored balloons.,1,Is there a party hat?,yes|no,yes
+115,A birthday dog with a red party hat in front of three colored balloons.,2,Are there balloons?,yes|no,yes
+115,A birthday dog with a red party hat in front of three colored balloons.,3,Is the party hat red?,yes|no,yes
+115,A birthday dog with a red party hat in front of three colored balloons.,4,Are there three balloons?,yes|no,yes
+115,A birthday dog with a red party hat in front of three colored balloons.,5,Is the dog in front of the party hat?,yes|no,yes
+115,A birthday dog with a red party hat in front of three colored balloons.,6,Is the dog in front of the balloons?,yes|no,yes
+116,A woman in a gray sweater knitting a ball of yarn.,0,Is there a woman?,yes|no,yes
+116,A woman in a gray sweater knitting a ball of yarn.,1,Is there a sweater?,yes|no,yes
+116,A woman in a gray sweater knitting a ball of yarn.,2,Is there a ball of yarn?,yes|no,yes
+116,A woman in a gray sweater knitting a ball of yarn.,3,Is the sweater gray?,yes|no,yes
+116,A woman in a gray sweater knitting a ball of yarn.,4,Is the woman knitting?,yes|no,yes
+116,A woman in a gray sweater knitting a ball of yarn.,5,Is the woman knitting the ball of yarn?,yes|no,yes
+117,"An artistic photo capturing books with three small pumpkins on top, a",0,Is this an artistic photo?,yes|no,yes
+117,"An artistic photo capturing books with three small pumpkins on top, a",1,Are there books?,yes|no,yes
+117,"An artistic photo capturing books with three small pumpkins on top, a",2,Are there pumpkins?,yes|no,yes
+117,"An artistic photo capturing books with three small pumpkins on top, a",3,Are there three pumpkins?,yes|no,yes
+117,"An artistic photo capturing books with three small pumpkins on top, a",4,Are the pumpkins on top of the books?,yes|no,yes
+118,A smiling birthday girl wearing a golden hat stands behind a table,0,Is there a birthday girl?,yes|no,yes
+118,A smiling birthday girl wearing a golden hat stands behind a table,1,Is there a hat?,yes|no,yes
+118,A smiling birthday girl wearing a golden hat stands behind a table,2,Is there a table?,yes|no,yes
+118,A smiling birthday girl wearing a golden hat stands behind a table,3,Is the birthday girl smiling?,yes|no,yes
+118,A smiling birthday girl wearing a golden hat stands behind a table,4,Is the hat golden?,yes|no,yes
+118,A smiling birthday girl wearing a golden hat stands behind a table,5,Is the birthday girl behind the table?,yes|no,yes
+119,A mother and a girl in yellow dresses are decorating a small cake with raspberries.,0,Is there a mother?,yes|no,yes
+119,A mother and a girl in yellow dresses are decorating a small cake with raspberries.,1,Is there a girl?,yes|no,yes
+119,A mother and a girl in yellow dresses are decorating a small cake with raspberries.,2,Are their dresses yellow?,yes|no,yes
+119,A mother and a girl in yellow dresses are decorating a small cake with raspberries.,3,Is the mother decorating with the girl?,yes|no,yes
+119,A mother and a girl in yellow dresses are decorating a small cake with raspberries.,4,Is there a cake?,yes|no,yes
+119,A mother and a girl in yellow dresses are decorating a small cake with raspberries.,5,Are there raspberries?,yes|no,yes
+119,A mother and a girl in yellow dresses are decorating a small cake with raspberries.,6,Is the cake small?,yes|no,yes
+119,A mother and a girl in yellow dresses are decorating a small cake with raspberries.,7,Are the raspberries on the cake?,yes|no,yes
+120,A happy young woman with a suitcase and her passport in an airport.,0,Is there a woman?,yes|no,yes
+120,A happy young woman with a suitcase and her passport in an airport.,1,Is there a suitcase?,yes|no,yes
+120,A happy young woman with a suitcase and her passport in an airport.,2,Is there a passport?,yes|no,yes
+120,A happy young woman with a suitcase and her passport in an airport.,3,Is there an airport?,yes|no,yes
+120,A happy young woman with a suitcase and her passport in an airport.,4,Is the woman happy?,yes|no,yes
+120,A happy young woman with a suitcase and her passport in an airport.,5,Does the woman have a suitcase?,yes|no,yes
+120,A happy young woman with a suitcase and her passport in an airport.,6,Does the woman have her passport?,yes|no,yes
+120,A happy young woman with a suitcase and her passport in an airport.,7,Is the woman in the airport?,yes|no,yes
+121,"A family of four, including a boy and a girl, cooking together in the kitchen.",0,Is there a family?,yes|no,yes
+121,"A family of four, including a boy and a girl, cooking together in the kitchen.",1,Are there four family members?,yes|no,yes
+121,"A family of four, including a boy and a girl, cooking together in the kitchen.",2,Is there a boy?,yes|no,yes
+121,"A family of four, including a boy and a girl, cooking together in the kitchen.",3,Is there a girl?,yes|no,yes
+121,"A family of four, including a boy and a girl, cooking together in the kitchen.",4,Is there a kitchen?,yes|no,yes
+121,"A family of four, including a boy and a girl, cooking together in the kitchen.",5,Is the family cooking?,yes|no,yes
+121,"A family of four, including a boy and a girl, cooking together in the kitchen.",6,Is the family in the kitchen?,yes|no,yes
+121,"A family of four, including a boy and a girl, cooking together in the kitchen.",7,Is the boy part of the family?,yes|no,yes
+121,"A family of four, including a boy and a girl, cooking together in the kitchen.",8,Is the girl part of the family?,yes|no,yes
+122,A woman laying on top of an inflatable pink flamingo in a swimming pool.,0,Is there a woman?,yes|no,yes
+122,A woman laying on top of an inflatable pink flamingo in a swimming pool.,1,Is there an inflatable pink flamingo?,yes|no,yes
+122,A woman laying on top of an inflatable pink flamingo in a swimming pool.,2,Is there a swimming pool?,yes|no,yes
+122,A woman laying on top of an inflatable pink flamingo in a swimming pool.,3,Is the woman laying on top of the inflatable pink flamingo?,yes|no,yes
+122,A woman laying on top of an inflatable pink flamingo in a swimming pool.,4,Is the inflatable pink flamingo in the swimming pool?,yes|no,yes
+123,A pink gift box decorated with a blue ribbon bow.,0,Is there a gift box?,yes|no,yes
+123,A pink gift box decorated with a blue ribbon bow.,1,Is the gift box pink?,yes|no,yes
+123,A pink gift box decorated with a blue ribbon bow.,2,Is there a ribbon bow?,yes|no,yes
+123,A pink gift box decorated with a blue ribbon bow.,3,Is the ribbon bow blue?,yes|no,yes
+123,A pink gift box decorated with a blue ribbon bow.,4,Was the gift box decorated?,yes|no,yes
+123,A pink gift box decorated with a blue ribbon bow.,5,Is the ribbon bow on the gift box?,yes|no,yes
+124,A boy with a hat putting a hat on his dog's head.,0,Is there a boy?,yes|no,yes
+124,A boy with a hat putting a hat on his dog's head.,1,Is there a hat?,yes|no,yes
+124,A boy with a hat putting a hat on his dog's head.,2,Is there a dog?,yes|no,yes
+124,A boy with a hat putting a hat on his dog's head.,3,Is there a dog's head?,yes|no,yes
+124,A boy with a hat putting a hat on his dog's head.,4,Is the boy putting a hat on?,yes|no,yes
+124,A boy with a hat putting a hat on his dog's head.,5,Is the hat on the boy?,yes|no,yes
+124,A boy with a hat putting a hat on his dog's head.,6,Is the hat on the dog's head?,yes|no,yes
+125,Two little girls playing with wooden toys.,0,Are there girls?,yes|no,yes
+125,Two little girls playing with wooden toys.,1,Are there two girls?,yes|no,yes
+125,Two little girls playing with wooden toys.,2,Are there toys?,yes|no,yes
+125,Two little girls playing with wooden toys.,3,Are the toys made of wood?,yes|no,yes
+125,Two little girls playing with wooden toys.,4,Are the girls playing with the toys?,yes|no,yes
+126,"A plate with a steak, French fries, and cherry tomatoes.",0,Is there a plate?,yes|no,yes
+126,"A plate with a steak, French fries, and cherry tomatoes.",1,Is there a steak?,yes|no,yes
+126,"A plate with a steak, French fries, and cherry tomatoes.",2,Are there French fries?,yes|no,yes
+126,"A plate with a steak, French fries, and cherry tomatoes.",3,Are there cherry tomatoes?,yes|no,yes
+126,"A plate with a steak, French fries, and cherry tomatoes.",4,Is the steak on the plate?,yes|no,yes
+126,"A plate with a steak, French fries, and cherry tomatoes.",5,Are the French fries on the plate?,yes|no,yes
+126,"A plate with a steak, French fries, and cherry tomatoes.",6,Are the cherry tomatoes on the plate?,yes|no,yes
+127,"A group of middle-aged women sitting, laughing, and chatting around a white table.",0,Are there women?,yes|no,yes
+127,"A group of middle-aged women sitting, laughing, and chatting around a white table.",1,Is there a group of women?,yes|no,yes
+127,"A group of middle-aged women sitting, laughing, and chatting around a white table.",2,Are the women middle-aged?,yes|no,yes
+127,"A group of middle-aged women sitting, laughing, and chatting around a white table.",3,Are the women sitting?,yes|no,yes
+127,"A group of middle-aged women sitting, laughing, and chatting around a white table.",4,Are the women laughing?,yes|no,yes
+127,"A group of middle-aged women sitting, laughing, and chatting around a white table.",5,Are the women chatting?,yes|no,yes
+127,"A group of middle-aged women sitting, laughing, and chatting around a white table.",6,Is there a table?,yes|no,yes
+127,"A group of middle-aged women sitting, laughing, and chatting around a white table.",7,Is the table white?,yes|no,yes
+127,"A group of middle-aged women sitting, laughing, and chatting around a white table.",8,Are the women sitting around the table?,yes|no,yes
+128,"A woman doing laundry outdoors with a basket of clothes, and her dog nearby.",0,Is there a woman?,yes|no,yes
+128,"A woman doing laundry outdoors with a basket of clothes, and her dog nearby.",1,Is the woman doing laundry?,yes|no,yes
+128,"A woman doing laundry outdoors with a basket of clothes, and her dog nearby.",2,Is there a basket of clothes?,yes|no,yes
+128,"A woman doing laundry outdoors with a basket of clothes, and her dog nearby.",3,Is there a dog?,yes|no,yes
+128,"A woman doing laundry outdoors with a basket of clothes, and her dog nearby.",4,Is the woman with the basket of clothes?,yes|no,yes
+128,"A woman doing laundry outdoors with a basket of clothes, and her dog nearby.",5,Is the dog nearby the woman?,yes|no,yes
+129,A heart-shaped pancake on a circular plate.,0,Is there a pancake?,yes|no,yes
+129,A heart-shaped pancake on a circular plate.,1,Is there a plate?,yes|no,yes
+129,A heart-shaped pancake on a circular plate.,2,Is the pancake heart-shaped?,yes|no,yes
+129,A heart-shaped pancake on a circular plate.,3,Is the plate circular?,yes|no,yes
+129,A heart-shaped pancake on a circular plate.,4,Is the pancake on the plate?,yes|no,yes
+130,Two women dressed in Halloween costumes with Halloween pumpkins around them.,0,Are there women?,yes|no,yes
+130,Two women dressed in Halloween costumes with Halloween pumpkins around them.,1,Are there two women?,yes|no,yes
+130,Two women dressed in Halloween costumes with Halloween pumpkins around them.,2,Are the women dressed in Halloween costumes?,yes|no,yes
+130,Two women dressed in Halloween costumes with Halloween pumpkins around them.,3,Are there pumpkins?,yes|no,yes
+130,Two women dressed in Halloween costumes with Halloween pumpkins around them.,4,Are there at least two pumpkins?,yes|no,yes
+130,Two women dressed in Halloween costumes with Halloween pumpkins around them.,5,Are the women surrounded by pumpkins?,yes|no,yes
+131,A couple put packed boxes into their car.,0,Is there a couple?,yes|no,yes
+131,A couple put packed boxes into their car.,1,Are there boxes?,yes|no,yes
+131,A couple put packed boxes into their car.,2,Is there a car?,yes|no,yes
+131,A couple put packed boxes into their car.,3,Is the couple packing boxes?,yes|no,yes
+131,A couple put packed boxes into their car.,4,Is the couple putting the boxes into the car?,yes|no,yes
+132,A beautiful orange-feathered bird in a leafy green tree.,0,Is there a bird?,yes|no,yes
+132,A beautiful orange-feathered bird in a leafy green tree.,1,Is there a tree?,yes|no,yes
+132,A beautiful orange-feathered bird in a leafy green tree.,2,Is the bird orange-feathered?,yes|no,yes
+132,A beautiful orange-feathered bird in a leafy green tree.,3,Is the tree leafy green?,yes|no,yes
+132,A beautiful orange-feathered bird in a leafy green tree.,4,Is the bird beautiful?,yes|no,yes
+132,A beautiful orange-feathered bird in a leafy green tree.,5,Is the bird in the tree?,yes|no,yes
+133,A black cat lying on the car hood.,0,Is there a cat?,yes|no,yes
+133,A black cat lying on the car hood.,1,Is there a car hood?,yes|no,yes
+133,A black cat lying on the car hood.,2,Is the cat black?,yes|no,yes
+133,A black cat lying on the car hood.,3,Is the cat lying?,yes|no,yes
+133,A black cat lying on the car hood.,4,Is the cat on the car hood?,yes|no,yes
+134,A smart boy solving a math problem on the chalkboard.,0,Is there a boy?,yes|no,yes
+134,A smart boy solving a math problem on the chalkboard.,1,Is there a math problem?,yes|no,yes
+134,A smart boy solving a math problem on the chalkboard.,2,Is there a chalkboard?,yes|no,yes
+134,A smart boy solving a math problem on the chalkboard.,3,Is the boy smart?,yes|no,yes
+134,A smart boy solving a math problem on the chalkboard.,4,Is the boy solving a math problem?,yes|no,yes
+134,A smart boy solving a math problem on the chalkboard.,5,Is the boy on the chalkboard?,yes|no,yes
+135,A cherry pie with some mini pumpkins on it and a decorated candle nearby.,0,Is there a cherry pie?,yes|no,yes
+135,A cherry pie with some mini pumpkins on it and a decorated candle nearby.,1,Are there mini pumpkins?,yes|no,yes
+135,A cherry pie with some mini pumpkins on it and a decorated candle nearby.,2,Is there a candle?,yes|no,yes
+135,A cherry pie with some mini pumpkins on it and a decorated candle nearby.,3,Is the pie a cherry pie?,yes|no,yes
+135,A cherry pie with some mini pumpkins on it and a decorated candle nearby.,4,Are the pumpkins mini?,yes|no,yes
+135,A cherry pie with some mini pumpkins on it and a decorated candle nearby.,5,Are the mini pumpkins on the cherry pie?,yes|no,yes
+135,A cherry pie with some mini pumpkins on it and a decorated candle nearby.,6,Is the candle nearby the cherry pie?,yes|no,yes
+135,A cherry pie with some mini pumpkins on it and a decorated candle nearby.,7,Is the candle decorated?,yes|no,yes
+136,A gray elephant and a pink flamingo.,0,Is there a gray elephant?,yes|no,yes
+136,A gray elephant and a pink flamingo.,1,Is there a pink flamingo?,yes|no,yes
+137,A man wearing a red shirt and a blue pants sitting in a park.,0,Is there a man?,yes|no,yes
+137,A man wearing a red shirt and a blue pants sitting in a park.,1,Is the man wearing a red shirt?,yes|no,yes
+137,A man wearing a red shirt and a blue pants sitting in a park.,2,Is the man wearing blue pants?,yes|no,yes
+137,A man wearing a red shirt and a blue pants sitting in a park.,3,Is the man sitting?,yes|no,yes
+137,A man wearing a red shirt and a blue pants sitting in a park.,4,Is there a park?,yes|no,yes
+137,A man wearing a red shirt and a blue pants sitting in a park.,5,Is the man in the park?,yes|no,yes
+138,A golden clock and a red car.,0,Is there a clock?,yes|no,yes
+138,A golden clock and a red car.,1,Is there a car?,yes|no,yes
+138,A golden clock and a red car.,2,Is the clock golden?,yes|no,yes
+138,A golden clock and a red car.,3,Is the car red?,yes|no,yes
+139,A red car and a brown elephant.,0,Is there a red car?,yes|no,yes
+139,A red car and a brown elephant.,1,Is there a brown elephant?,yes|no,yes
+140,A red hat and a red apple.,0,Is there a red hat?,yes|no,yes
+140,A red hat and a red apple.,1,Is there a red apple?,yes|no,yes
+140,A red hat and a red apple.,2,Is the hat red?,yes|no,yes
+140,A red hat and a red apple.,3,Is the apple red?,yes|no,yes
+141,A black suitcase near a gray car.,0,Is there a suitcase?,yes|no,yes
+141,A black suitcase near a gray car.,1,Is there a car?,yes|no,yes
+141,A black suitcase near a gray car.,2,Is the suitcase black?,yes|no,yes
+141,A black suitcase near a gray car.,3,Is the car gray?,yes|no,yes
+141,A black suitcase near a gray car.,4,Is the suitcase near the car?,yes|no,yes
+142,A brown bear and a black top hat,0,Is there a brown bear?,yes|no,yes
+142,A brown bear and a black top hat,1,Is there a black top hat?,yes|no,yes
+142,A brown bear and a black top hat,2,Is the bear brown?,yes|no,yes
+142,A brown bear and a black top hat,3,Is the top hat black?,yes|no,yes
+143,A yellow school bus and a red stop sign and a blue car.,0,Is there a yellow school bus?,yes|no,yes
+143,A yellow school bus and a red stop sign and a blue car.,1,Is there a red stop sign?,yes|no,yes
+143,A yellow school bus and a red stop sign and a blue car.,2,Is there a blue car?,yes|no,yes
+144,A black cat and a white mouse.,0,Is there a black cat?,yes|no,yes
+144,A black cat and a white mouse.,1,Is there a white mouse?,yes|no,yes
+145,A brown teddy bear and a pink blanket and a white pillow.,0,Is there a teddy bear?,yes|no,yes
+145,A brown teddy bear and a pink blanket and a white pillow.,1,Is there a blanket?,yes|no,yes
+145,A brown teddy bear and a pink blanket and a white pillow.,2,Is there a pillow?,yes|no,yes
+145,A brown teddy bear and a pink blanket and a white pillow.,3,Is the teddy bear brown?,yes|no,yes
+145,A brown teddy bear and a pink blanket and a white pillow.,4,Is the blanket pink?,yes|no,yes
+145,A brown teddy bear and a pink blanket and a white pillow.,5,Is the pillow white?,yes|no,yes
+146,a girl with red hair sleeping on a couch,0,Is there a girl?,yes|no,yes
+146,a girl with red hair sleeping on a couch,1,Is there hair?,yes|no,yes
+146,a girl with red hair sleeping on a couch,2,Is the girl's hair red?,yes|no,yes
+146,a girl with red hair sleeping on a couch,3,Is the girl sleeping?,yes|no,yes
+146,a girl with red hair sleeping on a couch,4,Is there a couch?,yes|no,yes
+147,a baby girl with red hair sleeping on a couch and an old man with white hair cooking potatoes,0,Is there a baby girl?,yes|no,yes
+147,a baby girl with red hair sleeping on a couch and an old man with white hair cooking potatoes,1,Is there a couch?,yes|no,yes
+147,a baby girl with red hair sleeping on a couch and an old man with white hair cooking potatoes,2,Is there an old man?,yes|no,yes
+147,a baby girl with red hair sleeping on a couch and an old man with white hair cooking potatoes,3,Are there potatoes?,yes|no,yes
+147,a baby girl with red hair sleeping on a couch and an old man with white hair cooking potatoes,4,Is the baby girl's hair red?,yes|no,yes
+147,a baby girl with red hair sleeping on a couch and an old man with white hair cooking potatoes,5,Is the old man's hair white?,yes|no,yes
+147,a baby girl with red hair sleeping on a couch and an old man with white hair cooking potatoes,6,Is the baby girl sleeping?,yes|no,yes
+147,a baby girl with red hair sleeping on a couch and an old man with white hair cooking potatoes,7,Is the old man cooking?,yes|no,yes
+147,a baby girl with red hair sleeping on a couch and an old man with white hair cooking potatoes,8,Is the baby girl on the couch?,yes|no,yes
+147,a baby girl with red hair sleeping on a couch and an old man with white hair cooking potatoes,9,Is the old man cooking potatoes?,yes|no,yes
+148,a photo of a white dog with blue eyes playing soccer,0,Is this a photo?,yes|no,yes
+148,a photo of a white dog with blue eyes playing soccer,1,Is there a dog?,yes|no,yes
+148,a photo of a white dog with blue eyes playing soccer,2,Is the dog white?,yes|no,yes
+148,a photo of a white dog with blue eyes playing soccer,3,Are the dog's eyes blue?,yes|no,yes
+148,a photo of a white dog with blue eyes playing soccer,4,Is the dog playing soccer?,yes|no,yes
+149,A squirrel standing on a chair.,0,Is there a squirrel?,yes|no,yes
+149,A squirrel standing on a chair.,1,Is there a chair?,yes|no,yes
+149,A squirrel standing on a chair.,2,Is the squirrel standing?,yes|no,yes
+149,A squirrel standing on a chair.,3,Is the squirrel on the chair?,yes|no,yes
+150,A cat standing on a table.,0,Is there a cat?,yes|no,yes
+150,A cat standing on a table.,1,Is there a table?,yes|no,yes
+150,A cat standing on a table.,2,Is the cat standing?,yes|no,yes
+150,A cat standing on a table.,3,Is the cat on the table?,yes|no,yes
+151,An elephant standing on a bed.,0,Is there an elephant?,yes|no,yes
+151,An elephant standing on a bed.,1,Is there a bed?,yes|no,yes
+151,An elephant standing on a bed.,2,Is the elephant standing on the bed?,yes|no,yes
+152,A tiger standing on the floor.,0,Is there a tiger?,yes|no,yes
+152,A tiger standing on the floor.,1,Is there a floor?,yes|no,yes
+152,A tiger standing on the floor.,2,Is the tiger standing?,yes|no,yes
+152,A tiger standing on the floor.,3,Is the tiger on the floor?,yes|no,yes
+153,A lion standing on the floor.,0,Is there a lion?,yes|no,yes
+153,A lion standing on the floor.,1,Is there a floor?,yes|no,yes
+153,A lion standing on the floor.,2,Is the lion standing on the floor?,yes|no,yes
+153,A lion standing on the floor.,3,Is the lion standing?,yes|no,yes
+154,A dog standing on a table.,0,Is there a dog?,yes|no,yes
+154,A dog standing on a table.,1,Is there a table?,yes|no,yes
+154,A dog standing on a table.,2,Is the dog on the table?,yes|no,yes
+154,A dog standing on a table.,3,Is the dog standing?,yes|no,yes
+155,A cat with green eyes reading a book.,0,Is there a cat?,yes|no,yes
+155,A cat with green eyes reading a book.,1,Does the cat have eyes?,yes|no,yes
+155,A cat with green eyes reading a book.,2,Are the cat's eyes green?,yes|no,yes
+155,A cat with green eyes reading a book.,3,Is the cat reading?,yes|no,yes
+155,A cat with green eyes reading a book.,4,Is there a book?,yes|no,yes
+156,a tree with yellow leaves and a parrot and a snow-capped mountain,0,Is there a tree?,yes|no,yes
+156,a tree with yellow leaves and a parrot and a snow-capped mountain,1,Are there leaves?,yes|no,yes
+156,a tree with yellow leaves and a parrot and a snow-capped mountain,2,Are the leaves yellow?,yes|no,yes
+156,a tree with yellow leaves and a parrot and a snow-capped mountain,3,Is there a parrot?,yes|no,yes
+156,a tree with yellow leaves and a parrot and a snow-capped mountain,4,Is there a mountain?,yes|no,yes
+156,a tree with yellow leaves and a parrot and a snow-capped mountain,5,Is the mountain snow-capped?,yes|no,yes
+157,a baby girl with red hair sleeping on a couch,0,Is there a baby girl?,yes|no,yes
+157,a baby girl with red hair sleeping on a couch,1,Is there hair?,yes|no,yes
+157,a baby girl with red hair sleeping on a couch,2,Is the hair red?,yes|no,yes
+157,a baby girl with red hair sleeping on a couch,3,Is the baby girl sleeping?,yes|no,yes
+157,a baby girl with red hair sleeping on a couch,4,Is there a couch?,yes|no,yes
+157,a baby girl with red hair sleeping on a couch,5,Is the baby girl on the couch?,yes|no,yes
+158,an old man with white hair cooking potatoes,0,Is there an old man?,yes|no,yes
+158,an old man with white hair cooking potatoes,1,Does the man have white hair?,yes|no,yes
+158,an old man with white hair cooking potatoes,2,Is the man cooking potatoes?,yes|no,yes
+159,a baby girl and an old man,0,Is there a baby girl?,yes|no,yes
+159,a baby girl and an old man,1,Is there an old man?,yes|no,yes
+160,a girl with red hair and a man with white hair,0,Is there a girl?,yes|no,yes
+160,a girl with red hair and a man with white hair,1,Is there hair?,yes|no,yes
+160,a girl with red hair and a man with white hair,2,Is the girl's hair red?,yes|no,yes
+160,a girl with red hair and a man with white hair,3,Is there a man?,yes|no,yes
+160,a girl with red hair and a man with white hair,4,Is there hair?,yes|no,yes
+160,a girl with red hair and a man with white hair,5,Is the man's hair white?,yes|no,yes
+161,a baby girl with red hair and an old man with white hair,0,Is there a baby girl?,yes|no,yes
+161,a baby girl with red hair and an old man with white hair,1,Is there an old man?,yes|no,yes
+161,a baby girl with red hair and an old man with white hair,2,Does the baby girl have hair?,yes|no,yes
+161,a baby girl with red hair and an old man with white hair,3,Does the old man have hair?,yes|no,yes
+161,a baby girl with red hair and an old man with white hair,4,Is the baby girl's hair red?,yes|no,yes
+161,a baby girl with red hair and an old man with white hair,5,Is the old man's hair white?,yes|no,yes
+162,a girl with red hair sleeping on a couch and a man with white hair,0,Is there a girl?,yes|no,yes
+162,a girl with red hair sleeping on a couch and a man with white hair,1,Is there hair?,yes|no,yes
+162,a girl with red hair sleeping on a couch and a man with white hair,2,Is the girl's hair red?,yes|no,yes
+162,a girl with red hair sleeping on a couch and a man with white hair,3,Is the girl sleeping?,yes|no,yes
+162,a girl with red hair sleeping on a couch and a man with white hair,4,Is there a couch?,yes|no,yes
+162,a girl with red hair sleeping on a couch and a man with white hair,5,Is there a man?,yes|no,yes
+162,a girl with red hair sleeping on a couch and a man with white hair,6,Is there hair?,yes|no,yes
+162,a girl with red hair sleeping on a couch and a man with white hair,7,Is the man's hair white?,yes|no,yes
+163,a baby girl sleeping on a couch with an old man,0,Is there a baby girl?,yes|no,yes
+163,a baby girl sleeping on a couch with an old man,1,Is there a couch?,yes|no,yes
+163,a baby girl sleeping on a couch with an old man,2,Is there an old man?,yes|no,yes
+163,a baby girl sleeping on a couch with an old man,3,Is the baby girl a baby?,yes|no,yes
+163,a baby girl sleeping on a couch with an old man,4,Is the baby girl sleeping?,yes|no,yes
+163,a baby girl sleeping on a couch with an old man,5,Is the baby girl on the couch?,yes|no,yes
+163,a baby girl sleeping on a couch with an old man,6,Is the baby girl with the old man?,yes|no,yes
+164,a baby girl sleeping and an old man cooking,0,Is there a baby girl?,yes|no,yes
+164,a baby girl sleeping and an old man cooking,1,Is there an old man?,yes|no,yes
+164,a baby girl sleeping and an old man cooking,2,Is the baby girl a baby?,yes|no,yes
+164,a baby girl sleeping and an old man cooking,3,Is the old man old?,yes|no,yes
+164,a baby girl sleeping and an old man cooking,4,Is the baby girl sleeping?,yes|no,yes
+164,a baby girl sleeping and an old man cooking,5,Is the old man cooking?,yes|no,yes

@@ -2431,11 +2431,11 @@ id,target_prompt,file_name,image_source,rank
 142,A brown bear and a black top hat,images/142-02.jpg,SD1.5,1a
 142,A brown bear and a black top hat,images/142-03.jpg,SD1.5,0
 142,A brown bear and a black top hat,images/142-04.jpg,SD1.5,0
-143,A yellow school bus and a red stop sign and a blue car.,images/143-00.jpg,SD-XL,2a
-143,A yellow school bus and a red stop sign and a blue car.,images/143-01.jpg,SD-XL,1a
-143,A yellow school bus and a red stop sign and a blue car.,images/143-02.jpg,SD-XL,0
-143,A yellow school bus and a red stop sign and a blue car.,images/143-03.jpg,SD-XL,1b
-143,A yellow school bus and a red stop sign and a blue car.,images/143-04.jpg,SD-XL,1c
+143,A yellow school bus and a red stop sign and a blue car.,images/143-00.jpg,SDXL,2a
+143,A yellow school bus and a red stop sign and a blue car.,images/143-01.jpg,SDXL,1a
+143,A yellow school bus and a red stop sign and a blue car.,images/143-02.jpg,SDXL,0
+143,A yellow school bus and a red stop sign and a blue car.,images/143-03.jpg,SDXL,1b
+143,A yellow school bus and a red stop sign and a blue car.,images/143-04.jpg,SDXL,1c
 144,A black cat and a white mouse.,images/144-00.jpg,SD1.5,1a
 144,A black cat and a white mouse.,images/144-01.jpg,SD1.5,2
 144,A black cat and a white mouse.,images/144-02.jpg,SD1.5,1a
@@ -2577,11 +2577,11 @@ id,target_prompt,file_name,image_source,rank
 152,A tiger standing on the floor.,images/152-09.jpg,SD2.1,1a
 152,A tiger standing on the floor.,images/152-10.jpg,SD2.1,1c
 152,A tiger standing on the floor.,images/152-11.jpg,SD2.1,2b
-152,A tiger standing on the floor.,images/152-12.jpg,SD2.2,2c
-152,A tiger standing on the floor.,images/152-13.jpg,SD2.3,1c
-152,A tiger standing on the floor.,images/152-14.jpg,SD2.4,0
-152,A tiger standing on the floor.,images/152-15.jpg,SD2.5,1c
-152,A tiger standing on the floor.,images/152-16.jpg,SD2.6,2c
+152,A tiger standing on the floor.,images/152-12.jpg,SD2.1,2c
+152,A tiger standing on the floor.,images/152-13.jpg,SD2.1,1c
+152,A tiger standing on the floor.,images/152-14.jpg,SD2.1,0
+152,A tiger standing on the floor.,images/152-15.jpg,SD2.1,1c
+152,A tiger standing on the floor.,images/152-16.jpg,SD2.1,2c
 153,A lion standing on the floor.,images/153-00.jpg,SD2.1,2a
 153,A lion standing on the floor.,images/153-01.jpg,SD2.1,1a
 153,A lion standing on the floor.,images/153-02.jpg,SD2.1,2a
@@ -2593,8 +2593,8 @@ id,target_prompt,file_name,image_source,rank
 153,A lion standing on the floor.,images/153-08.jpg,SD2.1,1c
 153,A lion standing on the floor.,images/153-09.jpg,SD2.1,0
 153,A lion standing on the floor.,images/153-10.jpg,SD2.1,0
-153,A lion standing on the floor.,images/153-11.jpg,SD2.4,0
-153,A lion standing on the floor.,images/153-12.jpg,SD2.5,1d
+153,A lion standing on the floor.,images/153-11.jpg,SD2.1,0
+153,A lion standing on the floor.,images/153-12.jpg,SD2.1,1d
 154,A dog standing on a table.,images/154-00.jpg,SD2.1,0
 154,A dog standing on a table.,images/154-01.jpg,SD2.1,1a
 154,A dog standing on a table.,images/154-02.jpg,SD2.1,0
@@ -2604,15 +2604,15 @@ id,target_prompt,file_name,image_source,rank
 154,A dog standing on a table.,images/154-06.jpg,SD2.1,2a
 154,A dog standing on a table.,images/154-07.jpg,SD2.1,1b
 154,A dog standing on a table.,images/154-08.jpg,SD2.1,1b
-154,A dog standing on a table.,images/154-09.jpg,SD2.2,2b
-154,A dog standing on a table.,images/154-10.jpg,SD2.3,1c
-154,A dog standing on a table.,images/154-11.jpg,SD2.4,2b
-154,A dog standing on a table.,images/154-12.jpg,SD2.5,2b
-154,A dog standing on a table.,images/154-13.jpg,SD2.6,1c
-154,A dog standing on a table.,images/154-14.jpg,SD2.7,1a
-154,A dog standing on a table.,images/154-15.jpg,SD2.9,1a
-154,A dog standing on a table.,images/154-16.jpg,SD2.10,1a
-154,A dog standing on a table.,images/154-17.jpg,SD2.11,1a
+154,A dog standing on a table.,images/154-09.jpg,SD2.1,2b
+154,A dog standing on a table.,images/154-10.jpg,SD2.1,1c
+154,A dog standing on a table.,images/154-11.jpg,SD2.1,2b
+154,A dog standing on a table.,images/154-12.jpg,SD2.1,2b
+154,A dog standing on a table.,images/154-13.jpg,SD2.1,1c
+154,A dog standing on a table.,images/154-14.jpg,SD2.1,1a
+154,A dog standing on a table.,images/154-15.jpg,SD2.1,1a
+154,A dog standing on a table.,images/154-16.jpg,SD2.1,1a
+154,A dog standing on a table.,images/154-17.jpg,SD2.1,1a
 155,A cat with green eyes reading a book.,images/155-00.jpg,SD2.1,1a
 155,A cat with green eyes reading a book.,images/155-01.jpg,SD2.1,2a
 155,A cat with green eyes reading a book.,images/155-02.jpg,SD2.1,2a

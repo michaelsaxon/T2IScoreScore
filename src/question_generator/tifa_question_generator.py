@@ -1,20 +1,22 @@
-import openai
-from openai_utils import openai_setup, openai_completion
+import argparse
 import csv
-import json
-from absl import flags
-import sys
 
+import openai
 
-FLAGS = flags.FLAGS
+def openai_completion(prompt, engine="gpt-3.5-turbo", max_tokens=700, temperature=0):
+    resp =  openai.ChatCompletion.create(
+        model=engine,
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=max_tokens,
+        temperature=temperature,
+        stop=["\n\n", "<|endoftext|>"]
+        )
 
-flags.DEFINE_string("api_key", "", "OpenAI API key.")
-flags.DEFINE_string("input_file", "", "Path to the input file with prompts.")
-flags.DEFINE_string("output_csv", "", "Path to save the output CSV file.")
+    return resp['choices'][0]['message']['content']
 
 class TIFA_QuestionGenerator:
     def __init__(self):
-        with open('/content/TIFA_prompt.txt', 'r') as file:
+        with open('src/question_generator/TIFA_prompt.txt', 'r') as file:
             self.prompt = file.read()
             self.categories = ['object',
                                 'human',
@@ -119,12 +121,18 @@ class TIFA_QuestionGenerator:
                     'answer': csv_data['answer'][i],
                 })
 
-if __name__ == "__main__":
-    FLAGS(sys.argv)  # Parse command line flags.
+def main():
+    parser = argparse.ArgumentParser(description="Process prompts with TIFA QuestionGenerator.")
 
-    api_key = FLAGS.api_key
-    input_file_path = FLAGS.input_file
-    output_csv_path = FLAGS.output_csv
+    parser.add_argument("-a", "--api_key", type=str, help="OpenAI API key.")
+    parser.add_argument("-i", "--input_file", type=str, help="Path to the input file with prompts.")
+    parser.add_argument("-o", "--output_csv", type=str, help="Path to save the output CSV file.")
+
+    args = parser.parse_args()
+
+    openai.api_key = args.api_key
+    input_file_path = args.input_file
+    output_csv_path = args.output_csv
 
     question_generator = TIFA_QuestionGenerator()
 
@@ -135,3 +143,5 @@ if __name__ == "__main__":
 
     question_generator.save_to_csv(prompts, output_csv_path)
 
+if __name__ == "__main__":
+    main()
