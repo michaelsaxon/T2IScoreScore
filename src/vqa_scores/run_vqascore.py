@@ -1,7 +1,7 @@
 import argparse
 import csv
 
-from blip import BlipVQAScorer
+from vqa_scores.blip1 import BlipVQAScorer
 from fuyu import FuyuVQAScorer
 from instruct_blip import InstructBlipVQAScorer
 from llava import LLavaVQAScorer
@@ -18,7 +18,7 @@ class VQAProcessor:
             self.vqa_scorer = LLavaVQAScorer(model_path=model_path)
         elif model_type == "instructblip":
             self.vqa_scorer = InstructBlipVQAScorer(model_path=model_path)
-        elif model_type == "blip":
+        elif model_type == "blip1":
             self.vqa_scorer = BlipVQAScorer(model_path=model_path)
         else:
             raise ValueError("Invalid model type")
@@ -41,7 +41,7 @@ class VQAProcessor:
         for all_img_line_no in range(len(all_images_list)):
             image_line = all_images_list[all_img_line_no]
             this_id = image_line[0]
-            this_fname = image_line[9]
+            this_fname = image_line[2]
             question_set = filter(lambda x: x[0].isdigit() and int(x[0]) == int(this_id), questions)
 
             for question_line in list(question_set):
@@ -50,7 +50,7 @@ class VQAProcessor:
 
                 try:
                     answer = self.vqa_scorer.get_answer(question, image_folder + this_fname)
-                    out_line = f"{str(this_id)},{this_fname},{str(question_id)},{str(answer).replace(',', '').strip()}"
+                    out_line = f"{str(this_id)},{this_fname.replace('images/', '')},{str(question_id)},{str(answer).replace(',', '').strip()}"
                     print(out_line)
                     out_lines.append(out_line + "\n")
                 except FileNotFoundError:
@@ -74,11 +74,11 @@ def main():
     "fuyu": 'adept/fuyu-8b',
     "llava": 'liuhaotian/llava-v1.5-13b',
     "instructBlip" : 'Salesforce/instructblip-flan-t5-xl',
-    "blip" : 'ybelkada/blip-vqa-base'
+    "blip1" : 'ybelkada/blip-vqa-base'
     }
 
     parser = argparse.ArgumentParser(description='Get answers using a VQA model for a set of questions and images.')
-    parser.add_argument("-m", '--model', default="mplug", help="Choose the VQA model (mplug, fuyu, llava, instructBlip, blip)")
+    parser.add_argument("-m", '--model', default="blip1", help="Choose the VQA model (mplug, fuyu, llava, instructBlip, blip1)")
     parser.add_argument("-q", '--questions_file', default="TS2_TIFA_Q.csv", help="Path to the questions CSV file (tifa, dsg)")
     parser.add_argument("-o", '--output', default="output/a_mplug_tifa.csv", help="Path to the output CSV file")
     parser.add_argument("-i", '--image_folder', default="data/T2IScoreScore/", help="Base path for image files")

@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.utils.read_csv_utils import *
+from scoring import *
 
 """
 output_dict = load_kvp_multiple_files("HalluVision_scores.csv")

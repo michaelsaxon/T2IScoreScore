@@ -9,10 +9,12 @@ setup(name='T2IScoreScore',
     packages=find_packages(where='src'),
     python_requires='>=3.8',
     install_requires=[
+        'torch'
+        'transformers[torch]'
         'pandas',
         'tqdm',
         'scipy',
-        'seaborn'
+        'seaborn',
     ],
     zip_safe=False
 )
