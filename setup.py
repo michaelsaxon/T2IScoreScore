@@ -12,9 +12,7 @@ setup(name='T2IScoreScore',
         'pandas',
         'tqdm',
         'scipy',
-        'seaborn',
-        'torch',
-        'transformers',
+        'seaborn'
     ],
     zip_safe=False
 )

@@ -144,8 +144,10 @@ def main():
         df = pd.read_csv(args.csv_path)
         line_plot(df, id_to_plot, metrics_to_show, args.output_path)
     '''
-    id_to_plot = 148  # Replace with the desired id
-    metrics_to_show = ['alignscore', 'blipscore', 'clipscore']
+    id_to_plot = 140  # Replace with the desired id
+    metrics_to_show = ['fuyu_dsg','fuyu_tifa', 'instruct_blip_dsg' ,'instruct_blip_tifa', 'llava-alt_dsg','llava-alt_tifa',
+                       'llava_dsg','llava_tifa', 'mplug_dsg', 'mplug_tifa'
+]
     df = pd.read_csv(args.csv_path)
     line_plot(df, id_to_plot, metrics_to_show, args.output_path)
 >>>>>>> 764ad10a4420585298aba9aa30de31bdbe1592fb
