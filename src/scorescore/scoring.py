@@ -20,7 +20,6 @@ def within_node_score(dataframe, metric_col_idces, id_range, score_function, nod
             node_level_vars = []
             for node in node_set:
                 vals = list(map(lambda x: robust_float_cast(x), list(id_df.loc[id_df[node_id_idx] == node][metric_col_idx])))
-                #output_dict[metric_col_idx][id_idx][node] = score_function(vals)
                 node_level_vars.append(score_function(vals))
             node_level_vars = [var for var in node_level_vars if not math.isnan(var)]
             if len(node_level_vars) == 0:
@@ -72,8 +71,7 @@ def robust_float_cast(instr):
 ### Check if we need to reorder using second variable
 # get each possible walk and run the correlations (for now might be off)
 # return something just indexed by range
-def analysis_tree_score(file_path, metric_col_idces, id_range, score_function, node_id_col="rank", scaled_avg=False, debug = False):
-    dataframe = pd.read_csv(file_path)
+def analysis_tree_score(dataframe, metric_col_idces, id_range, score_function, node_id_col="rank", scaled_avg=False, debug = False):
     printif = print if debug else lambda *x: None
     output_dict = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
     val_counts = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
@@ -86,12 +84,11 @@ def analysis_tree_score(file_path, metric_col_idces, id_range, score_function, n
             node_numbers_sorted = list(set(node_numbers))
             node_numbers_sorted.sort()
         except ValueError:
-            print()
             print(id_df)
             input()
         # probably not ideal, but just build every possible alignment to start
         # aka, dfs on sets of 0, 1, 2, ... to max(node_numbers)
-        walks = list(map(lambda x: [x], [i for i, x in enumerate(node_numbers) if x == 0]))
+        walks = list(map(lambda x: [x], [i for i, x in enumerate(node_numbers) if x == '0']))
         #for level in range(1,max(node_numbers) + 1):
         for level in node_numbers_sorted:
             new_walks = []
@@ -107,6 +104,7 @@ def analysis_tree_score(file_path, metric_col_idces, id_range, score_function, n
         for metric_col_idx in metric_col_idces:
             walk_scores = []
             walk_score_counts = []
+            print(walks_ids)
             for i in range(len(walks_ids)):
                 x_vals = []
                 walk_ids = walks_ids[i]
