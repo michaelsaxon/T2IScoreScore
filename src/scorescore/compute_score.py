@@ -9,7 +9,7 @@ def compute():
 
 
     dataframe['rank'] = pd.Series(list(ranks["rank"]), index=dataframe.index)
-    dataframe['rank'] = dataframe['rank'].apply(lambda x: re.sub(r'\D', '', x))
+    dataframe['rank'] = dataframe['rank'].apply(lambda x: int(re.sub(r'\D', '', x)))
 
 
     id_range = list(range(max(dataframe["id"])))
