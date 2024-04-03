@@ -20,7 +20,6 @@ def within_node_score(dataframe, metric_col_idces, id_range, score_function, nod
             node_level_vars = []
             for node in node_set:
                 vals = list(map(lambda x: robust_float_cast(x), list(id_df.loc[id_df[node_id_idx] == node][metric_col_idx])))
-                #output_dict[metric_col_idx][id_idx][node] = score_function(vals)
                 node_level_vars.append(score_function(vals))
             node_level_vars = [var for var in node_level_vars if not math.isnan(var)]
             if len(node_level_vars) == 0:
@@ -72,8 +71,7 @@ def robust_float_cast(instr):
 ### Check if we need to reorder using second variable
 # get each possible walk and run the correlations (for now might be off)
 # return something just indexed by range
-def analysis_tree_score(file_path, metric_col_idces, id_range, score_function, node_id_col="rank", scaled_avg=False, debug = False):
-    dataframe = pd.read_csv(file_path)
+def analysis_tree_score(dataframe, metric_col_idces, id_range, score_function, node_id_col="rank", scaled_avg=False, debug = True):
     printif = print if debug else lambda *x: None
     output_dict = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
     val_counts = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
@@ -86,7 +84,6 @@ def analysis_tree_score(file_path, metric_col_idces, id_range, score_function, n
             node_numbers_sorted = list(set(node_numbers))
             node_numbers_sorted.sort()
         except ValueError:
-            print()
             print(id_df)
             input()
         # probably not ideal, but just build every possible alignment to start
@@ -104,6 +101,7 @@ def analysis_tree_score(file_path, metric_col_idces, id_range, score_function, n
             walks = new_walks
         walks_ids = list(map(lambda x: list(map(lambda y: node_set[y], x)), walks))
         walks_x = list(map(lambda x: list(map(lambda y: node_numbers[y], x)), walks))
+
         for metric_col_idx in metric_col_idces:
             walk_scores = []
             walk_score_counts = []
@@ -126,6 +124,7 @@ def analysis_tree_score(file_path, metric_col_idces, id_range, score_function, n
                 # important we drop the x for y nans before y for y nans
                 walk_x_array = [x for i, x in enumerate(walk_x_array) if not math.isnan(walk_y_array[i])]
                 walk_y_array = [y for y in walk_y_array if not math.isnan(y)]
+                print(walk_x_array,walk_y_array )
                 walk_scores.append(score_function(walk_x_array, walk_y_array))
                 printif(walk_scores)
                 walk_score_counts.append(len(walk_x_array))
@@ -143,8 +142,10 @@ def analysis_tree_score(file_path, metric_col_idces, id_range, score_function, n
                     output_dict_val = sum(map(lambda i: output_vals[i] * output_counts[i], range(len(output_vals)))) / sum(output_counts)
                 else:
                     output_dict_val = sum(output_vals) / len(output_vals)
+                print(output_vals)
                 output_dict[metric_col_idx][id_idx] = output_dict_val
                 val_counts[metric_col_idx][id_idx] = len(output_vals)
+        
     return output_dict, val_counts
 
 

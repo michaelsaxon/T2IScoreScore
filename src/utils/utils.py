@@ -6,6 +6,8 @@ import re
 import os
 import pandas as pd
 
+'''Merge all score files into a single combined file.
+'''
 def clean_and_merge(folder_path='output/scores_per_image', score_file_suffix='_score.csv', metadata_file='data/metadata.csv', output_file='output/scores_final_all.csv'):
     combined_df = pd.DataFrame(columns=['id', 'image_id'])
 
