@@ -1,6 +1,6 @@
 
 
-# T2IScoreScore
+# T2IScoreScore( TS2): Objectively assessing text-to-image prompt faithfulness metrics
 
 ![Static Badge](https://img.shields.io/badge/GenerativeAI-%20%23996600)
 ![Static Badge](https://img.shields.io/badge/T2IScoreScore-%20%23006699)
@@ -11,11 +11,12 @@
 
 
 
-
-
-### **Who Evaluates the Evaluations? Assessing the Faithfulness and Consistency of Text-to-Image Evaluation Metrics with *T2IScoreScore***
-
 We introduced **T2IScoreScore** dataset! 📸✨  🤗 [HF Repo](https://huggingface.co/datasets/saxon/T2IScoreScore)
+
+This repository contains the code and models for our paper:
+
+[Who Evaluates the Evaluations? Objectively Scoring Text-to-Image Prompt Coherence Metrics with T2IScoreScore (TS2)](https://arxiv.org/abs/2404.04251).
+Please check the [project page](https://t2iscorescore.github.io/) for a quick overview.
 
 T2IScoreScore is a meticulously curated dataset featuring image sets that smoothly transition from high to low faithfulness with respect to the given prompt. This collection includes both synthetic and natural examples, providing a comprehensive range for meta-evaluating existing Text-to-Image (T2I) metrics. Our goal is to facilitate the development of more accurate and consistent T2I metrics in the future.
 
