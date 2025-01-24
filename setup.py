@@ -18,21 +18,3 @@ setup(name='T2IScoreScore',
     ],
     zip_safe=False
 )
-
-'''
-    extras_require={
-        # 'cogview' : ['git+https://github.com/Sleepychord/Image-Local-Attention.git'],
-        # https://github.com/THUDM/CogView2/tree/main
-        'figures' : ['seaborn'],
-        'altdiffusion' : ['sentencepiece'],
-        'openai' : ['openai', 'backoff'],
-        'craiyon' : ['dalle-mini', 'jaxlib==0.3.25', 'vqgan-jax @ git+https://github.com/patil-suraj/vqgan-jax.git'],
-        'creator' : ['babelnet', 'translators']
-    },
-    entry_points={
-        'console_scripts': [
-            'cccl-build-benchmark=cococrola.create.benchmark:main',
-            'cccl-evaluate=cococrola.evaluate.evaluate_model:main'
-        ]
-    },
-    '''

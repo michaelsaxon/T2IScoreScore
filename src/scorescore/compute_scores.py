@@ -1,6 +1,8 @@
 import pandas as pd
 
-from src.utils.read_csv_utils import *
+from src.utils.utils import *
+
+from scoring import *
 
 """
 output_dict = load_kvp_multiple_files("HalluVision_scores.csv")
@@ -33,7 +35,7 @@ def clean_int_string(instr):
             instr = instr.replace(char,"")
     return instr
 
-dataframe = pd.read_csv("../../output/scores-final-all.csv")
+dataframe = pd.read_csv("../../output/scores_final_all_2.csv")
 
 ranks = pd.read_csv("../../data/metadata.csv")
 
@@ -60,7 +62,7 @@ print("running tree corr for all samples")
 #tree_spearman_avg, tree_counts = tree_correlation_score(dataframe, metrics, id_range, spearman_corr, scaled_avg=True)
 #node_variances, node_counts = within_node_score(dataframe, metrics, id_range, variance)
 
-avg_ks_stat, ks_counts = tree_correlation_score(dataframe, metrics, id_range, between_nodepair_ks_score, scaled_avg=True)
+avg_ks_stat, ks_counts = analysis_tree_score(dataframe, metrics, id_range, between_nodepair_ks_score, scaled_avg=True)
 
 #print(tree_spearman_avg)
 

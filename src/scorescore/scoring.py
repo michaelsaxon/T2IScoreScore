@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import math
 
-from scipy.stats import spearmanr, ks_2samp
+from scipy.stats import spearmanr, ks_2samp, kendalltau
 
 # produce an output dict indexed by id then node of the function eval'd over each node
 def within_node_score(dataframe, metric_col_idces, id_range, score_function, node_id_idx = "rank"):
@@ -72,26 +72,29 @@ def robust_float_cast(instr):
 ### Check if we need to reorder using second variable
 # get each possible walk and run the correlations (for now might be off)
 # return something just indexed by range
-def analysis_tree_score(file_path, metric_col_idces, id_range, score_function, node_id_col="rank", scaled_avg=False, debug = False):
-    dataframe = pd.read_csv(file_path)
+def analysis_tree_score(dataframe, metric_col_idces, id_range, score_function, node_id_col="rank", scaled_avg=False, debug = False):
     printif = print if debug else lambda *x: None
     output_dict = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
     val_counts = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
-
     for id_idx in tqdm(id_range):
         id_df = dataframe.loc[dataframe["id"] == id_idx]
+        printif(id_df)
         node_set = list(id_df[node_id_col].unique())
         try:
-            node_numbers = node_set
+            node_numbers = list(map(extract_int_string, node_set))
             node_numbers_sorted = list(set(node_numbers))
             node_numbers_sorted.sort()
+            printif(node_numbers_sorted)
         except ValueError:
             print()
             print(id_df)
             input()
         # probably not ideal, but just build every possible alignment to start
         # aka, dfs on sets of 0, 1, 2, ... to max(node_numbers)
+        printif(node_numbers)
         walks = list(map(lambda x: [x], [i for i, x in enumerate(node_numbers) if x == 0]))
+        printif("walks!!!!")
+        printif(walks)
         #for level in range(1,max(node_numbers) + 1):
         for level in node_numbers_sorted:
             new_walks = []
@@ -103,6 +106,7 @@ def analysis_tree_score(file_path, metric_col_idces, id_range, score_function, n
                     new_walks.append(copied)
             walks = new_walks
         walks_ids = list(map(lambda x: list(map(lambda y: node_set[y], x)), walks))
+        printif(walks_ids)
         walks_x = list(map(lambda x: list(map(lambda y: node_numbers[y], x)), walks))
         for metric_col_idx in metric_col_idces:
             walk_scores = []
@@ -111,7 +115,7 @@ def analysis_tree_score(file_path, metric_col_idces, id_range, score_function, n
                 x_vals = []
                 walk_ids = walks_ids[i]
                 walk_xs = walks_x[i]
-                # # # # ITERATE THROUGH AND GENERATE THE X Y, RUN SPEARMAN CORR
+                # # # # ITERATE THROUGH AND GENERATE THE X Y, RUN SCORE FUNC
                 walk_x_array = []
                 walk_y_array = []
                 for j in range(len(walk_ids)):
@@ -127,8 +131,8 @@ def analysis_tree_score(file_path, metric_col_idces, id_range, score_function, n
                 walk_x_array = [x for i, x in enumerate(walk_x_array) if not math.isnan(walk_y_array[i])]
                 walk_y_array = [y for y in walk_y_array if not math.isnan(y)]
                 walk_scores.append(score_function(walk_x_array, walk_y_array))
-                printif(walk_scores)
                 walk_score_counts.append(len(walk_x_array))
+            printif(walk_scores)
             output_vals = []
             output_counts = []
             for i, score in enumerate(walk_scores):
@@ -143,6 +147,7 @@ def analysis_tree_score(file_path, metric_col_idces, id_range, score_function, n
                     output_dict_val = sum(map(lambda i: output_vals[i] * output_counts[i], range(len(output_vals)))) / sum(output_counts)
                 else:
                     output_dict_val = sum(output_vals) / len(output_vals)
+                printif(output_dict_val)
                 output_dict[metric_col_idx][id_idx] = output_dict_val
                 val_counts[metric_col_idx][id_idx] = len(output_vals)
     return output_dict, val_counts
@@ -176,3 +181,31 @@ def spearman_corr(x_list, y_list):
     if math.isnan(out):
         out = 0
     return out
+
+def kendall_tau(x_list, y_list):
+    if len(x_list) <= 1:
+        return float('nan')
+    out = kendalltau(np.array(x_list), np.array(y_list)).correlation
+    if math.isnan(out):
+        out = 0
+    return out
+
+# get the average delta between successive nodes
+def between_nodepair_avg_delta(x_list, y_list):
+    # x defines the node for each sample in the y list.
+    # separate y into one list for each node, take avg of the difference between each pair of adjacent nodes
+    y_lists = {node : np.array([
+        y_list[i] for i in range(len(x_list)) if x_list[i] == node
+        ]) for node in list(set(x_list))}
+    y_lists = [y_lists[i] for i in sorted(y_lists.keys())]
+    deltas = []
+    idx = 0
+    while idx < len(y_lists) - 1:
+        # direction matters. Always checking value at idx against idx + 1 (which is a higher error count)
+        deltas.append(np.mean(y_lists[idx]) - np.mean(y_lists[idx+1]))
+        idx += 1
+    if len(deltas) == 0:
+        return 0
+    if math.isnan(sum(deltas)):
+        return 0
+    return sum(deltas) / len(deltas)
