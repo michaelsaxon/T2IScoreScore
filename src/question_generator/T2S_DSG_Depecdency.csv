@@ -4,6 +4,7 @@ id,prompt,question_id,parent_question_id,question,choices,answer
 0,A Christmas tree with lights and teddy bear,2,-1,Is there a teddy bear?,yes|no,yes
 0,A Christmas tree with lights and teddy bear,3,0,Does the Christmas tree have lights?,yes|no,yes
 0,A Christmas tree with lights and teddy bear,4,1-0,Are the lights on the Christmas tree?,yes|no,yes
+0,A Christmas tree with lights and teddy bear,5,2-0,Is the teddy bear under the Christmas tree?,yes|no,yes
 1,A group of planes near a large wall of windows.,0,-1,Is there a group of planes?,yes|no,yes
 1,A group of planes near a large wall of windows.,1,-1,Is there a wall of windows?,yes|no,yes
 1,A group of planes near a large wall of windows.,2,0,Are there multiple planes?,yes|no,yes
@@ -328,8 +329,8 @@ id,prompt,question_id,parent_question_id,question,choices,answer
 64,A large giraffe looks at a smaller giraffe looking by a fence.,4,0-2,Is the giraffe looking at something?,yes|no,yes
 65,A group of stuffed animals sitting next to each other in bed.,0,-1,Is there a group of stuffed animals?,yes|no,yes
 65,A group of stuffed animals sitting next to each other in bed.,1,0,Are the stuffed animals sitting?,yes|no,yes
-65,A group of stuffed animals sitting next to each other in bed.,2,0,Are the stuffed animals next to the bed?,yes|no,yes
-65,A group of stuffed animals sitting next to each other in bed.,3,0,Is there a bed?,yes|no,yes
+65,A group of stuffed animals sitting next to each other in bed.,2,0-3,Are the stuffed animals next to the bed?,yes|no,yes
+65,A group of stuffed animals sitting next to each other in bed.,3,-1,Is there a bed?,yes|no,yes
 66,The caramel-colored kitten is  lying on the small blanket on top of the unmade bed.,0,-1,Is there a kitten?,yes|no,yes
 66,The caramel-colored kitten is  lying on the small blanket on top of the unmade bed.,1,0,Is the kitten caramel-colored?,yes|no,yes
 66,The caramel-colored kitten is  lying on the small blanket on top of the unmade bed.,2,0,Is the kitten lying?,yes|no,yes
@@ -499,6 +500,8 @@ id,prompt,question_id,parent_question_id,question,choices,answer
 93,A car and a truck sitting in red light.,2,-1,Is the light red?,yes|no,yes
 93,A car and a truck sitting in red light.,3,0-2,Is the car sitting at the light?,yes|no,yes
 93,A car and a truck sitting in red light.,4,1-2,Is the truck sitting at the light?,yes|no,yes
+93,A car and a truck sitting in red light.,5,0,Is the car in the light?,yes|no,yes
+93,A car and a truck sitting in red light.,6,1,Is the truck in the light?,yes|no,yes
 94,A man at a food truck viewing the menu.,0,-1,Is there a man?,yes|no,yes
 94,A man at a food truck viewing the menu.,1,-1,Is there a food truck?,yes|no,yes
 94,A man at a food truck viewing the menu.,2,-1,Is there a menu?,yes|no,yes

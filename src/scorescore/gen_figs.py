@@ -37,20 +37,16 @@ def corr_plot(df, title, output_path, fname):
     
     plt.savefig(output_path + fname)
     plt.show()
+    plt.savefig(output_path + f"corr_plot.pdf")
 
-def bar_plot(df, title):
-    # average by column
+def bar_plot(df, title, output_path):
     df = df.mean(axis=0)
-    # generate the bar plot
-    #sns.barplot(x=df.index, y=df.values)
-    #df.plot.bar()
-    #plt.tight_layout()
-    #plt.title(title)
-    #plt.show()
-    print(title)
-    print(df)
+    df.plot.bar()
+    plt.tight_layout()
+    plt.title(title)
+    plt.savefig(output_path + f"bar_plot.pdf")
 
-def scatter_plot(df, title, x_column, y_column, feature_name="K-S Statistic for ID"):
+def scatter_plot(df, title, x_column, y_column, output_path, feature_name="K-S Statistic for ID"):
     if type(y_column) == list:
         for y in y_column:
             sns.scatterplot(x=df[x_column], y=df[y], label=NUMBER_LABEL[y])
@@ -61,7 +57,7 @@ def scatter_plot(df, title, x_column, y_column, feature_name="K-S Statistic for 
     plt.subplots_adjust(top=0.93)
     plt.xlabel(f"{NUMBER_LABEL[x_column]} {feature_name}")
     plt.ylabel(f"{feature_name}")
-    plt.show()
+    plt.savefig(output_path + f"scatter_plot.pdf")
 
 def line_plot(df, id_to_plot, metrics_to_show, output_path):
 
@@ -72,7 +68,7 @@ def line_plot(df, id_to_plot, metrics_to_show, output_path):
     y_columns = metrics_to_show
 
     sns.set(style="darkgrid")
-    plt.figure(figsize=(15, 7))
+    plt.figure(figsize=(15, 5))
 
     for column in y_columns:
         sns.lineplot(x=x_axis, y=selected_data[column], label=column, marker='o')
@@ -84,20 +80,65 @@ def line_plot(df, id_to_plot, metrics_to_show, output_path):
     plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
     plt.savefig(output_path + f"line_plot_{id_to_plot}.pdf")
 
+    plt.xlabel(f"Images ID (0 to {len(x_axis) - 1})", fontname="Times New Roman", fontsize=14)
+    plt.ylabel("Score", fontname="Times New Roman", fontsize=14)
+    plt.title(f"Scores for ID = {id_to_plot}", fontname="Times New Roman", fontsize=16)
+    plt.xticks(ticks=x_axis[::5], labels=x_axis[::5], fontname="Times New Roman", fontsize=12)
+    plt.yticks(fontname="Times New Roman", fontsize=12)
+
+    legend = plt.legend(loc='upper left', bbox_to_anchor=(1.0, 1), fontsize='x-large')
+    for text in legend.get_texts():
+        text.set_fontname("Times New Roman")
+        text.set_fontsize(15)
+
+    plt.tight_layout()
+    plt.savefig(output_path + f"line_plot_{id_to_plot}.pdf")
+
+def prepare_date_for_line_plot():
+    ''' Add normalized rank as a column to scores file
+    '''
+    df2 = pd.read_csv("output/scores-final-all.csv")
+    df1 = pd.read_csv("data/metadata.csv")
+
+    def extract_numerical_rank(rank):
+        numerical_part = re.findall(r'\d+', rank)
+        if numerical_part:
+            return int(numerical_part[0])
+        else:
+            return None
+
+    # Apply the function to the rank column in the first dataframe
+    df1['rank'] = df1['rank'].apply(extract_numerical_rank)
+    df1['rank'] = (df1['rank']).astype(int)
+
+
+    rank_column = df1['rank']
+    df2['rank'] = rank_column
+
+    # Group by "id" and normalize the "rank" column within each group
+    df2['output/normalized_rank'] = df2.groupby('id')['rank'].transform(
+        lambda x: (x - x.min()) / (x.max() - x.min()) if (x.max() - x.min()) != 0 else 0
+    )
+    # Write the updated dataframe to a new CSV file
+    df2.to_csv("output/normalized_file.csv", index=False)
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Generate correlation plots.')
-    parser.add_argument('--csv_path', type=str, default='../../output/spearman_corrs_weighted.csv', help='csv input with correlation scores.')
-    parser.add_argument('--output_path', type=str, default='../../output/fig/', help='DSG if specified otherwise assume TIFA.')
-    parser.add_argument('--invert', type=bool, action=argparse.BooleanOptionalAction, help='Invert the scores if higher is better (e.g. BLIPScore).')
-    args = parser.parse_args()
 
+    # Example usage for line plot:
+
+    id_to_plot = 148  # Replace with the desired id
+    metrics_to_show = ['alignscore', 'blipscore', 'clipscore']
+    prepare_date_for_line_plot()
+    df = pd.read_csv('output/normalized_file.csv')
+    line_plot(df, id_to_plot, metrics_to_show, args.output_path)
+
+    # Example usage for corr plot:
 
     # # load in the csv including the correlation scores and types (we will add these types to the final ver)
     df = pd.read_csv(args.csv_path)
     df.set_index("id", inplace=True)
-    # print(df)
+
     # # HACK current version as of Jan-29 is missing final row; manually add in the type of set each id is
     # # synthetic: 0-110; natural img: 111-135, natural err: 136-163/4
     ranges = {"synth_err": [0,110], "nat_img": [111,135], "nat_err": [136,163]}
@@ -129,6 +170,9 @@ def main():
     """
 
     # scatter_plot(df, "BLIPScore vs LLava-alt TIFA", "blipscore_norm", "llava-alt_tifa")
+        bar_plot(df_tmp, f"{type} Average Correlation Scores", args.output_path)
+
+    bar_plot(df, "Average Correlation Scores", args.output_path)
 
     # Example usage for line plot:
     '''
@@ -143,6 +187,15 @@ def main():
     #line_plot(df, id_to_plot, metrics_to_show, args.output_path)
     scatter_plot(df, "Spearman feature correlations against CLIPScore", "clipscore_norm", ["llava-alt_tifa", "llava-alt_dsg", "alignscore_norm"], feature_name="Tree Walk Spearman Avg for ID")
     scatter_plot(df, "Spearman feature correlations against TIFA-LLaVA (alt)", "llava-alt_tifa", ["llava-alt_dsg", "alignscore_norm"], feature_name="Tree Walk Spearman Avg for ID")
+    # Example usage for scatter plot:
+    df = pd.read_csv(args.csv_path)
+    scatter_plot(df, "BLIPScore vs LLava-alt TIFA", "blipscore_norm", "llava-alt_tifa", args.output_path)
 
 if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description='Generate plots.')
+    parser.add_argument('--csv_path', type=str, default='../../output/spearman_corrs_weighted.csv', help='csv input with correlation scores.')
+    parser.add_argument('--output_path', type=str, default='../../output/fig/', help='DSG if specified otherwise assume TIFA.')
+    parser.add_argument('--invert', type=bool, action=argparse.BooleanOptionalAction, help='Invert the scores if higher is better (e.g. BLIPScore).')
+    args = parser.parse_args()
     main()

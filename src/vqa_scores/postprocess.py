@@ -74,7 +74,12 @@ class AnswerProcessor:
         self.question_gen_method = question_gen_method
 
     def process_answers(self, answer_df, question_df):
-        processed_lines = ['id,question_id,vqa_answer,mc_answer,correct\n']
+        processed_lines = ['id,question_id,vqa_answer,mc_answer,correct']
+
+        if 'parent_question_id' in question_df.columns:
+            processed_lines[0] += ',parent_question_id\n'
+        else:
+            processed_lines[0] += '\n'
 
         for _, image_row in enumerate(tqdm(list(answer_df.iterrows()))):
             id, question_id, vqa_answer = image_row[1][['id', 'question_id', 'vqa_answer']]
@@ -82,13 +87,19 @@ class AnswerProcessor:
             if isinstance(vqa_answer, float):
                 vqa_answer = " " if math.isnan(vqa_answer) else str(vqa_answer)
 
-            answer_row = question_df.loc[question_df['id'] == id].loc[question_df['question_id'] == question_id]#.iloc[0]
+            answer_row = question_df.loc[question_df['id'] == id].loc[question_df['question_id'] == question_id]
 
             choices, correct_answer = answer_row[['choices', 'answer']]
             choices = choices.split('|')
 
             correct, mc_answer = self.get_mc_answer(correct_answer, vqa_answer, choices)
-            processed_lines.append(f"{id},{question_id},{vqa_answer},{mc_answer},{correct}\n")
+
+            line = f"{id},{question_id},{vqa_answer},{mc_answer},{correct}"
+            if 'parent_question_id' in question_df.columns:
+                parent_question_id = answer_row['parent_question_id'].iloc[0]
+                line += f",{parent_question_id}\n"
+
+            processed_lines.append(line)
 
         return processed_lines
 
@@ -140,7 +151,7 @@ def get_avg_scores(df):
 
 # dsg requires a parent node-aware scoring
 def get_avg_scores_dsg(df):
-    # check if the parent_question_id key is present in answer_df
+
     if 'parent_question_id' not in df.columns:
         raise ValueError("The parent_question_id column is required for computing DSG scores. Use the TS2_DSG_Q_dependency.csv file.")
 
@@ -153,7 +164,7 @@ def get_avg_scores_dsg(df):
         # if parent question is -1, append 1 if current question was answered correctly
         # use correct_parent_list to determine the parent question correctness
         for i in range(len(correct_parent_list)):
-            if correct_parent_list[i][2] == -1:
+            if correct_parent_list[i][2] == '-1':
                 correct_parent_aware.append(correct_parent_list[i][0])
             else:
                 # there can be more than one parent question, it's a string delimited by '-'
@@ -163,7 +174,7 @@ def get_avg_scores_dsg(df):
                     correct_parent_aware.append(correct_parent_list[i][0])
                 else:
                     correct_parent_aware.append(0)
-        return correct_parent_aware.mean()
+        return np.mean(correct_parent_aware)
 
     for id_value in df['id'].unique():
         id_rows = df[df['id'] == id_value]

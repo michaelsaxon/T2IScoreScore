@@ -1,6 +1,6 @@
 
 
-# T2IScoreScore
+# T2IScoreScore( TS2): Objectively assessing text-to-image prompt faithfulness metrics
 
 ![Static Badge](https://img.shields.io/badge/GenerativeAI-%20%23996600)
 ![Static Badge](https://img.shields.io/badge/T2IScoreScore-%20%23006699)
@@ -11,11 +11,12 @@
 
 
 
-
-
-### **Who Evaluates the Evaluations? Assessing the Faithfulness and Consistency of Text-to-Image Evaluation Metrics with *T2IScoreScore***
-
 We introduced **T2IScoreScore** dataset! 📸✨  🤗 [HF Repo](https://huggingface.co/datasets/saxon/T2IScoreScore)
+
+This repository contains the code and models for our paper:
+
+[Who Evaluates the Evaluations? Objectively Scoring Text-to-Image Prompt Coherence Metrics with T2IScoreScore (TS2)](https://arxiv.org/abs/2404.04251).
+Please check the [project page](https://t2iscorescore.github.io/) for a quick overview.
 
 T2IScoreScore is a meticulously curated dataset featuring image sets that smoothly transition from high to low faithfulness with respect to the given prompt. This collection includes both synthetic and natural examples, providing a comprehensive range for meta-evaluating existing Text-to-Image (T2I) metrics. Our goal is to facilitate the development of more accurate and consistent T2I metrics in the future.
 
@@ -41,7 +42,7 @@ head node of the graph:
     python T2IScoreScore/src/question_generator/dsg_question_generator.py
            --api_key 'openai_api_key'
            --input_file 'src/question_generator/TS2_prompts.txt'
-           --output_csv 'src/question_generator/TS2_DSG_Q.csv'
+           --output_csv 'src/question_generator/T2S_DSG_Q_dependency.csv'
     ```
 
 2. Run the Tifa Recipe for Question Generation
@@ -57,8 +58,8 @@ head node of the graph:
 
 Replace the placeholders with appropriate values:
 
- `-a`, `--api_key`: Your OpenAI API key.  
- `-i`, `--input_file`: Path to the input file containing prompts.  
+ `-a`, `--api_key`: Your OpenAI API key.
+ `-i`, `--input_file`: Path to the input file containing prompts.
  `-o`, `--output_csv`: Path to save the output CSV file.
 
 Make sure to provide the correct paths and API key. Feel free to adjust the command for your specific needs.
@@ -75,10 +76,10 @@ Usage
 
 Command Line Arguments
 
-  `-m`, `--model`: Choose sim score model (clip, blip, align).  
-  `-o`, `--output`: Path to the output CSV file.  
-  `-i`, `--image_folder`: Base path for image files.  
-  `-md`, `--metadata_file`: Path to the meta-data CSV file.  
+  `-m`, `--model`: Choose sim score model (clip, blip, align).
+  `-o`, `--output`: Path to the output CSV file.
+  `-i`, `--image_folder`: Base path for image files.
+  `-md`, `--metadata_file`: Path to the meta-data CSV file.
 
 Example:
 
@@ -140,34 +141,34 @@ Usage
 
 Command Line Arguments
 
-‍‍`-m`, `--model`: Choose the VQA model (mplug, fuyu, llava, instructBlip, blip).  
-`-q`, `--questions_file`: Path to the questions CSV file (tifa, dsg).  
-`-o`, `--output`: Path to the output CSV file.  
-`-i`, `--image_folder`: Base path for image files.  
-`-s`, `--start`: Start index for image processing.  
-`-e`, `--end`: End index for image processing.  
-`-md`, `--metadata_file`: Path to meta-data CSV file.  
+‍‍`-m`, `--model`: Choose the VQA model (mplug, fuyu, llava, instructBlip, blip).
+`-q`, `--questions_file`: Path to the questions CSV file (tifa, dsg).
+`-o`, `--output`: Path to the output CSV file.
+`-i`, `--image_folder`: Base path for image files.
+`-s`, `--start`: Start index for image processing.
+`-e`, `--end`: End index for image processing.
+`-md`, `--metadata_file`: Path to meta-data CSV file.
 
 
 Example:
 
 ```bash
-python run_vqascor.py --model 'mplug' --questions_file 'data/TS2_TIFA_Q.csv' --output 'output/a_mplug_tifa.csv' --image_folder 'data/T2IScoreScore/' --start '0' --end ':' --metadata_file 'data/metadata.csv'
+python run_vqascor.py --model 'mplug' --questions_file 'data/TS2_TIFA_Q.csv' --output 'output/mplug_tifa.csv' --image_folder 'data/T2IScoreScore/' --start '0' --end ':' --metadata_file 'data/metadata.csv'
 ```
 
 2- PostProcess of raw answers
 
 Command Line Arguments
 
- `-s`, `--score_file`: Output CSV file for scores (required).  
- `-q`, `--question_file`: Question CSV file (required).  
- `-m`, `--question_gen_method`: Question generation method (tifa, dsg) [default: dsg] (required).  
- `-r`, `--raw_answer_file`: Input CSV file for raw answers (required).  
+ `-s`, `--score_file`: Output CSV file for scores (required).
+ `-q`, `--question_file`: Question CSV file (required).
+ `-m`, `--question_gen_method`: Question generation method (tifa, dsg) [default: dsg] (required).
+ `-r`, `--raw_answer_file`: Input CSV file for raw answers (required).
 
 Example:
 
 ```bash
-python postprocess.py --score_file 'output/scores.csv' --question_file 'data/TS2_TIFA_Q.csv' --question_gen_method 'dsg' --raw_answer_file 'data/raw_answers.csv'
+python postprocess.py --score_file 'output/scores.csv' --question_file 'data/T2S_DSG_Q_dependency.csv' --question_gen_method 'dsg' --raw_answer_file 'output/raw_answers.csv'
 ```
 
 ### Custom VQAScorer Implementation
@@ -220,8 +221,8 @@ print(f'Generated answer: {answer}')
 
  Command Line Arguments
 
-`--image_folder`: Base path for image files.  
-`--metadata_file`: Path to meta-data CSV file.  
+`--image_folder`: Base path for image files.
+`--metadata_file`: Path to meta-data CSV file.
 
 Example:
 
