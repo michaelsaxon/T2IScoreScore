@@ -17,8 +17,8 @@ class KendallEvaluator(WalkMetricEvaluator):
         Returns:
             Kendall's tau correlation coefficient
         """
-        if len(walk_x) <= 1:
+        if len(error_counts) <= 1:
             return float('nan')
         
-        correlation = kendalltau(np.array(walk_x), np.array(walk_y)).correlation
+        correlation = kendalltau(np.array(error_counts), np.array(scores)).correlation
         return 0.0 if np.isnan(correlation) else correlation 
