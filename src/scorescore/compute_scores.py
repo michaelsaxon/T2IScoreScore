@@ -1,6 +1,49 @@
 import pandas as pd
 
-from src.utils.utils import *
+import os
+
+import pandas as pd
+import re
+
+import os
+import pandas as pd
+
+'''Merge all score files into a single combined file.
+'''
+def clean_and_merge(folder_path='output/scores_per_image', score_file_suffix='_score.csv', metadata_file='data/metadata.csv', output_file='output/scores_final_all.csv'):
+    combined_df = pd.DataFrame(columns=['id', 'image_id'])
+
+    for subdir in ['DSG', 'TIFA']:
+        subdir_path = os.path.join(folder_path, subdir)
+        if os.path.isdir(subdir_path):
+            score_files = [filename for filename in os.listdir(subdir_path) if filename.endswith(score_file_suffix)]
+            score_files.sort()
+
+            for filename in score_files:
+                score_file_path = os.path.join(subdir_path, filename)
+                model_name = os.path.splitext(filename)[0]
+                model_name = model_name.replace('_score', '')
+                current_df = pd.read_csv(score_file_path)
+                current_df.rename(columns={'score': model_name}, inplace=True)
+
+                combined_df = pd.merge(combined_df, current_df[['id', 'image_id', model_name]], on=['id', 'image_id'], how='outer')
+
+    original_score_files = [filename for filename in os.listdir(folder_path) if filename.endswith(score_file_suffix) and filename not in combined_df.columns]
+    original_score_files.sort()
+
+    for filename in original_score_files:
+        score_file_path = os.path.join(folder_path, filename)
+        model_name = os.path.splitext(filename)[0]
+        model_name = model_name.replace('_score', '')
+        current_df = pd.read_csv(score_file_path)
+        current_df.rename(columns={'score': model_name}, inplace=True)
+
+        combined_df = pd.merge(combined_df, current_df[['id', 'image_id', model_name]], on=['id', 'image_id'], how='outer')
+
+    combined_df['image_id'] = combined_df['image_id'].apply(lambda x: '0' if x.startswith('000') else re.search(r'\.(\d+)\.', x).group(1).lstrip('0') if re.search(r'\.(\d+)\.', x) else '')
+    combined_df.to_csv(output_file, index=False)
+
+# ,erged in utils
 
 from scoring import *
 
@@ -35,9 +78,9 @@ def clean_int_string(instr):
             instr = instr.replace(char,"")
     return instr
 
-dataframe = pd.read_csv("../../output/scores_final_all_2.csv")
+dataframe = pd.read_csv("output/scores_final_all_2 copy.csv")
 
-ranks = pd.read_csv("../../data/metadata.csv")
+ranks = pd.read_csv("data/metadata.csv")
 
 dataframe['rank'] = pd.Series(list(ranks["rank"]), index=dataframe.index)
 
@@ -62,7 +105,9 @@ print("running tree corr for all samples")
 #tree_spearman_avg, tree_counts = tree_correlation_score(dataframe, metrics, id_range, spearman_corr, scaled_avg=True)
 #node_variances, node_counts = within_node_score(dataframe, metrics, id_range, variance)
 
-avg_ks_stat, ks_counts = analysis_tree_score(dataframe, metrics, id_range, between_nodepair_ks_score, scaled_avg=True)
+avg_ks_stat, ks_counts = analysis_tree_score(dataframe, ["blip1_dsg"], [0], between_nodepair_ks_score, scaled_avg=True)
+
+print(avg_ks_stat)
 
 #print(tree_spearman_avg)
 

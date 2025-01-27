@@ -73,23 +73,25 @@ def robust_float_cast(instr):
 # return something just indexed by range
 def analysis_tree_score(dataframe, metric_col_idces, id_range, score_function, node_id_col="rank", scaled_avg=False, debug = True):
     printif = print if debug else lambda *x: None
+    printif("test")
     output_dict = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
     val_counts = {metric_col_idx : {} for metric_col_idx in metric_col_idces}
     for id_idx in tqdm(id_range):
         id_df = dataframe.loc[dataframe["id"] == id_idx]
         printif(id_df)
         node_set = list(id_df[node_id_col].unique())
-        try:
-            node_numbers = list(map(extract_int_string, node_set))
-            node_numbers_sorted = list(set(node_numbers))
-            node_numbers_sorted.sort()
-            printif(node_numbers_sorted)
-        except ValueError:
-            print(id_df)
-            input()
+        printif(node_set)
+
+        node_numbers = list(map(extract_int_string, node_set))
+        node_numbers_sorted = list(set(node_numbers))
+        node_numbers_sorted.sort()
+
+        # each walk is of the form []
+
         # probably not ideal, but just build every possible alignment to start
         # aka, dfs on sets of 0, 1, 2, ... to max(node_numbers)
         printif(node_numbers)
+        printif("node_numbers_sorted")
         walks = list(map(lambda x: [x], [i for i, x in enumerate(node_numbers) if x == 0]))
         printif("walks!!!!")
         printif(walks)
@@ -106,6 +108,8 @@ def analysis_tree_score(dataframe, metric_col_idces, id_range, score_function, n
         walks_ids = list(map(lambda x: list(map(lambda y: node_set[y], x)), walks))
         printif(walks_ids)
         walks_x = list(map(lambda x: list(map(lambda y: node_numbers[y], x)), walks))
+
+        # get each element at each level and get each combination
 
         for metric_col_idx in metric_col_idces:
             walk_scores = []
