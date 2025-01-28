@@ -1,0 +1,14 @@
+label 	CLIPScore	ALIGNScore	TIFA/GPT4V	DSG/GPT4V	LLMScore
+Ordering (all SEGs)	71.4	73.9	77.9	79.6	57.7
+spearman-synth 	75	77.6	83.6	82.6	61.6
+spearman-nat 	58	70.2	61.6	73.7	44.4
+Ordering (wild T2I errors)	69.3	62.6	69.5	73	54.1
+Separation (all SEGs)	89.7	95.6	92.3	110.2	56.3
+delta-synth 	89.9	95.6	92.5	110.1	56.7
+delta-nat 	92.5	98.6	93.9	111.5	56.4
+	95.1	100.8	95.9	113	56
+Separation (wild)	90.7	92.8	83.2	84.2	73.5
+ks-synth 	90.5	94.1	86.2	86.6	72.8
+ks-nat 	91.5	92.6	80.5	81.7	76.7
+Separation (all SEGs)	90.3	87.9	73.7	76.6	73.6
+cost 	 604M 	 688M 	 1.66P 	 860T 	 7.01T 

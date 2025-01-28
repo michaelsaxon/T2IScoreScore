@@ -1,7 +1,0 @@
- openai<1.0.0
- scikit-learn
- seaborn
- transformers
- pandas
- numpy
- scipy
