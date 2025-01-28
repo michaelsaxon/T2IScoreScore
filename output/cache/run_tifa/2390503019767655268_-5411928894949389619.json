@@ -1,0 +1,1 @@
+{"prompt": "Godzilla on a pink background with large japanese text", "question": {"element": "on", "element_type": "spatial", "question": "is the person on the bridge or standing next to it?", "choices": ["on", "next to", "behind", "in front of"], "answer": "on"}, "generated_answer": "The person on the bridge is standing next to it."}

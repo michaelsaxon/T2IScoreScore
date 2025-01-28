@@ -1,9 +1,10 @@
 import torch
 from PIL import Image
 from transformers import (
+    Blip2Processor, 
+    Blip2ForConditionalGeneration,
     BitsAndBytesConfig,
-    InstructBlipForConditionalGeneration,
-    InstructBlipProcessor
+    TextStreamer
 )
 from typing import Union, Optional
 from pathlib import Path
@@ -14,21 +15,20 @@ from ..utils.generation_streamer import GenerationStreamer
 
 logger = logging.getLogger(__name__)
 
-class InstructBlipModel(VisionLanguageModel):
-    """Wrapper for Salesforce's InstructBLIP model."""
+class Blip2Model(VisionLanguageModel):
+    """Wrapper for Salesforce's BLIP-2 model."""
     
     def __init__(self, 
-                 model_key: str = "Salesforce/instructblip-vicuna-7b",
+                 model_key: str = "Salesforce/blip2-opt-2.7b",
                  device: Optional[str] = None,
                  load_in_4bit: bool = False,
                  **kwargs):
-        """Initialize InstructBLIP model."""
+        """Initialize BLIP-2 model."""
         super().__init__(model_key, device)
         
-        logger.debug(f"Initializing InstructBLIP with model: {model_key}")
+        logger.debug(f"Initializing BLIP-2 with model: {model_key}")
         logger.debug(f"Device: {device}, 4-bit: {load_in_4bit}")
         
-        # Configure quantization if requested and on CUDA
         if load_in_4bit:
             if not self.device.startswith('cuda'):
                 raise ValueError("4-bit quantization only supported on CUDA devices")
@@ -42,18 +42,17 @@ class InstructBlipModel(VisionLanguageModel):
             bnb_config = None
             
         logger.debug("Loading model and processor...")
-        self.model = InstructBlipForConditionalGeneration.from_pretrained(
+        self.model = Blip2ForConditionalGeneration.from_pretrained(
             model_key,
             quantization_config=bnb_config,
             device_map=self.device if self.device.startswith('cuda') else None,
             **kwargs
         )
         
-        # Remove BetterTransformer conversion
         if not self.device.startswith('cuda'):
             self.model = self.model.to(self.device)
         
-        self.processor = InstructBlipProcessor.from_pretrained(model_key)
+        self.processor = Blip2Processor.from_pretrained(model_key)
         logger.debug("Model initialization complete")
         
     def get_answer(self, 
@@ -68,7 +67,7 @@ class InstructBlipModel(VisionLanguageModel):
         logger.debug(f"Processing question: {question}")
         
         image = self._load_image(image)
-        image = image.resize((512, 512))  # Standard size for InstructBLIP
+        image = image.resize((512, 512))
         
         logger.debug("Preparing inputs...")
         inputs = self.processor(
@@ -78,7 +77,8 @@ class InstructBlipModel(VisionLanguageModel):
         ).to(self.device)
         
         logger.debug("Generating answer...")
-        streamer = GenerationStreamer(self.processor)
+        #streamer = GenerationStreamer(self.processor)
+        streamer = TextStreamer(self.processor)
         
         outputs = self.model.generate(
             **inputs,

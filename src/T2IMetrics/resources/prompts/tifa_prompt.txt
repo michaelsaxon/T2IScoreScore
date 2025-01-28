@@ -3,7 +3,9 @@
 Given a image descriptions, generate one or two multiple-choice questions that verifies if the image description is correct.
 Classify each concept into a type (object, human, animal, food, activity, attribute, counting, color, material, spatial, location, shape, other), and then generate a question for each type.
 
-Description: A man posing for a selfie in a jacket and bow tie.
+We provide a series of examples following the tag [EXAMPLES]. Following the tag [FINAL], only generate one set of questions and answers. Do not generate other examples.
+
+[EXAMPLES]Description: A man posing for a selfie in a jacket and bow tie.
 Entities: man, selfie, jacket, bow tie
 Activities: posing
 Colors:
@@ -46,7 +48,7 @@ Q: what is the man doing besides taking the selfie?
 Choices: posing, waving, nothing, shaking
 A: posing
 
-Description: A horse and several cows feed on hay.
+[EXAMPLES]Description: A horse and several cows feed on hay.
 Entities: horse, cows, hay
 Activities: feed on
 Colors:
@@ -77,7 +79,7 @@ Q: are there several cows?
 Choices: yes, no
 A: yes
 
-Description: A red colored dog.
+[EXAMPLES]Description: A red colored dog.
 Entities: dog
 Activities:
 Colors: red
@@ -99,7 +101,7 @@ Q: what color is the dog?
 Choices: red, black, white, yellow
 A: red
 
-Description: A busy intersection with an ice cream truck driving by.
+[EXAMPLES]Description: A busy intersection with an ice cream truck driving by.
 Entities: intersection, ice cream truck
 Activities: driving by
 Colors:
@@ -132,7 +134,7 @@ Q: is this a busy or a quiet intersection?
 Choices: busy, quiet, silent, noisy
 A: busy
 
-Description: Portrait of a gecko wearing a train conductor's hat and holding a flag that has a yin-yang symbol on it. Woodcut.
+[EXAMPLES]Description: Portrait of a gecko wearing a train conductor's hat and holding a flag that has a yin-yang symbol on it. Woodcut.
 Entities: gecko, train conductor's hat, flag, yin-yang symbol
 Activities: wearing, holding
 Colors:
@@ -184,7 +186,7 @@ Q: is this a woodcut, a painting, or a photograph?
 Choices: woodcut, painting, drawing, photograph
 A: woodcut
 
-Description: A woman is showing a watermelon slice to a woman on a scooter.
+[EXAMPLES]Description: A woman is showing a watermelon slice to a woman on a scooter.
 Entities: woman, watermelon slice, woman, scooter
 Activities: showing
 Colors:
@@ -231,7 +233,7 @@ Q: is the woman on the scooter or standing next to it?
 Choices: on, next to, behind, in front of
 A: on
 
-Description: A photo of three dogs.
+[EXAMPLES]Description: A photo of three dogs.
 Entities: dogs
 Activities:
 Colors:
@@ -260,7 +262,7 @@ Q: is this a photo, a painting, or a comic?
 Choices: photo, painting, comic, sculpture
 A: photo
 
-Description: A white milk truck with a license plate that reads \"pro milk.\"
+[EXAMPLES]Description: A white milk truck with a license plate that reads \"pro milk.\"
 Entities: milk truck, license plate
 Activities:
 Colors: white
@@ -287,7 +289,7 @@ Q: does the license plate read \"pro milk\"?
 Choices: yes, no
 A: yes
 
-Description: A person sitting on a horse in air over gate in grass with people and trees in background.
+[EXAMPLES]Description: A person sitting on a horse in air over gate in grass with people and trees in background.
 Entities: person, horse, gate, grass, people, trees
 Activities: sitting
 Colors:
@@ -350,7 +352,7 @@ Q: are there people and trees in the background or in the foreground?
 Choices: background, foreground, middle ground, sky
 A: background
 
-Description: a red blue and yellow train and some people on a platform
+[EXAMPLES]Description: a red blue and yellow train and some people on a platform
 Entities: train, people, platform
 Activities:
 Colors: red blue and yellow
@@ -387,7 +389,7 @@ Q: are there some people?
 Choices: yes, no
 A: yes
 
-Description: square blue apples on a tree with circular yellow leaves
+[EXAMPLES]Description: square blue apples on a tree with circular yellow leaves
 Entities: apples, tree, leaves
 Activities:
 Colors: blue, yellow
@@ -444,7 +446,7 @@ Q: what shape are the leaves?
 Choices: circular, square, oval, triangle
 A: circular
 
-Description: Overview of a pot of vegetable soup with wooden spoon on a stainless steel stove top.
+[EXAMPLES]Description: Overview of a pot of vegetable soup with wooden spoon on a stainless steel stove top.
 Entities: pot, vegetable soup, spoon, stove top
 Activities:
 Colors:
@@ -483,6 +485,5 @@ About overview (attribute):
 Q: is this an overview?
 Choices: yes, no
 A: yes
-About wooden (material):
 
-Description: """
+[FINAL]Description: """

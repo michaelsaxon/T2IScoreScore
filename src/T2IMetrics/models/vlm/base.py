@@ -20,3 +20,8 @@ class VisionLanguageModel(ABC):
         if isinstance(image, (str, Path)):
             return Image.open(image)
         return image 
+    
+    def get_model_identifier(self) -> str:
+        """Get a unique identifier for this model instance."""
+        return f"{self.__class__.__name__.lower()}-{self.model_key}"
+    

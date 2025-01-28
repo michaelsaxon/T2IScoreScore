@@ -1,0 +1,1 @@
+{"prompt": "Godzilla on a pink background with large japanese text", "question": {"element": "text", "element_type": "object", "question": "what type of text is present in the image?", "choices": ["Japanese", "English", "Chinese", "Korean"], "answer": "Japanese"}, "generated_answer": "what type of text is present in the image?  godzilla on fire and his body covered with flames"}

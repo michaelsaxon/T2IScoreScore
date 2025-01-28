@@ -15,9 +15,12 @@ class LanguageModel(ABC):
         """
         self.model_key = model_key
         self.device = device
-        
+
+    def get_model_identifier(self) -> str:
+        """Get a unique identifier for this model instance."""
+        return f"{self.__class__.__name__.lower()}-{self.model_key}"
+    
     @abstractmethod
     def generate(self, prompt: str, **kwargs) -> str:
-        """Generate text completion for a prompt."""
+        """Generate text from prompt."""
         pass
-    

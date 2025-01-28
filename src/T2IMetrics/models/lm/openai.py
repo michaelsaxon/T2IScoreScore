@@ -1,12 +1,16 @@
-import openai
+from openai import OpenAI
 from typing import Optional
+import logging
+
 from .base import LanguageModel
+
+logger = logging.getLogger(__name__)
 
 class OpenAIModel(LanguageModel):
     """Wrapper for OpenAI's API-based language models."""
     
     def __init__(self, 
-                 model_key: str = "gpt-3.5-turbo",
+                 model_key: str = "gpt-4o-mini",
                  device: Optional[str] = None,  # Added but unused for API-based models
                  api_key: Optional[str] = None,
                  **kwargs):
@@ -20,14 +24,7 @@ class OpenAIModel(LanguageModel):
             **kwargs: Additional initialization parameters
         """
         super().__init__(model_key, device, **kwargs)
-        
-        if api_key:
-            openai.api_key = api_key
-        elif not openai.api_key:
-            raise ValueError(
-                "OpenAI API key must be provided either through api_key parameter "
-                "or OPENAI_API_KEY environment variable"
-            )
+        self.client = OpenAI(api_key=api_key)
     
     def generate(self, 
                 prompt: str, 
@@ -48,9 +45,15 @@ class OpenAIModel(LanguageModel):
         Returns:
             Generated text completion
         """
-        stop = stop or ["\n\n", "<|endoftext|>"]
+        # Only use <|endoftext|> as stop sequence by default
+        stop = stop or ["<|endoftext|>"]
         
-        response = openai.ChatCompletion.create(
+        logger.debug(f"OpenAI Request:")
+        logger.debug(f"Model: {self.model_key}")
+        logger.debug(f"Prompt: {prompt}")
+        logger.debug(f"Parameters: max_tokens={max_tokens}, temperature={temperature}, stop={stop}")
+        
+        response = self.client.chat.completions.create(
             model=self.model_key,
             messages=[{"role": "user", "content": prompt}],
             max_tokens=max_tokens,
@@ -59,4 +62,9 @@ class OpenAIModel(LanguageModel):
             **kwargs
         )
         
-        return response['choices'][0]['message']['content']
+        logger.debug("OpenAI Response:")
+        logger.debug(f"Full response: {response}")
+        logger.debug(f"Content: {response.choices[0].message.content}")
+        logger.debug(f"Finish reason: {response.choices[0].finish_reason}")
+        
+        return response.choices[0].message.content

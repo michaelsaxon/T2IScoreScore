@@ -1,0 +1,1 @@
+{"prompt": "Godzilla on a pink background with large japanese text", "question": {"element": "large", "element_type": "attribute", "question": "is the text small or large?", "choices": ["small", "large", "medium", "tiny"], "answer": "large"}, "generated_answer": "is the text small or large?"}

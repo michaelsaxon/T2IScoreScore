@@ -3,10 +3,14 @@ from pathlib import Path
 from PIL import Image
 from abc import abstractmethod
 import json
+import hashlib
+import logging
 
 from ..base import T2IMetric
 from ..models.lm import AVAILABLE_MODELS as LM_MODELS, LanguageModel
 from ..models.vlm import AVAILABLE_MODELS as VLM_MODELS, VisionLanguageModel
+
+logger = logging.getLogger(__name__)
 
 class QAMetric(T2IMetric):
     """Base class for question-answering based metrics (TIFA, DSG etc).
@@ -21,7 +25,7 @@ class QAMetric(T2IMetric):
                  lm_type: str,
                  vlm_type: str,
                  device: Optional[str] = None,
-                 cache_dir: Optional[str] = None,
+                 cache_dir: Optional[Union[str, Path]] = None,
                  lm_kwargs: Optional[Dict] = None,
                  vlm_kwargs: Optional[Dict] = None):
         """
@@ -49,29 +53,130 @@ class QAMetric(T2IMetric):
         self.cache_dir = Path(cache_dir) if cache_dir else None
         self.current_questions = None
         
-    @abstractmethod
-    def generate_questions(self, prompt: str) -> List[Dict]:
-        """Generate questions from prompt.
+        # Create cache directories if needed
+        if self.cache_dir:
+            self.questions_cache_dir = self.cache_dir / "questions"
+            self.answers_cache_dir = self.cache_dir / "answers"
+            self.questions_cache_dir.mkdir(parents=True, exist_ok=True)
+            self.answers_cache_dir.mkdir(parents=True, exist_ok=True)
+        
+    def _get_cache_key(self, *args, model_type: str = None) -> str:
+        """
+        Generate a unique cache key from arguments.
         
         Args:
-            prompt: Text prompt to generate questions from
+            *args: Arguments to hash
+            model_type: Either 'lm' or 'vlm' to include appropriate model name
+        """
+        # Start with the metric class name
+        components = [self.__class__.__name__]
+        
+        # Add model identifier if specified
+        if model_type == 'lm':
+            components.append(f"lm_{self.lm.get_model_identifier()}")
+        elif model_type == 'vlm':
+            components.append(f"vlm_{self.vlm.get_model_identifier()}")
             
-        Returns:
-            List of question dictionaries containing at minimum:
-            - question: str
-            - answer_type: str (e.g., 'yes/no', 'multiple_choice', etc)
-            Additional fields may be added by specific implementations
-        """
-        pass
+        # Add all other arguments
+        components.extend(str(arg) for arg in args)
         
+        # Combine and hash
+        combined = "_".join(components)
+        return hashlib.md5(combined.encode()).hexdigest()
+    
+    def _get_cached_questions(self, prompt: str) -> Optional[List[Dict]]:
+        """Try to load cached questions for a prompt."""
+        if not self.cache_dir:
+            return None
+            
+        cache_key = self._get_cache_key(prompt, model_type='lm')
+        cache_file = self.questions_cache_dir / f"{cache_key}.json"
+        
+        if cache_file.exists():
+            logger.debug(f"Loading cached questions for prompt: {prompt}")
+            with open(cache_file, 'r') as f:
+                return json.load(f)
+        return None
+    
+    def _cache_questions(self, prompt: str, questions: List[Dict]):
+        """Cache generated questions."""
+        if not self.cache_dir:
+            return
+            
+        cache_key = self._get_cache_key(prompt, model_type='lm')
+        cache_file = self.questions_cache_dir / f"{cache_key}.json"
+        
+        logger.debug(f"Caching questions for prompt: {prompt}")
+        with open(cache_file, 'w') as f:
+            json.dump(questions, f)
+    
+    def _get_cached_answer(self, question: str, image_hash: str) -> Optional[str]:
+        """Try to load cached answer for a question-image pair."""
+        if not self.cache_dir:
+            return None
+            
+        cache_key = self._get_cache_key(question, image_hash, model_type='vlm')
+        cache_file = self.answers_cache_dir / f"{cache_key}.json"
+        
+        if cache_file.exists():
+            logger.debug(f"Loading cached answer for question: {question}")
+            with open(cache_file, 'r') as f:
+                data = json.load(f)
+                return data['answer']
+        return None
+    
+    def _cache_answer(self, question: str, image_hash: str, answer: str):
+        """Cache generated answer."""
+        if not self.cache_dir:
+            return
+            
+        cache_key = self._get_cache_key(question, image_hash, model_type='vlm')
+        cache_file = self.answers_cache_dir / f"{cache_key}.json"
+        
+        logger.debug(f"Caching answer for question: {question}")
+        with open(cache_file, 'w') as f:
+            json.dump({'question': question, 'answer': answer}, f)
+    
+    def generate_questions(self, prompt: str) -> List[Dict]:
+        """Generate questions from prompt, using cache if available."""
+        # Try to load from cache first
+        cached_questions = self._get_cached_questions(prompt)
+        if cached_questions is not None:
+            logger.info("Using cached questions")
+            return cached_questions
+            
+        # Generate new questions if not cached
+        questions = self._generate_questions(prompt)
+        
+        # Cache the new questions
+        self._cache_questions(prompt, questions)
+        return questions
+    
     def answer_question(self, question: str, image: Union[str, Path, Image.Image]) -> str:
-        """Answer a single question about an image.
+        """Answer a question about an image, using cache if available."""
+        # Generate image hash for cache key
+        if isinstance(image, (str, Path)):
+            image = Image.open(image)
+        image_data = image.tobytes()
+        image_hash = hashlib.md5(image_data).hexdigest()
         
-        Default implementation passes directly to VLM.
-        Can be overridden for custom answering logic.
-        """
-        image = self._load_image(image)
-        return self.vlm.get_answer(question, image)
+        # Try to load from cache first
+        cached_answer = self._get_cached_answer(question, image_hash)
+        if cached_answer is not None:
+            logger.debug("Using cached answer")
+            return cached_answer
+            
+        # Generate new answer if not cached
+        answer = self.vlm.get_answer(question, image)
+        
+        # Cache the new answer
+        self._cache_answer(question, image_hash, answer)
+        return answer
+    
+    @abstractmethod
+    def _generate_questions(self, prompt: str) -> List[Dict]:
+        """Internal method to generate questions. To be implemented by subclasses."""
+        pass
     
     @abstractmethod
     def compute_score(self, answers: List[str], questions: List[Dict]) -> float:
