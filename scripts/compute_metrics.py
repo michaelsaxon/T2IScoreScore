@@ -1,5 +1,5 @@
 import pandas as pd
-from scorescore.evaluators import SpearmanEvaluator, KSTestEvaluator, DeltaEvaluator
+from T2IScoreScore.evaluators import SpearmanEvaluator, KSTestEvaluator, DeltaEvaluator
 import logging
 
 # Setup logging

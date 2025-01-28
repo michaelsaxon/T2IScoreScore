@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import logging
-from scorescore.evaluators import SpearmanEvaluator, KSTestEvaluator, DeltaEvaluator
+from T2IScoreScore.evaluators import SpearmanEvaluator, KSTestEvaluator, DeltaEvaluator
 
 # Configure logging - make sure this is at the very start
 logging.basicConfig(
