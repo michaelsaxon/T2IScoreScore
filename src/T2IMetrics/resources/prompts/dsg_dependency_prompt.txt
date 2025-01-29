@@ -1,0 +1,21 @@
+Task: given input prompts and tuples, describe the parent tuples of each tuple.
+output format: id | dependencies (comma separated)
+
+We will provide one example, preceded by [START_EXAMPLE]. We will then provide [START_TASK]. You will provide one set of input/outputs following this and then stop.
+
+[START_EXAMPLE]
+input: A red motorcycle parked by paint chipped doors.
+1 | attribute - color (motorcycle, red)
+2 | attribute - state (door, paint chipped)
+3 | relation - spatial (motorcycle, door, next to)
+4 | attribute - state (motorcycle, parked)
+output:
+1 | 0
+2 | 0
+3 | 1,2
+4 | 1
+
+[START_TASK]
+input: {prompt}
+{tuples}
+output: 

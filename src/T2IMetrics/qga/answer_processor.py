@@ -2,6 +2,9 @@ import torch
 import torch.nn.functional as F
 from transformers import AutoModel, AutoTokenizer
 from typing import List, Optional, Union
+import logging
+
+logger = logging.getLogger(__name__)
 
 class AnswerProcessor:
     """Processor for validating VQA answers using semantic similarity."""
@@ -92,16 +95,38 @@ class AnswerProcessor:
         return F.normalize(embeddings, p=2, dim=1)
     
     def _validate_binary(self, generated: str, expected: str) -> bool:
-        """Special handling for yes/no questions."""
-        generated = generated.lower()
-        expected = expected.lower()
+        """Special handling for yes/no questions with semantic fallback."""
+        generated = generated.lower().strip()
+        expected = expected.lower().strip()
         
-        # Check for yes
+        # First try direct matching patterns
+        if 'yes' in generated or any(pos in generated for pos in ['correct', 'true', 'right']):
+            return expected == 'yes'
+        if 'no' in generated or any(neg in generated for neg in ['incorrect', 'false', 'wrong']):
+            return expected == 'no'
+
+        # If no direct match found, try semantic similarity
+        logger.debug(f"No direct yes/no match found in answer: '{generated}'. Using semantic similarity.")
+        
+        # Get the question from the answer if possible
+        question = generated.split('?')[0] if '?' in generated else generated
+        
+        # Create yes/no variants
+        yes_variant = f"{question}? Yes."
+        no_variant = f"{question}? No."
+        
+        # Get embeddings and calculate similarities
+        embeddings = self.embed_text([generated, yes_variant, no_variant])
+        yes_sim = F.cosine_similarity(embeddings[0:1], embeddings[1:2]).item()
+        no_sim = F.cosine_similarity(embeddings[0:1], embeddings[2:3]).item()
+        
+        logger.debug(f"Yes similarity: {yes_sim:.4f}")
+        logger.debug(f"No similarity: {no_sim:.4f}")
+        
+        # Return true if the correct answer has higher similarity
         if expected == 'yes':
-            return 'yes' in generated or any(pos in generated for pos in ['correct', 'true', 'right'])
-            
-        # Check for no
-        if expected == 'no':
-            return 'no' in generated or any(neg in generated for neg in ['incorrect', 'false', 'wrong'])
-            
+            return yes_sim > no_sim and yes_sim > 0.8  # Using same threshold as parent class
+        else:
+            return no_sim > yes_sim and no_sim > 0.8
+        
         return False 
