@@ -4,6 +4,7 @@ Given a image descriptions, generate one or two multiple-choice questions that v
 Classify each concept into a type (object, human, animal, food, activity, attribute, counting, color, material, spatial, location, shape, other), and then generate a question for each type.
 
 We provide a series of examples following the tag [EXAMPLES]. Following the tag [FINAL], only generate one set of questions and answers. Do not generate other examples.
+Do not generate line breaks between questions and answers. 
 
 [EXAMPLES]Description: A man posing for a selfie in a jacket and bow tie.
 Entities: man, selfie, jacket, bow tie

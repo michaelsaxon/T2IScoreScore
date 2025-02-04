@@ -51,14 +51,11 @@ class QAMetric(T2IMetric):
         self.lm = self._init_lm(lm_type, **(lm_kwargs or {}))
         self.vlm = self._init_vlm(vlm_type, **(vlm_kwargs or {}))
         self.cache_dir = Path(cache_dir) if cache_dir else None
-        self.current_questions = None
         
         # Create cache directories if needed
         if self.cache_dir:
             self.questions_cache_dir = self.cache_dir / "questions"
-            self.answers_cache_dir = self.cache_dir / "answers"
             self.questions_cache_dir.mkdir(parents=True, exist_ok=True)
-            self.answers_cache_dir.mkdir(parents=True, exist_ok=True)
         
     def _get_cache_key(self, *args, model_type: str = None) -> str:
         """
@@ -82,144 +79,35 @@ class QAMetric(T2IMetric):
         
         # Combine and hash
         combined = "_".join(components)
-        return hashlib.md5(combined.encode()).hexdigest()
+        # Get first 8 chars of positive hex hash
+        return hashlib.md5(combined.encode()).hexdigest()[:8]
     
-    def _get_cached_questions(self, prompt: str) -> Optional[List[Dict]]:
-        """Try to load cached questions for a prompt."""
-        if not self.cache_dir:
-            return None
+    def cache_questions(func):
+        """Decorator to cache question generation results."""
+        def wrapper(self, prompt: str, *args, **kwargs):
+            if not self.cache_dir:
+                return func(self, prompt, *args, **kwargs)
+                
+            # Try to load from cache first
+            cache_key = self._get_cache_key(prompt, model_type='lm')
+            cache_file = self.questions_cache_dir / f"{cache_key}.json"
             
-        cache_key = self._get_cache_key(prompt, model_type='lm')
-        cache_file = self.questions_cache_dir / f"{cache_key}.json"
-        
-        if cache_file.exists():
-            logger.debug(f"Loading cached questions for prompt: {prompt}")
-            with open(cache_file, 'r') as f:
-                return json.load(f)
-        return None
+            if cache_file.exists():
+                logger.debug(f"Loading cached questions for prompt: {prompt}")
+                with open(cache_file, 'r') as f:
+                    return json.load(f)
+            
+            # Generate new questions if not cached
+            questions = func(self, prompt, *args, **kwargs)
+            
+            # Cache the new questions
+            logger.debug(f"Caching questions for prompt: {prompt}")
+            with open(cache_file, 'w') as f:
+                json.dump(questions, f)
+                
+            return questions
+        return wrapper
     
-    def _cache_questions(self, prompt: str, questions: List[Dict]):
-        """Cache generated questions."""
-        if not self.cache_dir:
-            return
-            
-        cache_key = self._get_cache_key(prompt, model_type='lm')
-        cache_file = self.questions_cache_dir / f"{cache_key}.json"
-        
-        logger.debug(f"Caching questions for prompt: {prompt}")
-        with open(cache_file, 'w') as f:
-            json.dump(questions, f)
-    
-    def _get_cached_answer(self, question: str, image_hash: str) -> Optional[str]:
-        """Try to load cached answer for a question-image pair."""
-        if not self.cache_dir:
-            return None
-            
-        cache_key = self._get_cache_key(question, image_hash, model_type='vlm')
-        cache_file = self.answers_cache_dir / f"{cache_key}.json"
-        
-        if cache_file.exists():
-            logger.debug(f"Loading cached answer for question: {question}")
-            with open(cache_file, 'r') as f:
-                data = json.load(f)
-                return data['answer']
-        return None
-    
-    def _cache_answer(self, question: str, image_hash: str, answer: str):
-        """Cache generated answer."""
-        if not self.cache_dir:
-            return
-            
-        cache_key = self._get_cache_key(question, image_hash, model_type='vlm')
-        cache_file = self.answers_cache_dir / f"{cache_key}.json"
-        
-        logger.debug(f"Caching answer for question: {question}")
-        with open(cache_file, 'w') as f:
-            json.dump({'question': question, 'answer': answer}, f)
-    
-    def generate_questions(self, prompt: str) -> List[Dict]:
-        """Generate questions from prompt, using cache if available."""
-        # Try to load from cache first
-        cached_questions = self._get_cached_questions(prompt)
-        if cached_questions is not None:
-            logger.info("Using cached questions")
-            return cached_questions
-            
-        # Generate new questions if not cached
-        questions = self._generate_questions(prompt)
-        
-        # Cache the new questions
-        self._cache_questions(prompt, questions)
-        return questions
-    
-    def answer_question(self, question: str, image: Union[str, Path, Image.Image]) -> str:
-        """Answer a question about an image, using cache if available."""
-        # Generate image hash for cache key
-        if isinstance(image, (str, Path)):
-            image = Image.open(image)
-        image_data = image.tobytes()
-        image_hash = hashlib.md5(image_data).hexdigest()
-        
-        # Try to load from cache first
-        cached_answer = self._get_cached_answer(question, image_hash)
-        if cached_answer is not None:
-            logger.debug("Using cached answer")
-            return cached_answer
-            
-        # Generate new answer if not cached
-        answer = self.vlm.get_answer(question, image)
-        
-        # Cache the new answer
-        self._cache_answer(question, image_hash, answer)
-        return answer
-    
-    @abstractmethod
-    def _generate_questions(self, prompt: str) -> List[Dict]:
-        """Internal method to generate questions. To be implemented by subclasses."""
-        pass
-    
-    @abstractmethod
-    def compute_score(self, answers: List[str], questions: List[Dict]) -> float:
-        """Compute final score from answers.
-        
-        Args:
-            answers: List of answers from VLM
-            questions: Original questions with expected answers/scoring info
-            
-        Returns:
-            Float score between 0 and 1
-        """
-        pass
-        
-    def calculate_score(self, image: Union[str, Path, Image.Image], prompt: str) -> float:
-        """Main entry point - generate questions, get answers, compute score."""
-        # Generate or load cached questions
-        if not self.current_questions:
-            self.current_questions = self.generate_questions(prompt)
-            
-        # Get answers for all questions
-        answers = []
-        for q in self.current_questions:
-            answer = self.answer_question(q['question'], image)
-            answers.append(answer)
-            
-        # Cache intermediate results if requested
-        if self.cache_dir:
-            self._cache_results(prompt, self.current_questions, answers)
-            
-        return self.compute_score(answers, self.current_questions)
-    
-    def _cache_results(self, prompt: str, questions: List[Dict], answers: List[str]):
-        """Cache intermediate results to JSON."""
-        results = {
-            'prompt': prompt,
-            'questions': questions,
-            'answers': answers
-        }
-        cache_file = self.cache_dir / f"{hash(prompt)}.json"
-        with open(cache_file, 'w') as f:
-            json.dump(results, f)
-            
     def _init_lm(self, lm_type: str, **kwargs) -> LanguageModel:
         """Initialize language model from registry."""
         model_class = LM_MODELS[lm_type]
@@ -228,6 +116,24 @@ class QAMetric(T2IMetric):
     def _init_vlm(self, vlm_type: str, **kwargs) -> VisionLanguageModel:
         """Initialize vision-language model from registry."""
         model_class = VLM_MODELS[vlm_type]
-        # Ensure device is passed to VLM
         kwargs['device'] = self.device
-        return model_class(**kwargs) 
+        return model_class(**kwargs)
+    
+    @abstractmethod
+    def generate_questions(self, prompt: str) -> List[Dict]:
+        """Generate questions from prompt."""
+        pass
+    
+    @abstractmethod
+    def compute_score(self, answers: List[str], questions: List[Dict]) -> float:
+        """Compute final score from answers."""
+        pass
+    
+    def calculate_score(self, image: Union[str, Path, Image.Image], prompt: str) -> float:
+        """Calculate metric score for image-prompt pair."""
+        questions = self.generate_questions(prompt)
+        answers = []
+        for q in questions:
+            answer = self.vlm.get_answer(q['question'], image)
+            answers.append(answer)
+        return self.compute_score(answers, questions) 

@@ -38,4 +38,7 @@ include = ["T2IMetrics*", "T2IScoreScore*"]
 
 [tool.setuptools.package-data]
 T2IMetrics = ["resources/**/*"]
-T2IScoreScore = ["resources/**/*"] 
+T2IScoreScore = ["resources/**/*"]
+
+[project.scripts]
+ts2 = "T2IScoreScore.cli:main" 

@@ -9,7 +9,7 @@ from .answer_processor import AnswerProcessor
 # Create module-level logger
 logger = logging.getLogger(__name__)
 
-class DSGMetric(QAMetric):
+class DSGScore(QAMetric):
     """DSG (Davidsonian Scene Graph) metric for image-text alignment."""
     
     def __init__(self,
@@ -84,7 +84,8 @@ class DSGMetric(QAMetric):
         
         return '\n'.join(final_lines)
 
-    def _generate_questions(self, prompt: str) -> List[Dict]:
+    @QAMetric.cache_questions
+    def generate_questions(self, prompt: str) -> List[Dict]:
         """Internal method to generate questions using DSG approach."""
         logger.debug("Generating tuples...")
         tuple_prompt_text = self.tuple_prompt.format(prompt=prompt)
@@ -175,7 +176,7 @@ class DSGMetric(QAMetric):
         """Calculate DSG score for image-prompt pair."""
         logger.info(f"Generating questions for prompt: {prompt}")
         
-        questions = self._generate_questions(prompt)
+        questions = self.generate_questions(prompt)
         logger.info(f"Generated {len(questions)} questions")
         
         answers = []
@@ -192,9 +193,6 @@ class DSGMetric(QAMetric):
             answer = self.vlm.get_answer(q['question'], image)
             answers.append(answer)
             logger.debug(f"Generated: {answer}\n")
-            
-            if self.cache_dir:
-                self._cache_answer(prompt, q['question'], answer)
         
         score = self.compute_score(answers, questions)
         logger.info(f"Final DSG score: {score:.4f}")

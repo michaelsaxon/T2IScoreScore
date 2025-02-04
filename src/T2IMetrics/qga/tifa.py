@@ -10,7 +10,7 @@ from .answer_processor import AnswerProcessor
 
 logger = logging.getLogger(__name__)
 
-class TIFAMetric(QAMetric):
+class TIFAScore(QAMetric):
     """TIFA (Text-to-Image Faithfulness Assessment) metric."""
     
     def __init__(self,
@@ -48,7 +48,8 @@ class TIFAMetric(QAMetric):
             'spatial', 'location', 'shape', 'other'
         ]
     
-    def _generate_questions(self, prompt: str) -> List[Dict]:
+    @QAMetric.cache_questions
+    def generate_questions(self, prompt: str) -> List[Dict]:
         """Internal method to generate questions."""
         # Format prompt for question generation
         full_prompt = self.prompt_template + prompt + "\nEntities"
@@ -93,7 +94,7 @@ class TIFAMetric(QAMetric):
         """Calculate TIFA score for image-prompt pair."""
         logger.info(f"Generating questions for prompt: {prompt}")
         
-        questions = self._generate_questions(prompt)
+        questions = self.generate_questions(prompt)
         logger.info(f"Generated {len(questions)} questions")
         
         answers = []
@@ -111,10 +112,6 @@ class TIFAMetric(QAMetric):
             answer = self.vlm.get_answer(q['question'], image)
             answers.append(answer)
             logger.debug(f"Generated: {answer}\n")
-            
-            # Cache results if requested
-            if self.cache_dir:
-                self._cache_qa_pair(prompt, q, answer)
         
         score = self.compute_score(answers, questions)
         logger.info(f"Final TIFA score: {score:.4f}")

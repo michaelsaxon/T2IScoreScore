@@ -1,1 +1,0 @@
-{"prompt": "Godzilla on a pink background with large japanese text", "question": {"element": "Japanese", "element_type": "attribute", "question": "is the text Japanese or English?", "choices": ["Japanese", "English", "Chinese", "Spanish"], "answer": "Japanese"}, "generated_answer": "The text in the image is in Japanese."}

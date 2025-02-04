@@ -1,1 +1,0 @@
-{"prompt": "Godzilla on a pink background with large japanese text", "question": {"element": "background", "element_type": "attribute", "question": "is the background pink or blue?", "choices": ["pink", "blue", "green", "yellow"], "answer": "pink"}, "generated_answer": "The background of the image is pink."}

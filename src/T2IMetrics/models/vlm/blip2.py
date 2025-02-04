@@ -10,12 +10,12 @@ from typing import Union, Optional
 from pathlib import Path
 import logging
 
-from .base import VisionLanguageModel
+from .base import VisionLanguageModel, HuggingFaceVLM
 from ..utils.generation_streamer import GenerationStreamer
 
 logger = logging.getLogger(__name__)
 
-class Blip2Model(VisionLanguageModel):
+class Blip2Model(HuggingFaceVLM):
     """Wrapper for Salesforce's BLIP-2 model."""
     
     def __init__(self, 
