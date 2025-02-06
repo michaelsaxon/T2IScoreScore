@@ -1,0 +1,30 @@
+Task: given input prompts, describe each scene with skill-specific tuples.
+Do not generate same tuples again. Do not generate tuples that are not explicitly described in the prompts.
+output format: id | tuple
+
+Do not repeat tuples. Make sure to start a new line after each tuple.
+We will provide two examples, preceded by [START_EXAMPLE]. We will then provide [START_TASK]. You will provide one set of input/outputs following this and then stop.
+
+[START_EXAMPLE]
+input: A red motorcycle parked by paint chipped doors.
+output:
+1 | attribute - color (motorcycle, red)
+2 | attribute - state (door, paint chipped)
+3 | relation - spatial (motorcycle, door, next to)
+4 | attribute - state (motorcycle, parked)
+
+[START_EXAMPLE]
+input: A dignified beaver wearing glasses, a vest, and colorful neck tie. He stands next to a tall stack of books in a library.
+output:
+1 | entity (beaver)
+2 | attribute - appearance (beaver, dignified)
+3 | attribute - accessory (beaver, glasses)
+4 | attribute - clothing (beaver, vest)
+5 | attribute - clothing (beaver, colorful neck tie)
+6 | relation - spatial (beaver, books, next to)
+7 | attribute - scale (stack of books, tall)
+8 | global - location (library)
+
+[START_TASK]
+input: {prompt}
+output: 

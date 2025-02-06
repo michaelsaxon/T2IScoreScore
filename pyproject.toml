@@ -14,9 +14,13 @@ dependencies = [
     "pandas>=1.3.0",
     "scipy>=1.7.0",
     "tqdm>=4.62.0",
-    "torch",
-    "transformers[torch]",
-    "seaborn",
+    "torch>=2.0.0",
+    "transformers>=4.30.0",
+    "pillow>=9.0.0",
+    "openai>=1.0.0",
+    "sentence-transformers>=2.2.0",
+    "bitsandbytes>=0.41.0",
+    "accelerate>=0.21.0",
 ]
 
 [project.optional-dependencies]
@@ -27,8 +31,14 @@ dev = [
     "pytest-cov>=2.12.0",
     "mypy>=0.910",
 ]
-metrics = [
-    "clip",
-    "pillow",
-    "torchvision",
-] 
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["T2IMetrics*", "T2IScoreScore*"]
+
+[tool.setuptools.package-data]
+T2IMetrics = ["resources/**/*"]
+T2IScoreScore = ["resources/**/*"]
+
+[project.scripts]
+ts2 = "T2IScoreScore.cli:main" 

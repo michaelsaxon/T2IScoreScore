@@ -5,3 +5,6 @@ __pycache__
 *.swp
 .vscode
 *.egg-info
+output/cache/*
+DSG/
+DSG/*

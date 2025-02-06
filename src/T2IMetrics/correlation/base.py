@@ -1,4 +1,4 @@
-from .base import T2IMetric
+from ..base import T2IMetric
 
 class CorrelationMetric(T2IMetric):
     """Base class for correlation-based metrics (CLIPScore, ALIGNScore etc).
@@ -7,7 +7,7 @@ class CorrelationMetric(T2IMetric):
     pre-trained vision-language models.
     """
     
-    def __init__(self, device=None):
+    def __init__(self, device=None, **kwargs):
         super().__init__(device)
         self.processor = None
         self.model = None
