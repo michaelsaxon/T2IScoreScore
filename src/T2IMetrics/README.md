@@ -1,3 +1,5 @@
+[← Back to main documentation](../../README.md)
+
 # T2IMetrics
 
 Collection of text-to-image evaluation metrics that can be analyzed using T2IScoreScore.
