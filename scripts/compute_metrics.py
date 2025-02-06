@@ -3,7 +3,7 @@ from T2IScoreScore.evaluators import SpearmanEvaluator, KSTestEvaluator, DeltaEv
 import logging
 
 # Setup logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 # Read the data with specified dtypes

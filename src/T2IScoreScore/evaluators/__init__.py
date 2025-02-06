@@ -4,10 +4,18 @@ from .ks_test import KSTestEvaluator
 from .kendall import KendallEvaluator
 from .delta import DeltaEvaluator
 
+AVAILABLE_EVALUATORS = {
+    'spearman': SpearmanEvaluator,
+    'kstest': KSTestEvaluator,
+    'delta': DeltaEvaluator,
+    'kendall': KendallEvaluator,
+}
+
 __all__ = [
     'MetricEvaluator',
     'SpearmanEvaluator',
     'KSTestEvaluator',
+    'DeltaEvaluator',
     'KendallEvaluator',
-    'DeltaEvaluator'
+    'AVAILABLE_EVALUATORS'
 ] 
