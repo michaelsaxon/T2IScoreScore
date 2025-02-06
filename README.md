@@ -1,10 +1,23 @@
 # T2IScoreScore
 
-T2IScoreScore is a framework for evaluating text-to-image model evaluation metrics. It provides tools to:
+T2IScoreScore is a framework for evaluating text-to-image model evaluation metrics. The framework provides tools to:
 
-1. Run metrics on a standardized dataset of image-text pairs
-2. Compute metametrics that assess metric quality
-3. Generate visualizations and analysis
+1. [Reference implementations](src/T2IMetrics/README.md) of various classes of text-to-image metrics with a consistent API:
+   - Correlation-based metrics (CLIPScore)
+   - Likelihood-based metrics
+   - Visual Question-Answering metrics
+   
+2. [Run these metrics](src/T2IScoreScore/run/README.md) on the T2IScoreScore dataset of semantic error graphs:
+   ```
+   ts2 evaluate CLIPScore --device cuda
+   ```
+
+3. [Compute metametrics](src/T2IScoreScore/evaluators/README.md) to characterize how well the T2I metric ordered different nodes of images along walks of increasing error count:
+   ```
+   ts2 compute CLIPScore spearman kstest
+   ```
+
+4. [Generate visualizations](src/T2IScoreScore/figures/README.md) and reports to analyze metric performance across different error types and image sources.
 
 ## Installation
 

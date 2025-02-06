@@ -1,3 +1,5 @@
+[← Back to main documentation](../../../README.md)
+
 # Figures
 
 This module contains figure generation utilities for visualizing T2IScoreScore results.
