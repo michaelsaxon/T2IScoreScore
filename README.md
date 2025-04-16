@@ -22,7 +22,7 @@ T2IScoreScore is a framework for evaluating text-to-image model evaluation metri
 ## Installation
 
 ```bash
-git clone https://github.com/saxon-milton/T2IScoreScore
+git clone https://github.com/michaelsaxon/T2IScoreScore.git
 cd T2IScoreScore
 pip install -e .
 ```
